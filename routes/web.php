@@ -8,17 +8,21 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
 use App\Models\User;
+use App\Http\Controllers\DomainController;
+
 use Illuminate\Contracts\Auth\Guard;
 
 Route::get('/' , function(){
     return view("welcome");
-});
+})->name("welcome");
 
-Route::get('/domains' , function(){
-    return view("domains");
-});
+Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
+Route::get('/domains/create' , [DomainController::class , "create"])->name("domains.create");
 
 
+Route::get("/domains/create" , function(){
+    return view("domain_create");
+})->middleware("auth" , "verified")->name("domains.create");
 
 
 Route::name('home.')->middleware(['auth','verified'])->prefix('home/')->group(function (){

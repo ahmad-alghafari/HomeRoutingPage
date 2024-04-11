@@ -151,45 +151,38 @@ Header END -->
         <div class="bg-mode p-4">
           <h1 class="h4 mb-4">Latest And Most Famos Domains</h1>
 
-          <!-- Blog item START -->
-          <div class="card bg-transparent border-0">
-            <div class="row g-3">
-              <div class="col-4">
-                <!-- Blog image -->
-                <img class="rounded" src="{{asset("import/assets/images/post/4by3/03.jpg")}}" alt="">
-              </div>
-              <div class="col-8">
-                <!-- Blog caption -->
-                <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">Lifestyle</a>
-                <h5><a href="blog-details.html" class="btn-link stretched-link text-reset fw-bold">Social guides the way in 2022 app performance report</a></h5>
-                <div class="d-none d-sm-inline-block">
-                  <p class="mb-2">Speedily say has suitable disposal add boy. On forth doubt miles of child. Exercise joy man children rejoiced.</p>
-                  <!-- BLog date -->
-                  <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> Jan 22, 2022</a>
+          @foreach ($domains as $domain)
+            
+            <!-- Blog item START -->
+            <div class="card bg-transparent border-0">
+              <div class="row g-3">
+                <div class="col-4">
+                  <!-- Blog image -->
+                  <img class="rounded" src="{{asset("import/assets/images/post/4by3/03.jpg")}}" alt="">
+                </div>
+                <div class="col-8">
+                  <!-- Blog caption -->
+                  <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">#{{$domain->id}}</a>
+                  <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">Syria</a>
+                  <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->language}}</a>
+                  <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->Type}}</a>
+
+                  <h5><a href="blog-details.html" class="btn-link stretched-link text-reset fw-bold">{{$domain->name}}</a></h5>
+                  <div class="d-none d-sm-inline-block">
+                    <p class="mb-2">{{$domain->description}}</p>
+                    <!-- BLog date -->
+                    <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> {{$domain->created_at->format('M d, Y')}}</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Blog item END -->
-          <hr class="my-4">
-
-
+            <!-- Blog item END -->
+            <hr class="my-4">
+          @endforeach
+          
           <!-- Pagination -->
           <div class="mt-4">
-            <nav aria-label="navigation">
-              <ul class="pagination pagination-light d-inline-block d-md-flex justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#">Prev</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">15</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
+            {{$domains->links('vendor.pagination.custom')}}
           </div>
         </div>
       </div>

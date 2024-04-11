@@ -133,7 +133,7 @@
 
         <!-- Nav right START -->
         <div class="ms-3 ms-lg-auto">
-          <a class="btn btn-dark" href="app-download.html"> Download app </a>
+          <a class="btn btn-dark" href="{{route("domains.create")}}"> Create Your Own Application </a>
         </div>
           <!-- Nav right END -->
         </div>
@@ -161,7 +161,7 @@
           <p class="lead">See resolved goodness felicity shy civility domestic had but perceive laughing six did far. </p>
           <div class="d-sm-flex justify-content-center">
             <!-- button -->
-            <button class="btn btn-primary">Sign up free</button>
+            <a class="btn btn-primary" href="{{route('domains.index')}}">Lets Start</a>
             <div class="mt-2 mt-sm-0 ms-sm-3">
               <!-- Rating START -->
               <div class="hstack justify-content-center justify-content-sm-start gap-1">
@@ -278,7 +278,7 @@
         <div class="col-lg-4">
           <h2 class="h1">Take a look at our big set of features</h2>
           <p class="mb-4">Express besides it present if at an opinion visitor. </p>
-          <a class="btn btn-dark" href="#">Download now</a>
+          <a class="btn btn-dark" href="#">Create Your Own App</a>
         </div>
         <!-- Feature item START -->
         <div class="col-lg-8">
