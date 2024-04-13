@@ -8,10 +8,10 @@ class DomainController extends Controller
 {
     public function index(){
         $domains = domain::latest()->Paginate(1);
-        return view("domains" , compact('domains'));
+        return view("domains.index" , compact('domains'));
     }
 
     public function create(){
-        return back();
+        return view("domains.create");
     }
 }
