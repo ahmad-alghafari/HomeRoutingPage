@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->unique()->nullable($value = false);
-            $table->enum("language",['Arabic' ,"English" , "French" ,"Spanish" ,"Hindi" , "Latin" ,"Chinese" , "Armenian" , "Russian"]);
+            $table->string("name")->unique();
             $table->string("description");
-            $table->enum("type" ,["Sport" , "Food" , "Education" , "Policy" , "Medicine" , "General"]);
             $table->string("country");
-            $table->enum("domain" ,["com" , "net" , "org" , "edu" , "gov" , "mil" , "int"]);
             $table->string("url");
             $table->foreignId("user_id")->constrained();
             $table->string('social')->nullable();
             $table->string("photo_path");
+            $table->string("constraind")->nullable();
+            $table->enum("language",['arabic' ,"english" , "french" ,"spanish" ,"hindi" , "latin" ,"chinese" , "armenian" , "russian"]);
+            $table->enum("type" ,["sport" , "food" , "education" , "policy" , "medicine" , "general"]);
+            $table->enum("domain" ,["com" , "net" , "org" , "edu" , "gov" , "mil" , "int"]);
             $table->timestamps();
         });
     }

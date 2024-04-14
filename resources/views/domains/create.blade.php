@@ -118,7 +118,7 @@ Header END -->
                     <div class="card">
                         <!-- Title START -->
                         <div class="card-header border-0 pb-0">
-                            <h1 class="h4 card-title mb-0">Create a page</h1>
+                            <h1 class="h4 card-title mb-0">Create A Page</h1>
                         </div>
                         <!-- Title END -->
 
@@ -148,7 +148,7 @@ Header END -->
                                 <!-- Category -->
                                 <div class="col-sm-6 col-lg-4">
                                     <label class="form-label">Language </label>
-                                    <select class="form-select js-choice" data-search-enabled="true" required>
+                                    <select class="form-select js-choice" data-search-enabled="true" required name="language">
                                         <option value="Arabic">Arabic</option>
                                         <option value="English">English</option>
                                         <option value="French">French</option>
@@ -201,18 +201,81 @@ Header END -->
                                 <!-- Icon -->
                                 <div class="col-lg-6">
                                     <label class="form-label">Icon</label>
-                                    <input type="file" class="form-control" placeholder="Phone number (Required)"
+                                    <input type="file" class="form-control" 
                                         name="icon" required accept="image/*">
                                 </div>
 
                                 <!-- Page description -->
                                 <div class="col-12">
                                     <label class="form-label">Page Description</label>
-                                    <textarea class="form-control" rows="3" placeholder="Description " name="description" required></textarea>
-                                    <small>Character limit: 300</small>
+                                    <textarea class="form-control" rows="3" placeholder="Description " name="description" required
+                                        maxlength="300" minlength="60"></textarea>
+                                    <small>Character limit:300 , minimum:60</small>
                                 </div>
+
+                                <!-- Divider -->
                                 <hr>
+
                                 <h1 class="h5 card-title mb-0">Constraint Choice </h1>
+
+                                <div class="col-12">
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="c1"
+                                            name="racism">
+                                        <label class="form-check-label" for="c1">
+                                            <h1 class="h5 card-title mb-0">Racism</h1>
+                                            Speaking racist about a specific thing or race and speaking about it and
+                                            treating it as if it is normal.
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="c2"
+                                            name="truculence">
+                                        <label class="form-check-label" for="c2">
+                                            <h1 class="h5 card-title mb-0">Truculence</h1>
+                                            Circulating words, pictures, and videos showing violence and showing the
+                                            true picture of violence that is not normally visible to everyone who does
+                                            not want to see it.
+                                        </label>
+                                    </div>
+
+
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="c3"
+                                            name="politics">
+                                        <label class="form-check-label" for="c3">
+                                            <h1 class="h5 card-title mb-0">Politics</h1>
+                                            Talking about politics that supports or opposes different points of view
+                                            about what is going on, about the general situation of countries, wars, etc.
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="c4"
+                                            name="pornography">
+                                        <label class="form-check-label" for="c4">
+                                            <h1 class="h5 card-title mb-0">Pornography</h1>
+                                            Publishing scandalous and obscene images that are inappropriate for all ages
+                                            and all religions, which offends public taste and educational custom.
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="c5"
+                                            name="religions">
+                                        <label class="form-check-label" for="c5">
+                                            <h1 class="h5 card-title mb-0">Religions And Sects</h1>
+                                            Insulting and insulting religions, speaking about them with mockery and
+                                            sarcasm, or claiming to create a new religion or sect.
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
 
                                 <!-- Divider -->
                                 <hr>
@@ -221,6 +284,8 @@ Header END -->
                                 <div class="col-12">
                                     <h5 class="card-title mb-0">Social Links</h5>
                                 </div>
+
+
                                 <!-- Facebook -->
                                 <div class="col-sm-6">
                                     <label class="form-label">Facebook</label>
@@ -263,7 +328,7 @@ Header END -->
                                 </div>
                                 <!-- Button  -->
                                 <div class="col-12 text-end">
-                                    <button type="submit" class="btn btn-primary mb-0">Create a page</button>
+                                    <button type="submit" class="btn btn-primary mb-0">Create A Page</button>
                                 </div>
                             </form>
                         </div>
