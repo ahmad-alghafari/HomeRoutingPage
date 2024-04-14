@@ -133,7 +133,13 @@ Header END -->
                                 <div class="col-12">
                                     <label class="form-label">Page name</label>
                                     <input type="text" class="form-control" placeholder="Page Name (Unique) "
-                                        name="name" required maxlength="24" minlength="8">
+                                        name="name" required maxlength="24" minlength="8"
+                                        value="{{ old('name') }}">
+                                    @error('name')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     <small>Name that describes what the page is about , character limit: 4</small>
                                 </div>
 
@@ -141,24 +147,36 @@ Header END -->
                                 <div class="col-sm-6 col-lg-4">
                                     <label class="form-label">Country</label>
                                     <input type="text" class="form-control" placeholder="Country SY,UAE,KSA,EGY,USA"
-                                        name="country" required minlength="2" maxlength="4">
+                                        name="country" required minlength="2" maxlength="4"
+                                        value="{{ old('country') }}">
+                                    @error('country')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     <small>Character limit: 4</small>
                                 </div>
 
                                 <!-- Category -->
                                 <div class="col-sm-6 col-lg-4">
                                     <label class="form-label">Language </label>
-                                    <select class="form-select js-choice" data-search-enabled="true" required name="language">
-                                        <option value="Arabic">Arabic</option>
-                                        <option value="English">English</option>
-                                        <option value="French">French</option>
-                                        <option value="Spanish">Spanish</option>
-                                        <option value="Hindi">Hindi</option>
-                                        <option value="Latin">Latin</option>
-                                        <option value="Chinese">Chinese</option>
-                                        <option value="Armenian">Armenian</option>
-                                        <option value="Russian">Russian</option>
+                                    <select class="form-select js-choice" data-search-enabled="true" required
+                                        name="language">
+                                        <option value="arabic" selected>Arabic</option>
+                                        <option value="english">English</option>
+                                        <option value="french">French</option>
+                                        <option value="spanish">Spanish</option>
+                                        <option value="hindi">Hindi</option>
+                                        <option value="latin">Latin</option>
+                                        <option value="chinese">Chinese</option>
+                                        <option value="armenian">Armenian</option>
+                                        <option value="russian">Russian</option>
                                     </select>
+                                    @error('language')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <!-- Type -->
@@ -166,13 +184,18 @@ Header END -->
                                     <label class="form-label">Type </label>
                                     <select class="form-select js-choice" data-search-enabled="true" name="type"
                                         required>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Food">Food</option>
-                                        <option value="Education">Education</option>
-                                        <option value="Policy">Policy</option>
-                                        <option value="Medicine">Medicine</option>
-                                        <option value="General">General</option>
+                                        <option value="sport">Sport</option>
+                                        <option value="food">Food</option>
+                                        <option value="education">Education</option>
+                                        <option value="policy">Policy</option>
+                                        <option value="medicine">Medicine</option>
+                                        <option value="general" selected>General</option>
                                     </select>
+                                    @error('type')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <!-- Domain -->
@@ -180,7 +203,7 @@ Header END -->
                                     <label class="form-label">Domain </label>
                                     <select class="form-select js-choice" data-search-enabled="true" name="domain"
                                         required>
-                                        <option value="com">com</option>
+                                        <option value="com" selected>com</option>
                                         <option value="net">net</option>
                                         <option value="org">org</option>
                                         <option value="edu">edu</option>
@@ -188,28 +211,48 @@ Header END -->
                                         <option value="mil">mil</option>
                                         <option value="int">int</option>
                                     </select>
+                                    @error('domain')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <!-- Website URL -->
                                 <div class="col-sm-6">
                                     <label class="form-label">Website URL</label>
                                     <input type="text" class="form-control" placeholder="https://www.tagh.com"
-                                        required name="url">
+                                        required name="url" value="{{ old('url') }}">
+                                    @error('url')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
 
                                 <!-- Icon -->
                                 <div class="col-lg-6">
                                     <label class="form-label">Icon</label>
-                                    <input type="file" class="form-control" 
-                                        name="icon" required accept="image/*">
+                                    <input type="file" class="form-control" name="icon" required
+                                        accept="image/*">
+                                    @error('icon')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <!-- Page description -->
                                 <div class="col-12">
                                     <label class="form-label">Page Description</label>
                                     <textarea class="form-control" rows="3" placeholder="Description " name="description" required
-                                        maxlength="300" minlength="60"></textarea>
+                                        maxlength="300" minlength="60">{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <span class="feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     <small>Character limit:300 , minimum:60</small>
                                 </div>
 
@@ -222,7 +265,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c1"
-                                            name="racism">
+                                            name="racism" value="{{ old('racism') }}">
                                         <label class="form-check-label" for="c1">
                                             <h1 class="h5 card-title mb-0">Racism</h1>
                                             Speaking racist about a specific thing or race and speaking about it and
@@ -232,7 +275,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c2"
-                                            name="truculence">
+                                            name="truculence" value="{{ old('truculence') }}">
                                         <label class="form-check-label" for="c2">
                                             <h1 class="h5 card-title mb-0">Truculence</h1>
                                             Circulating words, pictures, and videos showing violence and showing the
@@ -245,7 +288,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c3"
-                                            name="politics">
+                                            name="politics" value="{{ old('politics') }}">
                                         <label class="form-check-label" for="c3">
                                             <h1 class="h5 card-title mb-0">Politics</h1>
                                             Talking about politics that supports or opposes different points of view
@@ -255,7 +298,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c4"
-                                            name="pornography">
+                                            name="pornography" value="{{ old('pornography') }}">
                                         <label class="form-check-label" for="c4">
                                             <h1 class="h5 card-title mb-0">Pornography</h1>
                                             Publishing scandalous and obscene images that are inappropriate for all ages
@@ -265,7 +308,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c5"
-                                            name="religions">
+                                            name="religions" value="{{ old('religions') }}">
                                         <label class="form-check-label" for="c5">
                                             <h1 class="h5 card-title mb-0">Religions And Sects</h1>
                                             Insulting and insulting religions, speaking about them with mockery and
@@ -293,7 +336,13 @@ Header END -->
                                         <span class="input-group-text border-0"> <i
                                                 class="bi bi-facebook text-facebook"></i> </span>
                                         <input type="text" class="form-control"
-                                            placeholder="https://www.facebook.com" name="social_facebook">
+                                            placeholder="https://www.facebook.com" name="social_facebook"
+                                            value="{{ old('social_facebook') }}">
+                                        @error('social_facebook')
+                                            <span class="feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- x -->
@@ -303,7 +352,12 @@ Header END -->
                                         <span class="input-group-text border-0"> <i class="bi bi-x text-x"></i>
                                         </span>
                                         <input type="text" class="form-control" placeholder="https://www.x.com"
-                                            name="social_x">
+                                            name="social_x" value="{{ old('social_x') }}">
+                                        @error('social_x')
+                                            <span class="feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- Instagram -->
@@ -313,7 +367,13 @@ Header END -->
                                         <span class="input-group-text border-0"> <i
                                                 class="bi bi-instagram text-instagram"></i> </span>
                                         <input type="text" class="form-control"
-                                            placeholder="https://www.instagram.com" name="social_instagram">
+                                            placeholder="https://www.instagram.com" name="social_instagram"
+                                            value="{{ old('social_instagram') }}">
+                                        @error('social_instagram')
+                                            <span class="feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- YouTube -->
@@ -323,9 +383,27 @@ Header END -->
                                         <span class="input-group-text border-0"> <i
                                                 class="bi bi-youtube text-youtube"></i> </span>
                                         <input type="text" class="form-control"
-                                            placeholder="https://www.youtube.com" name="social_youtube">
+                                            placeholder="https://www.youtube.com" name="social_youtube"
+                                            value="{{ old('social_youtube') }}">
+                                        @error('social_youtube')
+                                            <span class="feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
+
+
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <!-- Button  -->
                                 <div class="col-12 text-end">
                                     <button type="submit" class="btn btn-primary mb-0">Create A Page</button>
