@@ -14,4 +14,7 @@ class DomainController extends Controller
     public function create(){
         return view("domains.create");
     }
+    public function store(Request $request){
+
+    }
 }

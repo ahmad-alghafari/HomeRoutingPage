@@ -22,6 +22,8 @@ Route::get("/domains/create" , function(){
     return view("domains.create");
 })->middleware("auth" , "verified")->name("domains.create");
 
+Route::post('/domains', [DomainController::class ,'store'])->middleware("auth" , "verified")->name("domains.store");
+
 Route::name('home.')->middleware(['auth','verified'])->prefix('home/')->group(function (){
 
     Route::get('chats' , function (){

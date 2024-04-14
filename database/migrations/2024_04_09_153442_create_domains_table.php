@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string("name")->unique()->nullable($value = false);
             $table->enum("language",['Arabic' ,"English" , "French" ,"Spanish" ,"Hindi" , "Latin" ,"Chinese" , "Armenian" , "Russian"]);
             $table->string("description");
-            $table->enum("Type" ,["Sport" , "Food" , "Education" , "Policy" , "Medicine" , "General"]);
+            $table->enum("type" ,["Sport" , "Food" , "Education" , "Policy" , "Medicine" , "General"]);
             $table->string("country");
-            $table->string("domain");
-            $table->string("URL");
+            $table->enum("domain" ,["com" , "net" , "org" , "edu" , "gov" , "mil" , "int"]);
+            $table->string("url");
             $table->foreignId("user_id")->constrained();
+            $table->string('social')->nullable();
             $table->string("photo_path");
             $table->timestamps();
         });

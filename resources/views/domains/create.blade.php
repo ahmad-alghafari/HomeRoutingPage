@@ -125,67 +125,94 @@ Header END -->
 
                         <!-- Create a page form START -->
                         <div class="card-body">
-                            <form class="row g-3">
+                            <form class="row g-3" enctype="multipart/form-data" method="POST"
+                                action="{{ route('domains.store') }}">
+                                @csrf
+                                @method('POST')
                                 <!-- Page information -->
                                 <div class="col-12">
                                     <label class="form-label">Page name</label>
-                                    <input type="text" class="form-control" placeholder="Page name (Required)"
-                                        name="name" required>
-                                    <small>Name that describes what the page is about.</small>
+                                    <input type="text" class="form-control" placeholder="Page Name (Unique) "
+                                        name="name" required maxlength="24" minlength="8">
+                                    <small>Name that describes what the page is about , character limit: 4</small>
                                 </div>
 
+                                <!-- Country -->
                                 <div class="col-sm-6 col-lg-4">
-                                    <label class="form-label">Country </label>
-                                    <select class="form-select js-choice" data-search-enabled="true" name="country">
-                                        <option value="PV">Comedy</option>
-                                        <option value="PB">Technology</option>
-                                        <option value="PV">Education</option>
-                                        <option value="PV">Entertainment</option>
-                                        <option value="PV">Hotel</option>
-                                        <option value="PV">Travel</option>
-                                    </select>
+                                    <label class="form-label">Country</label>
+                                    <input type="text" class="form-control" placeholder="Country SY,UAE,KSA,EGY,USA"
+                                        name="country" required minlength="2" maxlength="4">
+                                    <small>Character limit: 4</small>
                                 </div>
-                                <!-- Email -->
-                                <div class="col-sm-6 col-lg-4">
-                                    <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" placeholder="Email (Required)">
-                                </div>
-
-<!-- Country -->
-<div class="col-sm-6 col-lg-4">
-    <label class="form-label">Country</label>
-    <input type="text" class="form-control" placeholder="Email (Required)" name="Country">
-</div>
 
                                 <!-- Category -->
                                 <div class="col-sm-6 col-lg-4">
-                                    <label class="form-label">Category (required)</label>
-                                    <select class="form-select js-choice" data-search-enabled="true">
-                                        <option value="PV">Comedy</option>
-                                        <option value="PB">Technology</option>
-                                        <option value="PV">Education</option>
-                                        <option value="PV">Entertainment</option>
-                                        <option value="PV">Hotel</option>
-                                        <option value="PV">Travel</option>
+                                    <label class="form-label">Language </label>
+                                    <select class="form-select js-choice" data-search-enabled="true" required>
+                                        <option value="Arabic">Arabic</option>
+                                        <option value="English">English</option>
+                                        <option value="French">French</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="Hindi">Hindi</option>
+                                        <option value="Latin">Latin</option>
+                                        <option value="Chinese">Chinese</option>
+                                        <option value="Armenian">Armenian</option>
+                                        <option value="Russian">Russian</option>
+                                    </select>
+                                </div>
+
+                                <!-- Type -->
+                                <div class="col-sm-6 col-lg-4">
+                                    <label class="form-label">Type </label>
+                                    <select class="form-select js-choice" data-search-enabled="true" name="type"
+                                        required>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Food">Food</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Policy">Policy</option>
+                                        <option value="Medicine">Medicine</option>
+                                        <option value="General">General</option>
+                                    </select>
+                                </div>
+
+                                <!-- Domain -->
+                                <div class="col-sm-6 col-lg-4">
+                                    <label class="form-label">Domain </label>
+                                    <select class="form-select js-choice" data-search-enabled="true" name="domain"
+                                        required>
+                                        <option value="com">com</option>
+                                        <option value="net">net</option>
+                                        <option value="org">org</option>
+                                        <option value="edu">edu</option>
+                                        <option value="gov">gov</option>
+                                        <option value="mil">mil</option>
+                                        <option value="int">int</option>
                                     </select>
                                 </div>
 
                                 <!-- Website URL -->
                                 <div class="col-sm-6">
                                     <label class="form-label">Website URL</label>
-                                    <input type="text" class="form-control" placeholder="https://www.webestica.com">
+                                    <input type="text" class="form-control" placeholder="https://www.tagh.com"
+                                        required name="url">
                                 </div>
-                                <!-- Phone number -->
+
+
+                                <!-- Icon -->
                                 <div class="col-lg-6">
-                                    <label class="form-label">Phone number</label>
-                                    <input type="text" class="form-control" placeholder="Phone number (Required)">
+                                    <label class="form-label">Icon</label>
+                                    <input type="file" class="form-control" placeholder="Phone number (Required)"
+                                        name="icon" required accept="image/*">
                                 </div>
-                                <!-- Page information -->
+
+                                <!-- Page description -->
                                 <div class="col-12">
-                                    <label class="form-label">About page</label>
-                                    <textarea class="form-control" rows="3" placeholder="Description (Required)"></textarea>
+                                    <label class="form-label">Page Description</label>
+                                    <textarea class="form-control" rows="3" placeholder="Description " name="description" required></textarea>
                                     <small>Character limit: 300</small>
                                 </div>
+                                <hr>
+                                <h1 class="h5 card-title mb-0">Constraint Choice </h1>
 
                                 <!-- Divider -->
                                 <hr>
@@ -201,17 +228,17 @@ Header END -->
                                         <span class="input-group-text border-0"> <i
                                                 class="bi bi-facebook text-facebook"></i> </span>
                                         <input type="text" class="form-control"
-                                            placeholder="https://www.facebook.com">
+                                            placeholder="https://www.facebook.com" name="social_facebook">
                                     </div>
                                 </div>
-                                <!-- Twitter -->
+                                <!-- x -->
                                 <div class="col-sm-6">
-                                    <label class="form-label">Twitter</label>
+                                    <label class="form-label">X</label>
                                     <div class="input-group">
-                                        <span class="input-group-text border-0"> <i
-                                                class="bi bi-twitter text-twitter"></i> </span>
-                                        <input type="text" class="form-control"
-                                            placeholder="https://www.twitter.com">
+                                        <span class="input-group-text border-0"> <i class="bi bi-x text-x"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="https://www.x.com"
+                                            name="social_x">
                                     </div>
                                 </div>
                                 <!-- Instagram -->
@@ -221,17 +248,17 @@ Header END -->
                                         <span class="input-group-text border-0"> <i
                                                 class="bi bi-instagram text-instagram"></i> </span>
                                         <input type="text" class="form-control"
-                                            placeholder="https://www.instagram.com">
+                                            placeholder="https://www.instagram.com" name="social_instagram">
                                     </div>
                                 </div>
-                                <!-- Pinterest -->
+                                <!-- YouTube -->
                                 <div class="col-sm-6">
-                                    <label class="form-label">Pinterest</label>
+                                    <label class="form-label">YouTube</label>
                                     <div class="input-group">
                                         <span class="input-group-text border-0"> <i
-                                                class="bi bi-pinterest text-pinterest"></i> </span>
+                                                class="bi bi-youtube text-youtube"></i> </span>
                                         <input type="text" class="form-control"
-                                            placeholder="https://www.pinterest.com">
+                                            placeholder="https://www.youtube.com" name="social_youtube">
                                     </div>
                                 </div>
                                 <!-- Button  -->
