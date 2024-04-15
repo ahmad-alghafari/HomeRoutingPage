@@ -18,6 +18,8 @@ Route::get('/' , function(){
 
 Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
 
+Route::get('/domains/show/{domain}' , [DomainController::class , "show"])->name("domains.show");
+
 Route::get("/domains/create" , function(){
     return view("domains.create");
 })->middleware("auth" , "verified")->name("domains.create");

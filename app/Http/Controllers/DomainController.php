@@ -24,7 +24,7 @@ class DomainController extends Controller
             'type' => 'required | in:sport,food,educaion,policy,medicine,general',
             'domain' => 'required | in:com,net,org,int,mil,gov,edu',
             'url' => 'required |  url:http,https | min:15 | max:20',
-            'description' => 'required | min:60 | max:300',  
+            'description' => 'required | min:60 | max:300',
             'icon' => 'required | mimes:jpg,png | image',
         ]);
 
@@ -63,12 +63,17 @@ class DomainController extends Controller
         }
 
         $domains = domain::create([
-            'name' => $request->name , 
+            'name' => $request->name ,
         ]);
 
 
 
 
         return redirect()->route('home.posts.index');
+    }
+
+    public function show(domain $domain){
+        return view('domains.show' , compact ('domain'));
+
     }
 }
