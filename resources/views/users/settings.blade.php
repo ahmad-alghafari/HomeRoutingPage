@@ -140,17 +140,17 @@ Header END -->
                                             <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-1" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Account </span></a>
                                         </li>
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
-                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-2" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/notification-outlined-filled.svg')}}" alt=""><span>Notification </span></a>
+                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-2" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/image-flat.svg')}}" alt=""><span>Personal Photo </span></a>
                                         </li>
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
-                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-3" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/shield-outline-filled.svg')}}" alt=""><span>Privacy and safety </span></a>
+                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-3" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/shield-outline-filled.svg')}}" alt=""><span>Change Password </span></a>
                                         </li>
-                                        <li class="nav-item" data-bs-dismiss="offcanvas">
+                                        {{-- <li class="nav-item" data-bs-dismiss="offcanvas">
                                             <a class="nav-link d-flex mb-0" href="#nav-setting-tab-4" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/handshake-outline-filled.svg')}}" alt=""><span>Communications </span></a>
                                         </li>
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
                                             <a class="nav-link d-flex mb-0" href="#nav-setting-tab-5" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/chat-alt-outline-filled.svg')}}" alt=""><span>Messaging </span></a>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
                                             <a class="nav-link d-flex mb-0" href="#nav-setting-tab-6" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/trash-var-outline-filled.svg')}}" alt=""><span>Close account </span></a>
                                         </li>
@@ -202,71 +202,13 @@ Header END -->
             <div class="col-lg-6 vstack gap-4">
                 <!-- Setting Tab content START -->
                 <div class="tab-content py-0 mb-0">
-
                     <!-- Account setting tab START -->
                     <div class="tab-pane show active fade" id="nav-setting-tab-1">
-                        <!-- photo settings START -->
-                        <div class="card  mb-4">
-
-                            <!-- Title START -->
-                            <div class="card-header border-0 pb-0">
-                                <h1 class="h5 card-title">Personal Photo Settings</h1>
-                                <p class="mb-0">You can choice an image or leave it as placeholder or you can choice an image that setied awy.</p>
-                            </div>
-                            <!-- Card header START -->
-                            <!-- Card body START -->
-                            <div class="card-body">
-                                <!-- Form settings START -->
-                                @if(Auth::user()->photo != null)
-                                    <div class="avatar avatar-xxxl">
-                                        <a class="" href="{{asset(Auth::user()->photo->path)}}" data-glightbox="post-gallery" data-gallery="image-popup" >
-                                            <img class="avatar-img rounded-circle" src="{{asset(Auth::user()->photo->path)}}" alt="avatar">
-                                        </a>
-                                    </div>
-                                @else
-                                    <div class="avatar avatar-xxxl">
-                                        <a class="" href="{{asset('import/assets/images/avatar/placeholder.jpg')}}" data-glightbox="post-gallery" data-gallery="image-popup" >
-                                            <img class="avatar-img rounded-circle" src="{{asset('import/assets/images/avatar/placeholder.jpg')}}" alt="avatar">
-                                        </a>
-                                    </div>
-                                @endif
-                                <div class="mt-5">
-                                    <button type="button" class="btn btn-success-soft btn-sm mb-2 mb-sm-0" data-bs-toggle="modal" data-bs-target="#chanephotoModal">
-                                        Change photo
-                                    </button>
-                                    <form  class="d-inline" method="POST" action="{{route('home.users.photo.destroy' , Auth::user()->id)}}">@csrf @method('DELETE') <input type="submit" value="Delete my photo" class="btn btn-danger btn-sm mb-0"></form>
-                                </div>
-                                  <!-- Modal -->
-                                <div class="modal fade" id="chanephotoModal" tabindex="-1" aria-labelledby="chanephotoModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="chanephotoModalLabel">Modal title</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="{{route('home.users.photo.store' )}}" method="POST" enctype="multipart/form-data">@csrf
-                                            <div class="modal-body text-bg-dark">
-                                                <input type="file" name="image"  id="photo" class="form-control " accept="image" >
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="submit" class="btn btn-primary" value="Save changes">
-                                            </div>
-                                        </form>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card body END -->
-                        </div>
-                        <!-- photo settings End -->
-
-                        <!-- Account settings START -->
                         <div class="card mb-4">
 
                             <!-- Title START -->
                             <div class="card-header border-0 pb-0">
                                 <h1 class="h5 card-title">Account Settings</h1>
-                                <p class="mb-0">Personalize your profile with ease on our settings page. Update your bio, profile picture, and contact details. Tailor privacy preferences, manage notifications, and choose display options. Enhance your user experience with versatile profile settings.</p>
                             </div>
                             <!-- Card header START -->
                             <!-- Card body START -->
@@ -392,9 +334,70 @@ Header END -->
                             </div>
                             <!-- Card body END -->
                         </div>
-                        <!-- Account settings END -->
+                    </div>
+                    <!-- Account setting tab END -->
 
-                        <!-- Change your password START -->
+                    <!-- Channge avatar tab START -->
+                    <div class="tab-pane fade" id="nav-setting-tab-2">
+                        <!-- Notification START -->
+                        <div class="card  mb-4">
+
+                            <!-- Title START -->
+                            <div class="card-header border-0 pb-0">
+                                <h1 class="h5 card-title">Personal Photo Settings</h1>
+                                <p class="mb-0">You can choice an image or leave it as placeholder or you can choice an image that setied awy.</p>
+                            </div>
+                            <!-- Card header START -->
+                            <!-- Card body START -->
+                            <div class="card-body">
+                                <!-- Form settings START -->
+                                @if(Auth::user()->photo != null)
+                                    <div class="avatar avatar-xxxl">
+                                        <a class="" href="{{asset(Auth::user()->photo->path)}}" data-glightbox="post-gallery" data-gallery="image-popup" >
+                                            <img class="avatar-img rounded-circle" src="{{asset(Auth::user()->photo->path)}}" alt="avatar">
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="avatar avatar-xxxl">
+                                        <a class="" href="{{asset('import/assets/images/avatar/placeholder.jpg')}}" data-glightbox="post-gallery" data-gallery="image-popup" >
+                                            <img class="avatar-img rounded-circle" src="{{asset('import/assets/images/avatar/placeholder.jpg')}}" alt="avatar">
+                                        </a>
+                                    </div>
+                                @endif
+                                <div class="mt-5">
+                                    <button type="button" class="btn btn-success-soft btn-sm mb-2 mb-sm-0" data-bs-toggle="modal" data-bs-target="#chanephotoModal">
+                                        Change photo
+                                    </button>
+                                    <form  class="d-inline" method="POST" action="{{route('home.users.photo.destroy' , Auth::user()->id)}}">@csrf @method('DELETE') <input type="submit" value="Delete my photo" class="btn btn-danger btn-sm mb-0"></form>
+                                </div>
+                                  <!-- Modal -->
+                                <div class="modal fade" id="chanephotoModal" tabindex="-1" aria-labelledby="chanephotoModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="chanephotoModalLabel">Modal title</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{route('home.users.photo.store' )}}" method="POST" enctype="multipart/form-data">@csrf
+                                            <div class="modal-body text-bg-dark">
+                                                <input type="file" name="image"  id="photo" class="form-control " accept="image" >
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" class="btn btn-primary" value="Save changes">
+                                            </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card body END -->
+                        </div>
+                        <!-- photo settings End -->
+                    </div>
+                    <!-- Channge avatar tab END -->
+
+                    <!-- Change Password tab START -->
+                    <div class="tab-pane fade" id="nav-setting-tab-3">
                         <div class="card">
                             <!-- Title START -->
                             <div class="card-header border-0 pb-0">
@@ -417,8 +420,8 @@ Header END -->
                                         <div class="input-group">
                                             <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password">
                                             <span class="input-group-text p-0">
-                          <i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
-                        </span>
+                                                <i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
+                                            </span>
                                         </div>
                                         <!-- Pswmeter -->
                                         <div id="pswmeter" class="mt-2"></div>
@@ -438,250 +441,11 @@ Header END -->
                                 <!-- Settings END -->
                             </div>
                         </div>
-                        <!-- Card END -->
                     </div>
-                    <!-- Account setting tab END -->
-
-                    <!-- Notification tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-2">
-                        <!-- Notification START -->
-                        <div class="card">
-                            <!-- Card header START -->
-                            <div class="card-header border-0 pb-0">
-                                <h5 class="card-title">Notification</h5>
-                                <p class="mb-0">Tried law yet style child. The bore of true of no be deal. Frequently sufficient to be unaffected. The furnished she concluded depending procuring concealed. </p>
-                            </div>
-                            <!-- Card header START -->
-                            <!-- Card body START -->
-                            <div class="card-body pb-0">
-                                <!-- Notification START -->
-                                <ul class="list-group list-group-flush">
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Likes and Comments</h6>
-                                            <p class="small mb-0">Joy say painful removed reached end.</p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Reply to My comments</h6>
-                                            <p class="small mb-0">Ask a quick six seven offer see among.</p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked2" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Subscriptions</h6>
-                                            <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked3">
-                                        </div>
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Birthdays</h6>
-                                            <p class="small mb-0">Contented he gentleman agreeable do be</p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked4">
-                                        </div>
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Events</h6>
-                                            <p class="small mb-0">Fulfilled direction use continually.</p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked5" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item px-0 py-3">
-                                        <!-- Accordion START -->
-                                        <div class="accordion accordion-flush border-0" id="emailNotifications">
-                                            <!-- Accordion item -->
-                                            <div class="accordion-item bg-transparent">
-                                                <h2 class="accordion-header" id="flush-headingOne">
-                                                    <a href="#!" class="accordion-button mb-0 p-0 collapsed bg-transparent shadow-none" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                              <span>
-                                <span class="mb-0 h6 d-block">Email notifications</span>
-                                <small class="small mb-0 text-secondary">As hastened oh produced prospect. </small>
-                              </span>
-                                                    </a>
-                                                </h2>
-                                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#emailNotifications">
-                                                    <div class="accordion-body p-0 pt-3">
-                                                        <!-- Notification list item -->
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="NotiSwitchCheckChecked6" checked>
-                                                            <label class="form-check-label" for="NotiSwitchCheckChecked6">
-                                                                Product emails
-                                                            </label>
-                                                        </div>
-                                                        <!-- Notification list item -->
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="NotiSwitchCheckChecke7">
-                                                            <label class="form-check-label" for="NotiSwitchCheckChecke7">
-                                                                Feedback emails
-                                                            </label>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="mt-3">
-                                                            <h6>Email frequency</h6>
-                                                            <!-- Notification list item -->
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="NotiRadio" id="NotiRadio1">
-                                                                <label class="form-check-label" for="NotiRadio1">
-                                                                    Daily
-                                                                </label>
-                                                            </div>
-                                                            <!-- Notification list item -->
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="NotiRadio" id="NotiRadio2" checked>
-                                                                <label class="form-check-label" for="NotiRadio2">
-                                                                    Weekly
-                                                                </label>
-                                                            </div>
-                                                            <!-- Notification list item -->
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="NotiRadio" id="NotiRadio3">
-                                                                <label class="form-check-label" for="NotiRadio3">
-                                                                    Periodically
-                                                                </label>
-                                                            </div>
-                                                            <!-- Notification list item -->
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="NotiRadio" id="NotiRadio4" checked>
-                                                                <label class="form-check-label" for="NotiRadio4">
-                                                                    Off
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Accordion END -->
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Push notifications</h6>
-                                            <p class="small mb-0">Rendered six say his striking confined. </p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked8" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Notification list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Weekly account summary <span class="badge bg-primary smaller"> Pro only</span> </h6>
-                                            <p class="small mb-0">Rendered six say his striking confined. </p>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked9" disabled>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- Notification END -->
-
-                            </div>
-                            <!-- Card body END -->
-                            <!-- Button save -->
-                            <div class="card-footer pt-0 text-end border-0">
-                                <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
-                            </div>
-                        </div>
-                        <!-- Notification END -->
-                    </div>
-                    <!-- Notification tab END -->
-
-                    <!-- Privacy and safety tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-3">
-                        <!-- Privacy and safety START -->
-                        <div class="card">
-                            <!-- Card header START -->
-                            <div class="card-header border-0 pb-0">
-                                <h5 class="card-title">Privacy and safety</h5>
-                                <p class="mb-0">See information about your account, download an archive of your data, or learn about your account deactivation options</p>
-                            </div>
-                            <!-- Card header START -->
-                            <!-- Card body START -->
-                            <div class="card-body">
-                                <!-- Privacy START -->
-                                <ul class="list-group">
-
-                                    <!-- Privacy item -->
-                                    <li class="list-group-item d-md-flex justify-content-between align-items-start">
-                                        <div class="me-md-3">
-                                            <h6 class="mb-0">	Use two-factor authentication</h6>
-                                            <p class="small mb-0">Unaffected occasional thoroughly. Adieus it no wonders spirit houses. </p>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-
-                                    <!-- Privacy item -->
-                                    <li class="list-group-item d-md-flex justify-content-between align-items-start">
-                                        <div class="me-md-3">
-                                            <h6 class="mb-0">Login activity</h6>
-                                            <p class="small mb-0">Select the language you use on social</p>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0" data-bs-toggle="modal" data-bs-target="#modalLoginActivity"> <i class="bi bi-eye"></i> View</button>
-                                    </li>
-
-                                    <!-- Privacy item -->
-                                    <li class="list-group-item d-md-flex justify-content-between align-items-start">
-                                        <div class="me-md-3">
-                                            <h6 class="mb-0">Manage your data and activity</h6>
-                                            <p class="small mb-0">Select a language for translation</p>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-
-                                    <!-- Privacy item -->
-                                    <li class="list-group-item d-md-flex justify-content-between align-items-start">
-                                        <div class="me-md-3">
-                                            <h6 class="mb-0">Search history</h6>
-                                            <p class="small mb-0">Choose to autoplay videos on social</p>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-
-                                    <!-- Privacy item -->
-                                    <li class="list-group-item d-md-flex justify-content-between align-items-start">
-                                        <div class="me-md-3">
-                                            <h6 class="mb-0">Permitted services</h6>
-                                            <p class="small mb-0">Choose if this feature appears on your profile</p>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-                                </ul>
-                                <!-- Privacy END -->
-                            </div>
-                            <!-- Card body END -->
-                            <!-- Button save -->
-                            <div class="card-footer pt-0 text-end border-0">
-                                <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
-                            </div>
-                        </div>
-                        <!-- Privacy and safety END -->
-                    </div>
-                    <!-- Privacy and safety tab END -->
+                    <!-- Change Password tab END -->
 
                     <!-- Communications tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-4">
+                    {{-- <div class="tab-pane fade" id="nav-setting-tab-4">
                         <!-- Communications START -->
                         <div class="card">
                             <!-- Title START -->
@@ -824,11 +588,11 @@ Header END -->
                             </div>
                         </div>
                         <!-- Communications  END -->
-                    </div>
+                    </div> --}}
                     <!-- Communications tab END -->
 
                     <!-- Messaging tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-5">
+                    {{-- <div class="tab-pane fade" id="nav-setting-tab-5">
                         <!-- Messaging privacy START -->
                         <div class="card mb-4">
                             <!-- Title START -->
@@ -946,7 +710,7 @@ Header END -->
                             </div>
                         </div>
                         <!-- Messaging experience END -->
-                    </div>
+                    </div> --}}
                     <!-- Messaging tab END -->
 
                     <!-- Close account tab START -->
@@ -964,7 +728,6 @@ Header END -->
                                 <!-- Delete START -->
                                 <h6>Before you go...</h6>
                                 <ul>
-                                    <li>Take a backup of your data <a href="#">Here</a> </li>
                                     <li>If you delete your account, you will lose your all data.</li>
                                 </ul>
                                 <div class="form-check form-check-md my-4">
@@ -993,7 +756,7 @@ Header END -->
 <!-- **************** MAIN CONTENT END **************** -->
 
 <!-- Modal login activity START -->
-<div class="modal fade" id="modalLoginActivity" tabindex="-1" aria-labelledby="modalLabelLoginActivity" aria-hidden="true">
+{{-- <div class="modal fade" id="modalLoginActivity" tabindex="-1" aria-labelledby="modalLabelLoginActivity" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal header -->
@@ -1051,7 +814,7 @@ Header END -->
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Modal login activity END -->
 
 <!-- =======================
