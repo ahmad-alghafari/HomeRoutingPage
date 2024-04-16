@@ -12,7 +12,7 @@
 	<!-- Dark mode -->
 	<script>
 		const storedTheme = localStorage.getItem('theme')
- 
+
 		const getPreferredTheme = () => {
 			if (storedTheme) {
 				return storedTheme
@@ -66,7 +66,7 @@
 
 			}
 		})
-		
+
 	</script>
 
 	<!-- Favicon -->
@@ -82,7 +82,7 @@
 
   <!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="{{asset("import/assets/css/style.css")}}">
-	 
+
 </head>
 
 <body>
@@ -95,10 +95,10 @@ Header START -->
           <!-- Logo START -->
           <a class="navbar-brand" href="{{route("home.posts.index")}}">
             <img class="light-mode-item navbar-brand-item" src="{{asset("import/assets/images/logo.svg")}}" alt="logo">
-                    <img class="dark-mode-item navbar-brand-item" src="{{asset("import/assets/images/logo.svg")}}" alt="logo">		
+                    <img class="dark-mode-item navbar-brand-item" src="{{asset("import/assets/images/logo.svg")}}" alt="logo">
           </a>
           <!-- Logo END -->
-  
+
           <!-- Responsive navbar toggler -->
               <button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-animation">
@@ -107,7 +107,7 @@ Header START -->
             <span></span>
           </span>
         </button>
-  
+
           <!-- Main navbar START -->
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
@@ -128,7 +128,7 @@ Header START -->
             </ul>
           </div>
           <!-- Main navbar END -->
-  
+
           <!-- Nav right START -->
           <div class="ms-3 ms-lg-auto">
             <a class="btn btn-dark" href="{{route('domains.create')}}">Create Your Own Application</a>
@@ -142,7 +142,7 @@ Header END -->
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-  
+
   <!-- Container START -->
   <div class="container">
     <div class="row g-4">
@@ -152,7 +152,7 @@ Header END -->
           <h1 class="h4 mb-4">Latest And Most Famos Domains</h1>
 
           @foreach ($domains as $domain)
-            
+
             <!-- Blog item START -->
             <div class="card bg-transparent border-0">
               <div class="row g-3">
@@ -167,7 +167,7 @@ Header END -->
                   <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->language}}</a>
                   <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->Type}}</a>
 
-                  <h5><a href="blog-details.html" class="btn-link stretched-link text-reset fw-bold">{{$domain->name}}</a></h5>
+                  <h5><a href="{{route("domains.show", $domain->id)}}" class="btn-link stretched-link text-reset fw-bold">{{$domain->name}}</a></h5>
                   <div class="d-none d-sm-inline-block">
                     <p class="mb-2" >{{$domain->description}}</p>
                     <!-- BLog date -->
@@ -179,7 +179,7 @@ Header END -->
             <!-- Blog item END -->
             <hr class="my-4">
           @endforeach
-          
+
           <!-- Pagination -->
           <div class="mt-4">
             {{$domains->links('vendor.pagination.custom')}}
@@ -265,7 +265,7 @@ Header END -->
   </div>
 </footer>
 <!-- footer END -->
- 
+
 <!-- =======================
 JS libraries, plugins and custom scripts -->
 
@@ -274,6 +274,6 @@ JS libraries, plugins and custom scripts -->
 
 <!-- Theme Functions -->
 <script src="{{asset("import/assets/js/functions.js")}}"></script>
- 
+
 </body>
 </html>

@@ -20,6 +20,16 @@ class DomainController extends Controller
         // dd($request);
 
         $request->validate([
+<<<<<<< HEAD
+            'name' => 'require | min:8 | max:24 | unique:App\Models\domain,name',
+            'country' => 'required | min:2 | max:4 | uppercase ',
+            'language' => 'required | in:arabic,english,french,spanish,hindi,latin,chinese,armenian,russian',
+            'type' => 'required | in:sport,food,educaion,policy,medicine,general',
+            'domain' => 'required | in:com,net,org,int,mil,gov,edu',
+            'url' => 'required |  url:http,https | min:15 | max:20',
+            'description' => 'required | min:60 | max:300',
+            'icon' => 'required | mimes:jpg,png | image',
+=======
             'name' => 'required|min:8|max:24|unique:App\Models\domain,name',
             'country' => 'required|min:2|max:4|uppercase',
             'language' => 'required|in:arabic,english,french,spanish,hindi,latin,chinese,armenian,russian',
@@ -28,6 +38,7 @@ class DomainController extends Controller
             'url' => 'required|url|min:15|max:35',
             'description' => 'required|min:60|max:300',  
             'icon' => 'required|mimes:jpg,png|image',
+>>>>>>> b88805c4db649d63f7cd80dfed16a617fa537266
         ]);
 
         if($request->hasFile('icon')){
@@ -65,6 +76,9 @@ class DomainController extends Controller
         }
 
         $domains = domain::create([
+<<<<<<< HEAD
+            'name' => $request->name ,
+=======
             'user_id' => Auth::user()->id ,
             'name' => $request->name , 
             'description' => $request->description ,
@@ -76,9 +90,15 @@ class DomainController extends Controller
             'photo_path' => $photo_path,
             'social' => implode(', ' ,$social),//.toString() ,
             'constraind' =>implode(', ' ,$constraind),// $constraind.toString() ,
+>>>>>>> b88805c4db649d63f7cd80dfed16a617fa537266
         ]);
 
 
         return redirect()->route('home.posts.index');
+    }
+
+    public function show(domain $domain){
+        return view('domains.show' , compact ('domain'));
+
     }
 }
