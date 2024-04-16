@@ -158,7 +158,7 @@ Header END -->
               <div class="row g-3">
                 <div class="col-4">
                   <!-- Blog image -->
-                  <img class="rounded" src="{{asset("import/assets/images/post/4by3/03.jpg")}}" alt="">
+                  <img class="rounded" src="{{asset($domain->photo_path)}}" alt="">
                 </div>
                 <div class="col-8">
                   <!-- Blog caption -->

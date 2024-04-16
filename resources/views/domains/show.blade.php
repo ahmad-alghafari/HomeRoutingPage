@@ -160,9 +160,9 @@ Header END -->
             <div class="mt-4">
               <!-- Tag -->
               <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->id}}</a>
-              <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->country}}</a>
-              <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->language}}</a>
-              <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->Type}}</a>
+              {{-- <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->country}}</a> --}}
+              {{-- <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->language}}</a> --}}
+              {{-- <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->Type}}</a> --}}
               <!-- Title info -->
               <h1 class="mb-2 h2">{{$domain->name}}</h1>
               <ul class="nav nav-stack gap-3 align-items-center">
@@ -175,7 +175,7 @@ Header END -->
                 <li class="nav-item"> <i class="bi bi-clock pe-1"></i>5 min read</li>
               </ul>
               <!-- description -->
-              <p class="mt-4"><span class="dropcap">A</span>Fulfilled direction use continual set him propriety continued. Saw met applauded favorite deficie</p>
+              <p class="mt-4"><span class="dropcap">A</span>{{$domain->description}}</p>
               <h4 class="mt-4">The Rules Of This Domain </h4>
               <!-- Row START -->
               <div class="row mb-4">
@@ -211,10 +211,10 @@ Header END -->
 {{--          <div class="card">--}}
 {{--            <div class="card-header pb-0 border-0">--}}
 {{--              <h4>5 comments</h4>--}}
-{{--            </div>--}}
-{{--            <div class="card-body">--}}
-              <!-- Comments START -->
-              <!-- Comment level 1-->
+{{--            </div> --}}
+{{--            <div class="card-body"> --}}
+              {{-- <!-- Comments START --> --}}
+              {{-- <!-- Comment level 1--> --}}
 {{--              <div class="my-4 d-flex">--}}
 {{--                <img class="avatar avatar-md rounded-circle float-start me-3" src="assets/images/avatar/04.jpg" alt="avatar">--}}
 {{--                <div>--}}
@@ -335,10 +335,10 @@ Header END -->
 JS libraries, plugins and custom scripts -->
 
 <!-- Bootstrap JS -->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset("import/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js")}}"></script>
 
 <!-- Theme Functions -->
-<script src="assets/js/functions.js"></script>
+<script src="{{asset("import/assets/js/functions.js")}}"></script>
 
 </body>
 </html>
