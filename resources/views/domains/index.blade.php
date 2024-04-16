@@ -131,7 +131,7 @@ Header START -->
 
           <!-- Nav right START -->
           <div class="ms-3 ms-lg-auto">
-            <a class="btn btn-dark" href="app-download.html"> Download app </a>
+            <a class="btn btn-dark" href="{{route('domains.create')}}">Create Your Own Application</a>
           </div>
             <!-- Nav right END -->
           </div>
@@ -169,7 +169,7 @@ Header END -->
 
                   <h5><a href="{{route("domains.show", $domain->id)}}" class="btn-link stretched-link text-reset fw-bold">{{$domain->name}}</a></h5>
                   <div class="d-none d-sm-inline-block">
-                    <p class="mb-2">{{$domain->description}}</p>
+                    <p class="mb-2" >{{$domain->description}}</p>
                     <!-- BLog date -->
                     <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> {{$domain->created_at->format('M d, Y')}}</a>
                   </div>
