@@ -3,7 +3,8 @@
 namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-
+use App\Models\like;
+use App\Notifications\LikeNotify;
 class LikeLive extends Component
 {
     public $post ;
@@ -16,12 +17,16 @@ class LikeLive extends Component
     {
         if($this->isLiked){
             Auth::user()->like()->where('post_id',$this->post->id)->delete();
-            $this->post->decrement('likes_number'); 
+            $this->post->decrement('likes_number');
             $this->isLiked = false ;
         }else{
             Auth::user()->like()->create(['post_id' => $this->post->id]);
             $this->post->increment('likes_number');
             $this->isLiked = true ;
+//            notification
+            $li = like::latest()->first();
+            $postOwner = $li->post->user;
+            $postOwner->notify(new LikeNotify($li,$li->post));
         }
         $this->post = $this->post->fresh();
     }

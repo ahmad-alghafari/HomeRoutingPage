@@ -35,7 +35,7 @@ class DomainController extends Controller
             'type' => 'required|in:sport,food,education,policy,medicine,general',
             'domain' => 'required|in:com,net,org,int,mil,gov,edu',
             'url' => 'required|url|min:15|max:35',
-            'description' => 'required|min:60|max:300',  
+            'description' => 'required|min:60|max:300',
             'icon' => 'required|mimes:jpg,png|image',
         ]);
 
@@ -76,7 +76,7 @@ class DomainController extends Controller
         $domains = domain::create([
             'name' => $request->name ,
             'user_id' => Auth::user()->id ,
-            'name' => $request->name , 
+            'name' => $request->name ,
             'description' => $request->description ,
             'country' => $request->country,
             'language' => $request->language,

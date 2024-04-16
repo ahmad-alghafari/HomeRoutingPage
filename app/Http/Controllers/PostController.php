@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\post;
+use App\Models\user;
 use App\Models\share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\file;
+use App\Notifications\PostNotify;
+
 
 class PostController extends Controller{
     public function index(Request $request){
@@ -20,13 +23,13 @@ class PostController extends Controller{
                     ->from('follows')
                 ->where('user_follow', $userid);
             })->latest()->Paginate(2);
-        // dd($posts->nextPageUrl());            
+        // dd($posts->nextPageUrl());
         if($request->ajax()){
             $view = view('posts.load', compact('posts'))->render();
             return response()->json(['view' => $view, 'nextPageUrl' => $posts->nextPageUrl()]);
         }
         return view('home' , compact('posts'));
-        
+
     }
 
     public function store(Request $request){
@@ -80,12 +83,34 @@ class PostController extends Controller{
                 }
             }
         }
+//        notifications
+        $test =User::whereNotIn('id', function ($query) use ($id) {
+            $query->select('user_blocker')
+                ->from('blocks')
+                ->where('user_blocked', $id);
+        })->whereIn('id', function ($query) use ($id) {
+            $query->select('user_follower')
+                ->from('follows')
+                ->where('user_follow', $id);
+        })->get(['id']);
+        $userIds = $test->toArray();
 
+
+        foreach ($userIds as $user) {
+            $user->notify(new PostNotify($post));
+        }
 
         return redirect()->back();//route('home.posts.index');
 
     }
-
+    public function read_all(Request $request)
+    {
+        $UnreadNotification = Auth()->user()->unreadNotifications;
+        if($UnreadNotification) {
+            $UnreadNotification->markAsRead();
+            return back();
+        }
+    }
     public function show(post $post){
         return view('posts.show' , compact('post'));
 
