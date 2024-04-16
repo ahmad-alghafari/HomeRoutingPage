@@ -9,6 +9,7 @@ use Livewire\Component;
 use Livewire\Attributes\Validate;
 use App\Models\Comment;
 use App\Models\CommentFile;
+use App\Notifications\CommentNotify;
 
 /**
  * Class CommentLive
@@ -17,7 +18,7 @@ use App\Models\CommentFile;
 class CommentLive extends Component
 {
     use WithFileUploads;
-    
+
     public $post;
     public $text = '';
     public $file;
@@ -58,9 +59,9 @@ class CommentLive extends Component
             } else {
                 $fileType = 'files';
             }
-            
+
             $filePath = 'comment_' . $fileType;
-            
+
             $this->file->storeAs('public', $filePath."/".$fileName);
             $comment = Comment::create([
                 'user_id' => $id,
@@ -75,7 +76,7 @@ class CommentLive extends Component
             ]);
         } else {
             $this->validate([
-                'text' => 'required|max:200' 
+                'text' => 'required|max:200'
             ]);
             $id = Auth::user()->id;
             Comment::create([
@@ -84,6 +85,11 @@ class CommentLive extends Component
                 'text' => $this->text
             ]);
         }
+        $cmt = comment::latest()->first();
+
+        $postOwner = $cmt->post->user;
+        $postOwner->notify(new CommentNotify($cmt,$cmt->post));
+        $this->reset('file', 'text');
         $this->reset('file', 'text');
     }
 

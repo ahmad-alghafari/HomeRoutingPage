@@ -193,7 +193,7 @@
                     <div class="col-lg-4">
                         <!-- iphone-x mockup START -->
                         <div class="iphone-x iphone-x-small"
-                            style="background: url({{ asset('import/assets/images/mockup/app-placeholder2.jpg') }}); background-size: 100%;">
+                            style="background: url({{ asset('import/assets/images/mockup/Capture.PNG') }}); background-size: 100%;">
                             <i></i>
                             <b></b>
                         </div>
@@ -202,12 +202,13 @@
                     <div class="col-lg-8">
                         <!-- Mac desk START -->
                         <div class="mac_container ">
+
                             <div class="mac_scaler">
                                 <div class="mac_holder">
                                     <div class="mac_screen">
                                         <div class="mac_camera"></div>
                                         <div class="mac_screen_content"
-                                            style="background:url({{ asset('import/assets/images/mockup/mac-placeholder.jpg') }}); background-size: 100%;">
+                                            style="background:url({{ asset('import/assets/images/mockup/') }}); background-size: 100%;">
                                         </div>
                                     </div>
                                     <div class="mac_bottom">

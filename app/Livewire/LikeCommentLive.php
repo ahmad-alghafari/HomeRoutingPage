@@ -4,6 +4,7 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\commentlike;
+use App\Notifications\CommentLikeNotify;
 class LikeCommentLive extends Component
 {
     public $comment ;
@@ -24,6 +25,10 @@ class LikeCommentLive extends Component
             Auth::user()->commentlike()->create([ 'comment_id' => $this->comment->id]);
             $this->comment->increment("likes_number");
             $this->isliked = true ;
+            $like = commentlike::latest()->first();
+            $commentOwner = $this->comment->user;
+            $postOfComment = $this->comment->post;
+            $commentOwner->notify(new CommentLikeNotify($like,$this->comment,$postOfComment));
         }
         $this->comment = $this->comment->fresh();
         // $this->isliked = $this->isliked->fresh();

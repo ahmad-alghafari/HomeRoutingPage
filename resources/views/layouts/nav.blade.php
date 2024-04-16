@@ -169,63 +169,128 @@
                             <ul class="list-group list-group-flush list-unstyled p-2">
                                 <!-- Notif item -->
                                 <li>
-                                    <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
-                                        <div class="avatar text-center d-none d-sm-inline-block">
-                                            <img class="avatar-img rounded-circle" src="{{asset('import/assets/images/avatar/01.jpg')}}" alt="">
-                                        </div>
-                                        <div class="ms-sm-3">
-                                            <div class=" d-flex">
-                                                <p class="small mb-2"><b>Judy Nguyen</b> sent you a friend request.</p>
-                                                <p class="small ms-3 text-nowrap">Just now</p>
-                                            </div>
-                                            <div class="d-flex">
-                                                <button class="btn btn-sm py-1 btn-primary me-2">Accept </button>
-                                                <button class="btn btn-sm py-1 btn-danger-soft">Delete </button>
-                                            </div>
-                                        </div>
+                                    <div class="unreadNotifications" >
+                                        @foreach(auth()->user()->unreadNotifications as $notification)
+                                            @if($notification->type === 'App\Notifications\PostNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="{{ url('home/posts/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle"
+                                                                 @if(($notification->data['photo']) !== null)
+                                                                     src="{{asset($notification->data['photo'])}}"
+                                                                 @else
+                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
+                                                                 @endif
+                                                                 alt=" ">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
+                                                                <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            @elseif($notification->type === 'App\Notifications\CommentNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle"
+                                                                 @if(isset($notification->data['photo']))
+                                                                     src="{{asset($notification->data['photo'])}}"
+                                                                 @else
+                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
+                                                                 @endif
+                                                                 alt=" ">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
+                                                                <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            @elseif($notification->type === 'App\Notifications\LikeNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle" alt=""
+                                                                 @if(isset($notification->data['photo']))
+                                                                     src="{{asset($notification->data['photo'])}}"
+                                                                 @else
+                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
+                                                                @endif
+                                                            >
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
+                                                                <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            @elseif($notification->type === 'App\Notifications\FollowNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="{{ url('home/users/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle"
+                                                                 @if(($notification->data['photo']) != null)
+                                                                     src="{{asset($notification->data['photo'])}}"
+                                                                 @else
+                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
+                                                                @endif
+                                                            >
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ url('home/users/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
+                                                                <p class="small mb-2"><b>{{ $notification->data['follower_name'] }}</b> {{ $notification->data['title'] }}</p></a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            @elseif($notification->type === 'App\Notifications\CommentLikeNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle"
+                                                                 @if(isset($notification->data['photo']))
+                                                                     src="{{asset($notification->data['photo'])}}"
+                                                                 @else
+                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
+                                                                @endif
+                                                            >
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['post'] }}" style="color: #fff">
+                                                                <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </li>
-                                <!-- Notif item -->
-                                <li>
-                                    <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3 position-relative">
-                                        <div class="avatar text-center d-none d-sm-inline-block">
-                                            <img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="">
-                                        </div>
-                                        <div class="ms-sm-3 d-flex">
-                                            <div>
-                                                <p class="small mb-2">Wish <b>Amanda Reed</b> a happy birthday (Nov 12)</p>
-                                                <button class="btn btn-sm btn-outline-light py-1 me-2">Say happy birthday 🎂</button>
-                                            </div>
-                                            <p class="small ms-3">2min</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Notif item -->
-                                <li>
-                                    <a href="#" class="list-group-item list-group-item-action rounded d-flex border-0 mb-1 p-3">
-                                        <div class="avatar text-center d-none d-sm-inline-block">
-                                            <div class="avatar-img rounded-circle bg-success"><span class="text-white position-absolute top-50 start-50 translate-middle fw-bold">WB</span></div>
-                                        </div>
-                                        <div class="ms-sm-3">
-                                            <div class="d-flex">
-                                                <p class="small mb-2">Webestica has 15 like and 1 new activity</p>
-                                                <p class="small ms-3">1hr</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- Notif item -->
-                                <li>
-                                    <a href="#" class="list-group-item list-group-item-action rounded d-flex border-0 p-3 mb-1">
-                                        <div class="avatar text-center d-none d-sm-inline-block">
-                                            <img class="avatar-img rounded-circle" src="assets/images/logo/12.svg" alt="">
-                                        </div>
-                                        <div class="ms-sm-3 d-flex">
-                                            <p class="small mb-2"><b>Bootstrap in the news:</b> The search giant’s parent company, Alphabet, just joined an exclusive club of tech stocks.</p>
-                                            <p class="small ms-3">4hr</p>
-                                        </div>
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="card-footer text-center">

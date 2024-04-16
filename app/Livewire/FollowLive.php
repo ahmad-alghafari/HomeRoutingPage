@@ -5,10 +5,11 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\follow;
+use App\Notifications\FollowNotify;
 
 class FollowLive extends Component{
     public $user;
-    public $isFollow ; 
+    public $isFollow ;
     public function mount($user){
         $this->user = $user ;
         $this->isFollow = Auth::user()->follow()->where('user_follower',$this->user->id)->exists();
@@ -25,6 +26,9 @@ class FollowLive extends Component{
             // Auth::user()->info->increment("following");
             $this->user->info->increment('follower');
             $this->isFollow = true ;
+//            notifications
+            $follow = follow::latest()->first();
+            $this->user->notify(new FollowNotify($follow));
         }
         $this->user = $this->user->fresh() ;
     }
