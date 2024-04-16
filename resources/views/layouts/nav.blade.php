@@ -270,16 +270,16 @@
                     </li>
                     <!-- Links -->
                     <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
-                    <li>
+                    {{-- <li>
                         <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
                             <i class="fa-fw bi bi-life-preserver me-2"></i>Support
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a class="dropdown-item" href="docs/index.html" target="_blank">
                             <i class="fa-fw bi bi-card-text me-2"></i>Documentation
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="dropdown-divider"></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="">
