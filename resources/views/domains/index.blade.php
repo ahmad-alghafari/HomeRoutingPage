@@ -168,11 +168,9 @@ Header END -->
                   <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->Type}}</a>
 
                   <h5><a href="{{route("domains.show", $domain->id)}}" class="btn-link stretched-link text-reset fw-bold">{{$domain->name}}</a></h5>
-                  <div class="d-none d-sm-inline-block">
                     <p class="mb-2" >{{$domain->description}}</p>
                     <!-- BLog date -->
                     <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> {{$domain->created_at->format('M d, Y')}}</a>
-                  </div>
                 </div>
               </div>
             </div>

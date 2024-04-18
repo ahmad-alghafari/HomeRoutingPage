@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\file;
 use App\Notifications\PostNotify;
 
-
 class PostController extends Controller{
     public function index(Request $request){
         $userid = auth::user()->id;

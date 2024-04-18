@@ -16,6 +16,14 @@ Route::get('/' , function(){
     return view("welcome");
 })->name("welcome");
 
+Route::get('/test' , function(){
+    return view("welcome");
+})->name("welcome")->middleware('servicing');
+
+Route::get('servicing' , function(){
+    return view('servicing');
+})->name('servicing');
+
 Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
 Route::get('/domains/show/{domain}' , [DomainController::class , "show"])->name("domains.show");
 Route::get("/domains/create" , function(){
@@ -24,7 +32,8 @@ Route::get("/domains/create" , function(){
 Route::post('/domains', [DomainController::class ,'store'])->middleware("auth" , "verified")->name("domains.store");
 
 
-Route::name('home.')->middleware(['auth','verified'])->prefix('home/')->group(function (){
+
+Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/')->group(function (){
 
     Route::get('notificaions' , function(){
         return view('notifications');
