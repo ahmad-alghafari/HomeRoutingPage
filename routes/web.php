@@ -16,11 +16,13 @@ Route::get('/' , function(){
     return view("welcome");
 })->name("welcome");
 
+Route::get('/logs',[UserController::class , "show_log"]);
+
 Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
 Route::get('/domains/show/{domain}' , [DomainController::class , "show"])->name("domains.show");
 Route::get("/domains/create" , function(){
     return view("domains.create");
-})->middleware("auth" , "verified")->name("domains.create");   
+})->middleware("auth" , "verified")->name("domains.create");
 Route::post('/domains', [DomainController::class ,'store'])->middleware("auth" , "verified")->name("domains.store");
 
 
@@ -38,7 +40,7 @@ Route::name('home.')->middleware(['auth','verified'])->prefix('home/')->group(fu
 
     Route::get('posts/show/{post}' ,[PostController::class , 'show'])->name('posts.show')->middleware('blockPost');
     Route::get('posts/showpost/{postshow}' ,[PostController::class , 'showpost'])->name('posts.showpost')->middleware('blockPostShow');
-    
+
     Route::view('search' ,'search')->name('search');
 
     Route::get('users/show/{user}' ,[UserController::class , 'show'])->name('users.show')->middleware('block');

@@ -9,6 +9,7 @@ use DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
 {
     public function show(User $user){
@@ -24,7 +25,7 @@ class UserController extends Controller
         }else{
             return back()->with('error' , "user not exists!");
         }
-        
+
     }
 
     public function settings(Request $request){
@@ -79,7 +80,7 @@ class UserController extends Controller
 
         return redirect()->back()->with(['success' => 'Updated Successfully!']);
     }
-    
+
     public function addphoto(Request $request){
         $request->validate([
             'image' => "required|image|mimes:jpeg,png,jpg,svg|max:3000"
@@ -114,6 +115,11 @@ class UserController extends Controller
         }
         return redirect()->route('home.users.show' , Auth::user());
 
+    }
+
+    public function show_log() {
+        activity()->log('abdc');
+        return Activity::all();
     }
 
 }
