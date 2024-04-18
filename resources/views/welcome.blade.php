@@ -193,7 +193,7 @@
                     <div class="col-lg-4">
                         <!-- iphone-x mockup START -->
                         <div class="iphone-x iphone-x-small"
-                            style="background: url({{ asset('import/assets/images/mockup/Capture.PNG') }}); background-size: 100%;">
+                            style="background: url({{ asset('import/assets/images/mockup/iphone.PNG') }}); background-size: 100%;">
                             <i></i>
                             <b></b>
                         </div>
@@ -208,7 +208,7 @@
                                     <div class="mac_screen">
                                         <div class="mac_camera"></div>
                                         <div class="mac_screen_content"
-                                            style="background:url({{ asset('import/assets/images/mockup/') }}); background-size: 100%;">
+                                            style="background:url({{ asset('import/assets/images/mockup/desktop.PNG') }}); background-size: 100%;">
                                         </div>
                                     </div>
                                     <div class="mac_bottom">
@@ -311,7 +311,7 @@
                                     <!-- image -->
                                     <!-- iphone-x mockup START -->
                                     <div class="iphone-x iphone-x-small iphone-x-half mb-n5 mt-0"
-                                        style="background: url({{ asset('import/assets/images/mockup/app-placeholder3.jpg') }}); background-size: 100%;">
+                                        style="background: url({{ asset('import/assets/images/mockup/call.PNG') }}); background-size: 100%;">
                                         <i></i>
                                         <b></b>
                                     </div>

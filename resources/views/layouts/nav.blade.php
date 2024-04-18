@@ -51,7 +51,7 @@
                     <span class="badge-notif animation-blink"></span>
                     <i class="bi bi-bell-fill fs-6"> </i>
                 </a>
-                <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
+                <div class="dropdown-menu dropdown-animation dropdseown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
                     <div class="card">
                         @livewire('clear-notifi')
                         <div class="card-body p-0">
@@ -62,9 +62,9 @@
                                         @foreach(auth()->user()->unreadNotifications as $notification)
 
                                             @php
-                                                $curr_user = \App\Models\User::find($notification->data['user_id']);
+                                                $curr_user =\App\Models\User::find($notification->data['user_id']);
                                             @endphp
-                                            
+
                                             @if($notification->type == 'App\Notifications\PostNotify')
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </div>
                                             @elseif($notification->type == 'App\Notifications\CommentNotify')
-                                            
+
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
                                                         <a href="{{ route('home.posts.showpost' , $notification->data['post_id'] )}}" style="color: #fff">
@@ -142,9 +142,8 @@
                                             @elseif($notification->type == 'App\Notifications\CommentLikeNotify')
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
-                                                        <a href="" style="color: #fff">
+                                                        <a href="{{ route('home.posts.showpost' , $notification->data['post']) }}" style="color: #fff">
                                                             <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
-
                                                         </a>
                                                     </div>
                                                     <div class="ms-sm-3">
@@ -167,7 +166,7 @@
                             document.addEventListener("DOMContentLoaded", function() {
                                 var clearButton = document.getElementById("clearingNotificaions");
                                 var notificationsDiv = document.getElementById("notificaionsAreia");
-                        
+
                                 clearButton.addEventListener("click", function() {
                                     notificationsDiv.innerHTML = ""; // Clearing the content of the div
                                 });
@@ -203,7 +202,7 @@
                         <a class="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" href={{route('home.users.show',Auth::user())}}>View profile</a>
                     </li>
                     <!-- Links -->
-                    <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
+                    <li><a class="dropdown-item" href="{{route('home.users.settings' , Auth::user()->id)}}"><i class="bi bi-gear fa-fw me-2"></i>Settings & Privacy</a></li>
                     {{-- <li>
                         <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
                             <i class="fa-fw bi bi-life-preserver me-2"></i>Support
