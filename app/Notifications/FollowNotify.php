@@ -35,10 +35,9 @@ class FollowNotify extends Notification
     public function toDatabase(object $notifiable): array
     {
         return [
-            'id' => $this->follow->user->id,
+            'user_id' => $this->follow->user->id,
             'follower_name' => $this->follow->user->name,
             'title' => ' Started Following You',
-            'photo' =>  $this->follow->user->photo->path,
         ];
     }
 }

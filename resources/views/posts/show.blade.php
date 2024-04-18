@@ -134,9 +134,7 @@ Header END -->
                                 <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save post</a></li>
                                 @if(Auth::user()->id != $post->user->id)
                                     <li>
-                                        <form action="{{route('home.follows.destroy' , $post->user)}}" method="POST">
-                                            @csrf 
-                                            @method('DELETE')
+                                        <form action="" method="POST">
                                             <button class="dropdown-item" type="submit">
                                                 <i class="bi bi-person-x fa-fw pe-2"></i>Unfollow {{$post->user->name}} 
                                             </button>

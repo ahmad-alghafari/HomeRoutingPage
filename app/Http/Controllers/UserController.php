@@ -16,6 +16,17 @@ class UserController extends Controller
         return view('users.profile' , compact('posts' , 'user'));
     }
 
+    public function showuser( $usershow){
+        $user = User::find($usershow);
+        if($user != null){
+            $posts = share::where('user_id',$user->id)->latest()->get();
+            return view('users.profile' , compact('posts' , 'user'));
+        }else{
+            return back()->with('error' , "user not exists!");
+        }
+        
+    }
+
     public function settings(Request $request){
         $user = Auth::user();
 

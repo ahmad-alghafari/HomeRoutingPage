@@ -13,18 +13,17 @@ use App\Models\post;
 class CommentLikeNotify extends Notification
 {
     use Queueable;
-    private $cmt ;
-    private $cmtlike;
+    private $comment ;
+    private $commentlike;
     private $postOfComment;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(commentlike $cmtl,comment $cmt,post $postOfComment)
+    public function __construct(commentlike $commentlike,comment $comment,post $post)
     {
-        $this->commentlike = $cmtl;
-        $this->comment = $cmt;
-        $this->post = $postOfComment;
+        $this->commentlike = $commentlike;
+        $this->comment = $comment;
     }
 
     /**
@@ -43,10 +42,10 @@ class CommentLikeNotify extends Notification
         return [
             'id' => $this->commentlike->id ,
             'user' =>$this->commentlike->user->name,
+            'user_id' =>$this->commentlike->user->id,
             'title' => ' Liked Your Comment ',
             'comment_id'=> $this->comment->id ,
             'post' =>$this->comment->post->id,
-            'photo' =>  $this->commentlike->user->photo->path,
         ];
     }
 }

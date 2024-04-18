@@ -26,15 +26,25 @@ Route::post('/domains', [DomainController::class ,'store'])->middleware("auth" ,
 
 Route::name('home.')->middleware(['auth','verified'])->prefix('home/')->group(function (){
 
+    Route::get('notificaions' , function(){
+        return view('notifications');
+    })->name('notificaions');
+
     Route::get('chats' , function (){
         return view('message');
     })->name("chats");
 
     Route::resource('posts',PostController::class)->except('show');
+
     Route::get('posts/show/{post}' ,[PostController::class , 'show'])->name('posts.show')->middleware('blockPost');
+    Route::get('posts/showpost/{postshow}' ,[PostController::class , 'showpost'])->name('posts.showpost')->middleware('blockPostShow');
+    
     Route::view('search' ,'search')->name('search');
 
     Route::get('users/show/{user}' ,[UserController::class , 'show'])->name('users.show')->middleware('block');
+    Route::get('users/show/{usershow}' ,[UserController::class , 'showuser'])->name('users.usershow')->middleware('blockUser');
+
+
     Route::post('users/settings' , [UserController::class , 'settings'])->name('users.settings.post');
     Route::view('users/settings/{user}','users.settings')->name('users.settings')->middleware('checkUserSettings');
 

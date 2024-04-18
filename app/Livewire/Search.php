@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\post;
+use App\Notifications\FollowNotify;
+
 class Search extends Component
 {
     public $search = '';
@@ -16,9 +18,11 @@ class Search extends Component
             Auth::user()->info->decrement('following');
             $user->info->decrement('follower');
         }else{
-            Auth::user()->follow()->create(['user_follower' => $user->id]);
+            $follow = Auth::user()->follow()->create(['user_follower' => $user->id]);
             Auth::user()->info->increment('following');
             $user->info->increment('follower');
+
+            $user->notify(new FollowNotify($follow));
         }
 
     }

@@ -21,13 +21,10 @@ class FollowLive extends Component{
             $this->user->info->decrement('follower');
             $this->isFollow = false ;
         }else{
-            Auth::user()->follow()->create(['user_follower' => $this->user->id]);
+            $follow = Auth::user()->follow()->create(['user_follower' => $this->user->id]);
             Auth::user()->info->increment('following');
-            // Auth::user()->info->increment("following");
             $this->user->info->increment('follower');
             $this->isFollow = true ;
-//            notifications
-            $follow = follow::latest()->first();
             $this->user->notify(new FollowNotify($follow));
         }
         $this->user = $this->user->fresh() ;

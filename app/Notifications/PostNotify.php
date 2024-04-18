@@ -39,8 +39,8 @@ class PostNotify extends Notification
         return [
             'id' => $this->post->id ,
             'user' => Auth::user()->name,
+            'user_id' => $this->post->user->id,
             'title' => ' has published a post ',
-            'photo' =>  $this->post->user->photo->path,
         ];
     }
 }

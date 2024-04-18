@@ -31,114 +31,6 @@
 
                 </div>
             </div>
-            <!-- Nav Search END -->
-
-            {{-- <ul class="navbar-nav navbar-nav-scroll ms-auto">
-                <!-- Nav item 1 Demos -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Demo</a>
-                    <ul class="dropdown-menu" aria-labelledby="homeMenu">
-                        <li> <a class="dropdown-item"  href={{route('home.posts.index')}}>Home default</a></li>
-                        <li> <a class="dropdown-item" href="index-classic.html">Home classic</a></li>
-                        <li> <a class="dropdown-item" href="index-post.html">Home post</a></li>
-                        <li> <a class="dropdown-item" href="index-video.html">Home video</a></li>
-                        <li> <a class="dropdown-item" href="index-event.html">Home event</a></li>
-                        <li> <a class="dropdown-item" href="landing.html">Landing page</a></li>
-                        <li> <a class="dropdown-item" href="app-download.html">App download</a></li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
-                                <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Social!
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Nav item 2 Pages -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                    <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                        <li> <a class="dropdown-item" href="albums.html">Albums</a></li>
-                        <li> <a class="dropdown-item" href="celebration.html">Celebration</a></li>
-                        <li> <a class="dropdown-item" href="messaging.html">Messaging</a></li>
-                        <!-- Dropdown submenu -->
-                        <li class="dropdown-submenu dropend">
-                            <a class="dropdown-item dropdown-toggle" href="#!">Profile</a>
-                            <ul class="dropdown-menu" data-bs-popper="none">
-                                <li> <a class="dropdown-item" href="my-profile.html">Feed</a> </li>
-                                <li> <a class="dropdown-item" href="my-profile-about.html">About</a> </li>
-                                <li> <a class="dropdown-item" href="my-profile-connections.html">Connections</a> </li>
-                                <li> <a class="dropdown-item" href="my-profile-media.html">Media</a> </li>
-                                <li> <a class="dropdown-item" href="my-profile-videos.html">Videos</a> </li>
-                                <li> <a class="dropdown-item" href="my-profile-events.html">Events</a> </li>
-                                <li> <a class="dropdown-item" href="my-profile-activity.html">Activity</a> </li>
-                            </ul>
-                        </li>
-                        <li> <a class="dropdown-item" href="events.html">Events</a></li>
-                        <li> <a class="dropdown-item" href="events-2.html">Events 2</a></li>
-                        <li> <a class="dropdown-item" href="event-details.html">Event details</a></li>
-                        <li> <a class="dropdown-item" href="event-details-2.html">Event details 2</a></li>
-                        <li> <a class="dropdown-item" href="groups.html">Groups</a></li>
-                        <li> <a class="dropdown-item" href="group-details.html">Group details</a></li>
-                        <li> <a class="dropdown-item" href="post-videos.html">Post videos</a></li>
-                        <li> <a class="dropdown-item" href="post-video-details.html">Post video details</a></li>
-                        <li> <a class="dropdown-item" href="post-details.html">Post details</a></li>
-                        <li> <a class="dropdown-item" href="video-details.html">Video details</a></li>
-                        <li> <a class="dropdown-item" href="blog.html">Blog</a></li>
-                        <li> <a class="dropdown-item" href="blog-details.html">Blog details</a></li>
-
-                        <!-- Dropdown submenu levels -->
-                        <li class="dropdown-divider"></li>
-                        <li class="dropdown-submenu dropend">
-                            <a class="dropdown-item dropdown-toggle" href="#">Dropdown levels</a>
-                            <ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-                                <li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-                                <li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-                                <!-- dropdown submenu open left -->
-                                <li class="dropdown-submenu dropstart">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Dropdown (start)</a>
-                                    <ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-                                        <li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-                                        <li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-                                    </ul>
-                                </li>
-                                <li> <a class="dropdown-item" href="#">Dropdown item</a> </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Nav item 3 Post -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account </a>
-                    <ul class="dropdown-menu" aria-labelledby="postMenu">
-                        <li> <a class="dropdown-item" href="create-page.html">Create a page</a></li>
-                        <li> <a class="dropdown-item" href="notifications.html">Notifications</a> </li>
-                        <li> <a class="dropdown-item" href="help.html">Help center</a> </li>
-                        <li> <a class="dropdown-item" href="help-details.html">Help details</a> </li>
-                        <!-- dropdown submenu open left -->
-                        <li class="dropdown-submenu dropstart">
-                            <a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
-                            <ul class="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-                                <li> <a class="dropdown-item" href="sign-in.html">Sign in</a> </li>
-                                <li> <a class="dropdown-item" href="sign-up.html">Sing up</a> </li>
-                                <li> <a class="dropdown-item" href="forgot-password.html">Forgot password</a> </li>
-                                <li class="dropdown-divider"></li>
-                                <li> <a class="dropdown-item" href="sign-in-advance.html">Sign in advance</a> </li>
-                                <li> <a class="dropdown-item" href="sign-up-advance.html">Sing up advance</a> </li>
-                                <li> <a class="dropdown-item" href="forgot-password-advance.html">Forgot password advance</a> </li>
-                            </ul>
-                        </li>
-                        <li> <a class="dropdown-item" href="error-404.html">Error 404</a> </li>
-                        <li> <a class="dropdown-item" href="offline.html">Offline</a> </li>
-                        <li> <a class="dropdown-item" href="privacy-and-terms.html">Privacy & terms</a> </li>
-                    </ul>
-                </li>
-
-                <!-- Nav item 4 Mega menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="my-profile-connections.html">My network</a>
-                </li>
-            </ul> --}}
         </div>
         <!-- Main navbar END -->
 
@@ -161,32 +53,67 @@
                 </a>
                 <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">4 new</span></h6>
-                            <a class="small" href="#">Clear all</a>
-                        </div>
+                        @livewire('clear-notifi')
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush list-unstyled p-2">
                                 <!-- Notif item -->
                                 <li>
-                                    <div class="unreadNotifications" >
+                                    <div class="unreadNotifications" id="notificaionsAreia">
                                         @foreach(auth()->user()->unreadNotifications as $notification)
-                                            @if($notification->type === 'App\Notifications\PostNotify')
+
+                                            @php
+                                                $curr_user = \App\Models\User::find($notification->data['user_id']);
+                                            @endphp
+                                            
+                                            @if($notification->type == 'App\Notifications\PostNotify')
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
-                                                        <a href="{{ url('home/posts/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
-                                                            <img class="avatar-img rounded-circle"
-                                                                 @if(($notification->data['photo']) !== null)
-                                                                     src="{{asset($notification->data['photo'])}}"
-                                                                 @else
-                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                                                                 @endif
-                                                                 alt=" ">
+                                                        <a href="{{ route('home.posts.showpost' , $notification->data['id'] )}}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
                                                         </a>
                                                     </div>
                                                     <div class="ms-sm-3">
                                                         <div class=" d-flex">
-                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
+                                                            <a href="{{ route('home.posts.showpost' , $notification->data['id']) }}" style="color: #fff">
+                                                                <p class="small mb-2">
+                                                                    <b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}
+                                                                </p>
+                                                            </a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif($notification->type == 'App\Notifications\CommentNotify')
+                                            
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="{{ route('home.posts.showpost' , $notification->data['post_id'] )}}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
+
+
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ route('home.posts.showpost', $notification->data['post_id']) }}" style="color: #fff">
+                                                                <p class="small mb-2">
+                                                                    <b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}
+                                                                </p>
+                                                            </a>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif($notification->type == 'App\Notifications\LikeNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+                                                    <div class="avatar text-center d-none d-sm-inline-block">
+                                                        <a href="{{ route('home.posts.showpost' , $notification->data['post_id']) }}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+                                                            <a href="{{ route('home.posts.showpost' ,  $notification->data['post_id'] )}}" style="color: #fff">
                                                                 <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
                                                             <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
 
@@ -194,68 +121,17 @@
 
                                                     </div>
                                                 </div>
-                                            @elseif($notification->type === 'App\Notifications\CommentNotify')
+                                            @elseif($notification->type == 'App\Notifications\FollowNotify')
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
-                                                        <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
-                                                            <img class="avatar-img rounded-circle"
-                                                                 @if(isset($notification->data['photo']))
-                                                                     src="{{asset($notification->data['photo'])}}"
-                                                                 @else
-                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                                                                 @endif
-                                                                 alt=" ">
+                                                        <a href="{{ route('home.users.usershow' , $notification->data['user_id'] )}}" style="color: #fff">
+                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
+
                                                         </a>
                                                     </div>
                                                     <div class="ms-sm-3">
                                                         <div class=" d-flex">
-                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
-                                                                <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
-                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            @elseif($notification->type === 'App\Notifications\LikeNotify')
-                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
-                                                    <div class="avatar text-center d-none d-sm-inline-block">
-                                                        <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
-                                                            <img class="avatar-img rounded-circle" alt=""
-                                                                 @if(isset($notification->data['photo']))
-                                                                     src="{{asset($notification->data['photo'])}}"
-                                                                 @else
-                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                                                                @endif
-                                                            >
-                                                        </a>
-                                                    </div>
-                                                    <div class="ms-sm-3">
-                                                        <div class=" d-flex">
-                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['post_id'] }}" style="color: #fff">
-                                                                <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
-                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            @elseif($notification->type === 'App\Notifications\FollowNotify')
-                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
-                                                    <div class="avatar text-center d-none d-sm-inline-block">
-                                                        <a href="{{ url('home/users/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
-                                                            <img class="avatar-img rounded-circle"
-                                                                 @if(($notification->data['photo']) != null)
-                                                                     src="{{asset($notification->data['photo'])}}"
-                                                                 @else
-                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                                                                @endif
-                                                            >
-                                                        </a>
-                                                    </div>
-                                                    <div class="ms-sm-3">
-                                                        <div class=" d-flex">
-                                                            <a href="{{ url('home/users/show') }}/{{ $notification->data['id'] }}" style="color: #fff">
+                                                            <a href="{{ route('home.users.usershow' , $notification->data['user_id'] ) }}" style="color: #fff">
                                                                 <p class="small mb-2"><b>{{ $notification->data['follower_name'] }}</b> {{ $notification->data['title'] }}</p></a>
                                                             <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
 
@@ -263,22 +139,17 @@
 
                                                     </div>
                                                 </div>
-                                            @elseif($notification->type === 'App\Notifications\CommentLikeNotify')
+                                            @elseif($notification->type == 'App\Notifications\CommentLikeNotify')
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
                                                         <a href="" style="color: #fff">
-                                                            <img class="avatar-img rounded-circle"
-                                                                 @if(isset($notification->data['photo']))
-                                                                     src="{{asset($notification->data['photo'])}}"
-                                                                 @else
-                                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                                                                @endif
-                                                            >
+                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
+
                                                         </a>
                                                     </div>
                                                     <div class="ms-sm-3">
                                                         <div class=" d-flex">
-                                                            <a href="{{ url('home/posts/show') }}/{{ $notification->data['post'] }}" style="color: #fff">
+                                                            <a href="{{ route('home.posts.showpost' , $notification->data['post']) }}" style="color: #fff">
                                                                 <p class="small mb-2"><b>{{ $notification->data['user'] }}</b> {{ $notification->data['title'] }}</p></a>
                                                             <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
 
@@ -290,11 +161,20 @@
                                         @endforeach
                                     </div>
                                 </li>
-
                             </ul>
                         </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                var clearButton = document.getElementById("clearingNotificaions");
+                                var notificationsDiv = document.getElementById("notificaionsAreia");
+                        
+                                clearButton.addEventListener("click", function() {
+                                    notificationsDiv.innerHTML = ""; // Clearing the content of the div
+                                });
+                            });
+                        </script>
                         <div class="card-footer text-center">
-                            <a href="#" class="btn btn-sm btn-primary-soft">See all incoming activity</a>
+                            <a href="{{route('home.notificaions')}}" class="btn btn-sm btn-primary-soft">See all incoming activity</a>
                         </div>
                     </div>
                 </div>
@@ -303,14 +183,7 @@
 
             <li class="nav-item ms-2 dropdown">
                 <a class="nav-link btn icon-md p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="avatar-img rounded-2" alt=""
-
-                         @if(Auth::user()->photo != null)
-                             src="{{asset(Auth::user()->photo->path)}}"
-                         @else
-                             src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                        @endif
-                    >
+                    <img class="avatar-img rounded-2" alt="" src="{{Auth::user()->photo ? asset(Auth::user()->photo->path) : asset('import/assets/images/avatar/placeholder.jpg') }}" >
                 </a>
                 <ul class="dropdown-menu dropdown-animation dropdown-menu-end pt-3 small me-md-n3" aria-labelledby="profileDropdown">
                     <!-- Profile info -->
@@ -318,13 +191,9 @@
                         <div class="d-flex align-items-center position-relative">
                             <!-- Avatar -->
                             <div class="avatar me-3">
-                                <a href="#"><img class="avatar-img rounded-circle" alt=""
-                                                 @if(Auth::user()->photo != null)
-                                                     src="{{asset(Auth::user()->photo->path)}}"
-                                                 @else
-                                                     src="{{asset('import/assets/images/avatar/placeholder.jpg')}}"
-                                        @endif
-                                    ></a>
+                                <a href="#">
+                                    <img class="avatar-img rounded-2" alt="" src="{{Auth::user()->photo ? asset(Auth::user()->photo->path) : asset('import/assets/images/avatar/placeholder.jpg') }}" >
+                                </a>
                             </div>
                             <div>
                                 <a class="h6 stretched-link" href="#">{{Auth::user()->name}}</a>
@@ -387,3 +256,4 @@
         <!-- Nav right END -->
     </div>
 </nav>
+

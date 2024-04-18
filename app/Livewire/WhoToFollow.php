@@ -5,14 +5,21 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\User;
+use App\Notifications\FollowNotify;
+
 class WhoToFollow extends Component
 {
    public   $user ;
     public function toggleFollow(User $user){
         if(Auth::user()->follow->contains('user_follower' , $user->id)){
             Auth::user()->follow()->where('user_follower' , $user->id)->delete();
+            Auth::user()->info->decrement('following');
+            $this->user->info->decrement('follower');
         }else{
-            Auth::user()->follow()->create(['user_follower' => $user->id]);
+            $follow = Auth::user()->follow()->create(['user_follower' => $user->id]);
+            Auth::user()->info->increment('following');
+            $this->user->info->increment('follower');
+            $this->user->notify(new FollowNotify($follow));
         }
     }
     public function render(){

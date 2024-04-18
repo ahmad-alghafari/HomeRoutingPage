@@ -23,7 +23,6 @@ class PostController extends Controller{
                     ->from('follows')
                 ->where('user_follow', $userid);
             })->latest()->Paginate(2);
-        // dd($posts->nextPageUrl());
         if($request->ajax()){
             $view = view('posts.load', compact('posts'))->render();
             return response()->json(['view' => $view, 'nextPageUrl' => $posts->nextPageUrl()]);
@@ -84,16 +83,16 @@ class PostController extends Controller{
             }
         }
 //        notifications
-        $test =User::whereNotIn('id', function ($query) use ($id) {
+        $userIds =User::whereNotIn('id', function ($query) use ($id) {
             $query->select('user_blocker')
                 ->from('blocks')
                 ->where('user_blocked', $id);
         })->whereIn('id', function ($query) use ($id) {
-            $query->select('user_follower')
+            $query->select('user_follow')
                 ->from('follows')
-                ->where('user_follow', $id);
+                ->where('user_follower', $id);
         })->get(['id']);
-        $userIds = $test->toArray();
+
 
 
         foreach ($userIds as $user) {
@@ -103,18 +102,28 @@ class PostController extends Controller{
         return redirect()->back();//route('home.posts.index');
 
     }
-    public function read_all(Request $request)
-    {
-        $UnreadNotification = Auth()->user()->unreadNotifications;
-        if($UnreadNotification) {
-            $UnreadNotification->markAsRead();
-            return back();
-        }
-    }
+
+    // public function read_all(Request $request)
+    // {
+    //     $UnreadNotification = Auth()->user()->unreadNotifications;
+    //     if($UnreadNotification) {
+    //         $UnreadNotification->markAsRead();
+    //         return back();
+    //     }
+    // }
+    
     public function show(post $post){
         return view('posts.show' , compact('post'));
 
     }
+
+    public function showpost($showpost){
+        $post = Post::find($showpost);
+        return $post ? view('posts.show' , compact('post')) : back() ;
+        // return view('posts.show' , compact('post'));
+
+    }
+
     public function edit(post $post)
     {
 

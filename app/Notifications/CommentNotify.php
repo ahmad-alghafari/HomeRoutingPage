@@ -17,10 +17,9 @@ class CommentNotify extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(comment $cmt,post $post)
+    public function __construct(comment $comment)
     {
-        $this->comment = $cmt;
-        $this->post = $post;
+        $this->comment = $comment;
     }
 
     /**
@@ -39,9 +38,9 @@ class CommentNotify extends Notification
         return [
             'id' => $this->comment->id ,
             'user' =>$this->comment->user->name,
+            'user_id' => $this->comment->user->id,
             'title' => ' Commented on Your Post ',
-            'post_id'=> $this->post->id ,
-            'photo' =>  $this->comment->user->photo->path,
+            'post_id'=> $this->comment->post->id ,
         ];
     }
 }
