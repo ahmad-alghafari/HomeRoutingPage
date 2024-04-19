@@ -97,7 +97,21 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'page_name' => 'Visit User Profile',
-                'route_name'=>'users.usershow',
+                'route_name'=>'home.users.usershow',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Show All Following Of User.',
+                'route_name'=>'home.users.following',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Show All Followers Of User.',
+                'route_name'=>'users.followers',
                 'servicing'=> "0" ,
                 'created_at'=> $time,
                 'updated_at'=> $time,

@@ -407,7 +407,9 @@ Header END -->
                             <!-- Title START -->
                             <div class="card-body">
                                 <!-- Settings START -->
-                                <form class="row g-3">
+                                <form class="row g-3" method="POST" action="{{ route('home.users.settings.updatepassword') }}">
+                                    @csrf
+                                    
                                     <!-- Current password -->
                                     <div class="col-12">
                                         <label class="form-label">Current password</label>
@@ -418,7 +420,7 @@ Header END -->
                                         <label class="form-label">New password</label>
                                         <!-- Input group -->
                                         <div class="input-group">
-                                            <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password">
+                                            <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password" name="newpass">
                                             <span class="input-group-text p-0">
                                                 <i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
                                             </span>
@@ -430,12 +432,11 @@ Header END -->
                                     <!-- Confirm password -->
                                     <div class="col-12">
                                         <label class="form-label">Confirm password</label>
-                                        <input type="password" class="form-control" placeholder="">
+                                        <input type="password" class="form-control" placeholder="" name="newpasscheck">
                                     </div>
                                     <!-- Button  -->
                                     <div class="col-12 text-end">
-                                        <button type="submit" class="btn btn-primary mb-0" href="" >Update password</button>
-
+                                        <button type="submit" class="btn btn-primary mb-0" >Update password</button>
                                     </div>
                                 </form>
                                 <!-- Settings END -->

@@ -24,7 +24,7 @@ class UserController extends Controller
         }else{
             return back()->with('error' , "user not exists!");
         }
-        
+
     }
 
     public function settings(Request $request){
@@ -79,7 +79,7 @@ class UserController extends Controller
 
         return redirect()->back()->with(['success' => 'Updated Successfully!']);
     }
-    
+
     public function addphoto(Request $request){
         $request->validate([
             'image' => "required|image|mimes:jpeg,png,jpg,svg|max:3000"
@@ -115,5 +115,28 @@ class UserController extends Controller
         return redirect()->route('home.users.show' , Auth::user());
 
     }
+
+    public function newpass(Request $request): void {
+        if(base64_decode($request->password) == Auth::user()->password){
+            if($request->newpass == $request->newpasscheck){
+                Auth::user()->update();
+            }
+        }else{
+            redirect()->back()->with('error','The Curreant Password Isnot Correct!');
+        }
+    }
+
+    public function followersPage($id){
+        $user_id = $id ;
+        $page = 'followers';
+        return view('users.followers' , compact('user_id' , 'page'));
+    }
+    public function followingPage($id){
+        $user_id = $id ;
+        $page = 'following';
+        return view('users.followers' , compact('user_id' , 'page'));
+    }
+
+
 
 }

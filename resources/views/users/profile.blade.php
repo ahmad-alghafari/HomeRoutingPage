@@ -149,7 +149,7 @@ Header END -->
                             <!-- Button -->
                             <div class="d-flex mt-3 justify-content-center ms-sm-auto">
                                 @if($user->id == Auth::user()->id)
-                                    <button class="btn btn-danger-soft me-2" type="button"> <i class="bi bi-pencil-fill pe-1"></i> Edit profile </button>
+                                    <a href="{{route('home.users.settings' , Auth::user()->id)}}" class="btn btn-danger-soft me-2" type="button"> <i class="bi bi-pencil-fill pe-1"></i> Edit profile </a>
                                 @else
                                     @livewire('follow-live' , ['user' => $user])
                                 @endif
@@ -510,7 +510,7 @@ Header END -->
                                                                         <div class="card" >
                                                                         <div class="card-body">
                                                                             <p class="mb-0">{{$comment->text}}</p>
-                
+
                                                                             @if($comment->file != null)
                                                                                 @switch($comment->file->file_type)
                                                                                     @case('images')
@@ -519,7 +519,7 @@ Header END -->
                                                                                             <img class="card-img" src="{{asset($comment->file->file_path)}}" alt="Image">
                                                                                         </a>
                                                                                         @break
-                
+
                                                                                     @case('videos')
                                                                                         <hr>
                                                                                         <div class="overflow-hidden fullscreen-video w-100">
@@ -593,9 +593,9 @@ Header END -->
 
                             <!-- Add wcomment -->
                             @livewire('comment-live', ['post' => $post->post])
- 
+
                             <!-- Comment wrap END -->
-                        </div>        
+                        </div>
                         <!-- Card body END -->
                     </div>
                     <script>
@@ -674,7 +674,7 @@ Header END -->
                                 <a class="btn btn-primary-soft btn-sm" href="#!"> See all friends</a>
                             </div>
                             <!-- Card header END -->
-                          
+
                             <!-- Card body START -->
                             @livewire('friends')
                             <!-- Card body END -->
@@ -682,7 +682,7 @@ Header END -->
                     </div>
                     <!-- Card END -->
                     @endif
-                    
+
                     <!-- Card START -->
                     <div class="col-md-6 col-lg-12">
                         <div class="card">

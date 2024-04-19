@@ -28,7 +28,7 @@ Route::get('/domains' , [DomainController::class , "index"])->name("domains.inde
 Route::get('/domains/show/{domain}' , [DomainController::class , "show"])->name("domains.show");
 Route::get("/domains/create" , function(){
     return view("domains.create");
-})->middleware("auth" , "verified")->name("domains.create");   
+})->middleware("auth" , "verified")->name("domains.create");
 Route::post('/domains', [DomainController::class ,'store'])->middleware("auth" , "verified")->name("domains.store");
 
 
@@ -47,7 +47,7 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
 
     Route::get('posts/show/{post}' ,[PostController::class , 'show'])->name('posts.show')->middleware('blockPost');
     Route::get('posts/showpost/{postshow}' ,[PostController::class , 'showpost'])->name('posts.showpost')->middleware('blockPostShow');
-    
+
     Route::view('search' ,'search')->name('search');
 
     Route::get('users/show/{user}' ,[UserController::class , 'show'])->name('users.show')->middleware('block');
@@ -56,6 +56,7 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
 
     Route::post('users/settings' , [UserController::class , 'settings'])->name('users.settings.post');
     Route::view('users/settings/{user}','users.settings')->name('users.settings')->middleware('checkUserSettings');
+    Route::post('users/settings/password' ,[UserController::class , 'newpass'] )->name('users.settings.updatepassword');
 
     Route::resource('blocks', BlockController::class)->except('destroy');
     Route::delete('blocks/{user}' , [BlockController::class , 'destroy'])->name('blocks.destroy');
@@ -63,6 +64,10 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
 
     Route::post('users/photo' ,[UserController::class , 'addphoto'])->name('users.photo.store');
     Route::delete('users/photo/{user}' ,[UserController::class , 'deletephoto'])->name('users.photo.destroy');
+
+    Route::get('users/followers/{user}' , [UserController::class , 'followersPage'])->name('users.followers');
+    Route::get('users/following/{user}' , [UserController::class , 'followingPage'])->name('users.following');
+
 
 });
 

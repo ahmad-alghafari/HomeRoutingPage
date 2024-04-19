@@ -18,8 +18,8 @@ class WhoToFollow extends Component
         }else{
             $follow = Auth::user()->follow()->create(['user_follower' => $user->id]);
             Auth::user()->info->increment('following');
-            $this->user->info->increment('follower');
-            $this->user->notify(new FollowNotify($follow));
+            $user->info->increment('follower');
+            $user->notify(new FollowNotify($follow));
         }
     }
     public function render(){
@@ -41,7 +41,7 @@ class WhoToFollow extends Component
             return view('livewire.who-to-follow' , ['users' => $users , 'newUsers' => $newUsers]);
 
         }
-        
+
         $newUsers = [] ;
         return view('livewire.who-to-follow' , ['users' => $users  ,'newUsers' => $newUsers]);
     }
