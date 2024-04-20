@@ -2,18 +2,12 @@
 
 @section('content')
     <h1>Edit Post</h1>
-
+    <form method="POST" action="/users/show/{user}/{{ $post->post->id }}">
         @csrf
         @method('PUT')
-<form method="POST" >
-    <label for="text">Text:</label>
-        <div>
-            <label for="text">Text:</label>
-            <input type="text" name="text" id="text" value="{{ $post->text }}">
-        </div>
-
-        <button type="submit">Update Post</button>
-</form>
+        <textarea name="content">{{ $post->post->text }}</textarea>
+        <button type="submit">Save</button>
+    </form>
 
 @endsection
 <!-- edit modal -->

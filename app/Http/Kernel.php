@@ -69,6 +69,6 @@ class Kernel extends HttpKernel
         'blockPost' => \App\Http\Middleware\blockPost::class ,
         'blockPostShow' => \App\Http\Middleware\blockPostShow::class,
         'blockUser' => \App\Http\Middleware\blockUser::class ,
-
+        'servicing' =>\App\Http\Middleware\servicing::class ,
     ];
 }

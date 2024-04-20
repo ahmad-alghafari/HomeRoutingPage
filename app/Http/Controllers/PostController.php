@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\file;
 use App\Notifications\PostNotify;
 
-
 class PostController extends Controller{
     public function index(Request $request){
         $userid = auth::user()->id;
@@ -111,7 +110,7 @@ class PostController extends Controller{
     //         return back();
     //     }
     // }
-    
+
     public function show(post $post){
         return view('posts.show' , compact('post'));
 
@@ -124,17 +123,26 @@ class PostController extends Controller{
 
     }
 
-    public function edit(post $post)
+    public function edit($id)
     {
-
+        $post = Post::find($id);
+        return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, $id)
+    public function updatee(Request $request, $id)
     {
         // $post = Post::find($id);
         // $post->text = $request->text;
         // $post->save();
         // return view('myprofile');
+    }
+    public function update(Request $request, $id)
+    {
+        $post = Post::find($id);
+        $post->content = $request->input('content');
+        $post->save();
+
+        return redirect('/posts/'.$id);
     }
 
 

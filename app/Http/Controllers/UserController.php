@@ -117,9 +117,6 @@ class UserController extends Controller
 
     }
 
-    public function show_log() {
-        activity()->log('abdc');
-        return Activity::all();
-    }
+
 
 }

@@ -265,7 +265,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c1"
-                                            name="racism" value="{{ old('racism') }}">
+                                            name="racism" value="true">
                                         <label class="form-check-label" for="c1">
                                             <h1 class="h5 card-title mb-0">Racism</h1>
                                             Speaking racist about a specific thing or race and speaking about it and
@@ -275,7 +275,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c2"
-                                            name="truculence" value="{{ old('truculence') }}">
+                                            name="truculence" value="true">
                                         <label class="form-check-label" for="c2">
                                             <h1 class="h5 card-title mb-0">Truculence</h1>
                                             Circulating words, pictures, and videos showing violence and showing the
@@ -288,7 +288,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c3"
-                                            name="politics" value="{{ old('politics') }}">
+                                            name="politics" value="true">
                                         <label class="form-check-label" for="c3">
                                             <h1 class="h5 card-title mb-0">Politics</h1>
                                             Talking about politics that supports or opposes different points of view
@@ -298,7 +298,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c4"
-                                            name="pornography" value="{{ old('pornography') }}">
+                                            name="pornography" value="true">
                                         <label class="form-check-label" for="c4">
                                             <h1 class="h5 card-title mb-0">Pornography</h1>
                                             Publishing scandalous and obscene images that are inappropriate for all ages
@@ -308,7 +308,7 @@ Header END -->
 
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="c5"
-                                            name="religions" value="{{ old('religions') }}">
+                                            name="religions" value="true">
                                         <label class="form-check-label" for="c5">
                                             <h1 class="h5 card-title mb-0">Religions And Sects</h1>
                                             Insulting and insulting religions, speaking about them with mockery and

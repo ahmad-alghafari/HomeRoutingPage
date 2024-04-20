@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\domain;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class DomainController extends Controller
 {
     public function index(){
-        $domains = domain::latest()->Paginate(1);
+        $domains = domain::latest()->Paginate(2);
         return view("domains.index" , compact('domains'));
     }
 
@@ -48,6 +49,7 @@ class DomainController extends Controller
             $file->move(public_path($path) , $name);
         }
 
+        // dd($request);
         $social = [
             'facebook' => $request->social_facebook ,
             'instagram' => $request->social_instagram ,
@@ -55,24 +57,14 @@ class DomainController extends Controller
             'x' => $request->social_x ,
         ];
 
-        $constraind = [];
-
-        if($request->racism == 'on'){
-            $constraind += 'racism';
-        }
-        if($request->truculence == 'on'){
-            $constraind += 'truculence';
-        }
-        if($request->politics == 'on'){
-            $constraind += 'politics';
-        }
-        if($request->pornography == 'on'){
-            $constraind += 'pornography';
-        }
-        if($request->religions == 'on'){
-            $constraind += 'religions';
-        }
-
+        $constraind =  [
+            'racism' => $request->racism == 'true' ? true : null ,
+            'truculence' => $request->truculence == 'true' ? true : null ,
+            'politics' => $request->politics == 'true' ? true : null ,
+            'pornography' => $request->pornography == 'true' ? true : null ,
+            'religions' => $request->religions == 'true' ? true : null ,
+        ];
+    
         $domains = domain::create([
             'name' => $request->name ,
             'user_id' => Auth::user()->id ,
@@ -84,8 +76,8 @@ class DomainController extends Controller
             'domain' => $request->domain,
             'url' => $request->url,
             'photo_path' => $photo_path,
-            'social' => implode(', ' ,$social),//.toString() ,
-            'constraind' =>implode(', ' ,$constraind),// $constraind.toString() ,
+            'social' => json_encode($social),
+            'constraind' => json_encode($constraind),
         ]);
 
         return redirect()->route('home.posts.index');

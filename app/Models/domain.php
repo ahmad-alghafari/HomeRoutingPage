@@ -10,20 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class domain extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-
-    protected $fillable = ['id' ,  'name' , 'language' , 'description' , 'Type' , 'country' , 'domain' ,'URL' ,'user_id','photo_path'];
-=======
->>>>>>> b819d27094c8a96459e6ccaecd479c7557780203
-
     public function user():BelongsTo{
         return $this->belongsTo(user::class , 'user_id');
     }
-<<<<<<< HEAD
-
-
-
-=======
     protected  $fillable = [
         'id',
         'name',
@@ -40,5 +29,4 @@ class domain extends Model
         'language',    
         'user_id',    
     ];
->>>>>>> b819d27094c8a96459e6ccaecd479c7557780203
 }

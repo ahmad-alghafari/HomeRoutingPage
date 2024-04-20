@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string("country");
             $table->string("url");
             $table->foreignId("user_id")->constrained();
-            $table->string('social')->nullable();
+            $table->text('social')->nullable();
             $table->string("photo_path");
-            $table->string("constraind")->nullable();
+            $table->text("constraind")->nullable();
             $table->enum("language",['arabic' ,"english" , "french" ,"spanish" ,"hindi" , "latin" ,"chinese" , "armenian" , "russian"]);
             $table->enum("type" ,["sport" , "food" , "education" , "policy" , "medicine" , "general"]);
             $table->enum("domain" ,["com" , "net" , "org" , "edu" , "gov" , "mil" , "int"]);

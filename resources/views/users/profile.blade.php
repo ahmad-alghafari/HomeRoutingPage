@@ -255,10 +255,40 @@ Header END -->
                                     </a>
                                     <!-- Card feed action dropdown menu -->
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction">
-                                        @if(Auth::user()->id == $user->id)<li><form action="{{route('home.posts.destroy' , $post->post)}}" method="POST">@csrf @method('DELETE')<button class="dropdown-item" type="submit"><i class="bi bi-x-circle fa-fw pe-2"></i>Delete post</button></form></li>@endif
-                                        <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save post</a></li>
+                                        @if(Auth::user()->id == $user->id)
+                                            <li>
+                                                <form action="{{route('home.posts.destroy' , $post->post)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="dropdown-item" type="submit">
+                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Delete post
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        @endif
+{{--                                        @if(Auth::user()->id == $user->id)--}}
+{{--                                                <li>--}}
+{{--                                                    <form method="POST" action="/posts/{{ $post->id }}">--}}
+{{--                                                        @csrf--}}
+{{--                                                        @method('PUT')--}}
+{{--                                                        <textarea name="content">{{ $post->content }}</textarea>--}}
+{{--                                                        <button type="submit">Save</button>--}}
+{{--                                                    </form>--}}
+{{--                                                </li>--}}
+{{--                                        @endif--}}
+                                            <form action="{{ route('home.posts.edit', $post->post) }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <li>
+                                                    <button class="dropdown-item" type="submit">
+                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Edit Post
+                                                    </button>
+{{--                                                    <a class="btn btn-primary-soft btn-xs ms-2" href="#!">Edit Post </a>--}}
+                                                </li>
+                                            </form>
+                                        <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save Post</a></li>
                                         {{-- <li><hr class="dropdown-divider"></li> --}}
-                                        @if(Auth::user()->id != $user->id)<li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report post</a></li>@endif
+                                        @if(Auth::user()->id != $user->id)<li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report Post</a></li>@endif
                                     </ul>
                                 </div>
                                 <!-- Card feed action dropdown END -->
@@ -510,7 +540,7 @@ Header END -->
                                                                         <div class="card" >
                                                                         <div class="card-body">
                                                                             <p class="mb-0">{{$comment->text}}</p>
-                
+
                                                                             @if($comment->file != null)
                                                                                 @switch($comment->file->file_type)
                                                                                     @case('images')
@@ -519,7 +549,7 @@ Header END -->
                                                                                             <img class="card-img" src="{{asset($comment->file->file_path)}}" alt="Image">
                                                                                         </a>
                                                                                         @break
-                
+
                                                                                     @case('videos')
                                                                                         <hr>
                                                                                         <div class="overflow-hidden fullscreen-video w-100">
@@ -593,9 +623,9 @@ Header END -->
 
                             <!-- Add wcomment -->
                             @livewire('comment-live', ['post' => $post->post])
- 
+
                             <!-- Comment wrap END -->
-                        </div>        
+                        </div>
                         <!-- Card body END -->
                     </div>
                     <script>
@@ -674,7 +704,7 @@ Header END -->
                                 <a class="btn btn-primary-soft btn-sm" href="#!"> See all friends</a>
                             </div>
                             <!-- Card header END -->
-                          
+
                             <!-- Card body START -->
                             @livewire('friends')
                             <!-- Card body END -->
@@ -682,7 +712,7 @@ Header END -->
                     </div>
                     <!-- Card END -->
                     @endif
-                    
+
                     <!-- Card START -->
                     <div class="col-md-6 col-lg-12">
                         <div class="card">
