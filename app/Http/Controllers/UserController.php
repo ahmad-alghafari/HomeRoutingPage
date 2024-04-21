@@ -119,4 +119,28 @@ class UserController extends Controller
 
 
 
+    public function newpass(Request $request): void {
+        if(base64_decode($request->password) == Auth::user()->password){
+            if($request->newpass == $request->newpasscheck){
+                Auth::user()->update();
+            }
+        }else{
+            redirect()->back()->with('error','The Curreant Password Isnot Correct!');
+        }
+    }
+
+    public function followersPage($id){
+        $user_id = $id ;
+        $page = 'followers';
+        return view('users.followers' , compact('user_id' , 'page'));
+    }
+    public function followingPage($id){
+        $user_id = $id ;
+        $page = 'following';
+        return view('users.followers' , compact('user_id' , 'page'));
+    }
+
+
+
+
 }

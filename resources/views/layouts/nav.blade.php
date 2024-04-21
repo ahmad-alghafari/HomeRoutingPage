@@ -51,7 +51,7 @@
                     <span class="badge-notif animation-blink"></span>
                     <i class="bi bi-bell-fill fs-6"> </i>
                 </a>
-                <div class="dropdown-menu dropdown-animation dropdseown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
+                <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
                     <div class="card">
                         @livewire('clear-notifi')
                         <div class="card-body p-0">

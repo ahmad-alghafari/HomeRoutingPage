@@ -59,10 +59,9 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
     Route::get('users/show/{user}' ,[UserController::class , 'show'])->name('users.show')->middleware('block');
     Route::get('users/show/{usershow}' ,[UserController::class , 'showuser'])->name('users.usershow')->middleware('blockUser');
 
-    
-
     Route::post('users/settings' , [UserController::class , 'settings'])->name('users.settings.post');
     Route::view('users/settings/{user}','users.settings')->name('users.settings')->middleware('checkUserSettings');
+    Route::post('users/settings/password' ,[UserController::class , 'newpass'] )->name('users.settings.updatepassword');
 
     Route::resource('blocks', BlockController::class)->except('destroy');
     Route::delete('blocks/{user}' , [BlockController::class , 'destroy'])->name('blocks.destroy');
@@ -70,6 +69,10 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
 
     Route::post('users/photo' ,[UserController::class , 'addphoto'])->name('users.photo.store');
     Route::delete('users/photo/{user}' ,[UserController::class , 'deletephoto'])->name('users.photo.destroy');
+
+    Route::get('users/followers/{user}' , [UserController::class , 'followersPage'])->name('users.followers');
+    Route::get('users/following/{user}' , [UserController::class , 'followingPage'])->name('users.following');
+
 
 });
 

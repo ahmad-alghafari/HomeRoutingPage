@@ -141,7 +141,7 @@
                 <div class="ms-3 ms-lg-auto">
 
 
-                    <a class="btn btn-dark" href="{{ route('domains.create') }}"> Create Your Own Application </a>
+                    <a class="btn btn-dark" href="{{ route('domains.create') }}"> Create Your Own System </a>
                 </div>
                 <!-- Nav right END -->
             </div>
@@ -165,7 +165,7 @@
                 <div class="row text-center position-relative z-index-1">
                     <div class="col-lg-7 mx-auto">
                         <!-- Heading -->
-                        <h1 class="display-3">Download The Best Social App</h1>
+                        <h1 class="display-3">Download The Best Social System</h1>
                         <p class="lead">See resolved goodness felicity shy civility domestic had but perceive laughing
                             six did far. </p>
                         <div class="d-sm-flex justify-content-center">
@@ -293,7 +293,7 @@
                     <div class="col-lg-4">
                         <h2 class="h1">Take a look at our big set of features</h2>
                         <p class="mb-4">Express besides it present if at an opinion visitor. </p>
-                        <a class="btn btn-dark" href="#">Create Your Own App</a>
+                        <a class="btn btn-dark" href="#">Create Your Own System</a>
                     </div>
                     <!-- Feature item START -->
                     <div class="col-lg-8">

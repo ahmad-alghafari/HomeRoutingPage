@@ -1,8 +1,8 @@
 <button wire:click="toggleFollow"
         @if($this->isFollow)
-         class="btn btn-secondary me-2"
+         class="d-inline btn btn-secondary me-2"
         @else
-            class="btn btn-primary-soft me-2"
+            class="d-inline btn btn-primary-soft me-2"
         @endif
          type="button" href="#!">
     @if($this->isFollow)

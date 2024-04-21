@@ -149,7 +149,7 @@ Header END -->
                             <!-- Button -->
                             <div class="d-flex mt-3 justify-content-center ms-sm-auto">
                                 @if($user->id == Auth::user()->id)
-                                    <button class="btn btn-danger-soft me-2" type="button"> <i class="bi bi-pencil-fill pe-1"></i> Edit profile </button>
+                                    <a href="{{route('home.users.settings' , Auth::user()->id)}}" class="btn btn-danger-soft me-2" type="button"> <i class="bi bi-pencil-fill pe-1"></i> Edit profile </a>
                                 @else
                                     @livewire('follow-live' , ['user' => $user])
                                 @endif
@@ -266,26 +266,6 @@ Header END -->
                                                 </form>
                                             </li>
                                         @endif
-{{--                                        @if(Auth::user()->id == $user->id)--}}
-{{--                                                <li>--}}
-{{--                                                    <form method="POST" action="/posts/{{ $post->id }}">--}}
-{{--                                                        @csrf--}}
-{{--                                                        @method('PUT')--}}
-{{--                                                        <textarea name="content">{{ $post->content }}</textarea>--}}
-{{--                                                        <button type="submit">Save</button>--}}
-{{--                                                    </form>--}}
-{{--                                                </li>--}}
-{{--                                        @endif--}}
-                                            <form action="{{ route('home.posts.edit', $post->post) }}">
-                                                @csrf
-                                                @method('PUT')
-                                                <li>
-                                                    <button class="dropdown-item" type="submit">
-                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Edit Post
-                                                    </button>
-{{--                                                    <a class="btn btn-primary-soft btn-xs ms-2" href="#!">Edit Post </a>--}}
-                                                </li>
-                                            </form>
                                         <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save Post</a></li>
                                         {{-- <li><hr class="dropdown-divider"></li> --}}
                                         @if(Auth::user()->id != $user->id)<li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report Post</a></li>@endif

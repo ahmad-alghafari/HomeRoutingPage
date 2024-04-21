@@ -52,15 +52,15 @@
                                 <div class="vr"></div>
                                 <!-- User stat item -->
                                 <div>
-                                    <h6 class="mb-0">{{Auth::user()->info->follower}}</h6>
-                                    <small>Follower</small>
+                                    <h6 class="mb-0"><a href="{{route('home.users.followers' , \Illuminate\Support\Facades\Auth::user()->id)}}" class="nav-link">{{Auth::user()->info->follower}}</a></h6>
+                                    <small><a class="nav-link" href="{{route('home.users.followers' , \Illuminate\Support\Facades\Auth::user()->id)}}">Follower</a></small>
                                 </div>
                                 <!-- Divider -->
                                 <div class="vr"></div>
                                 <!-- User stat item -->
                                 <div>
-                                    <h6 class="mb-0">{{Auth::user()->info->following}}</h6>
-                                    <small>Following</small>
+                                    <h6 class="mb-0"><a href="{{route('home.users.following' , \Illuminate\Support\Facades\Auth::user()->id)}}" class="nav-link">{{Auth::user()->info->following}}</a></h6>
+                                    <small><a class="nav-link" href="{{route('home.users.following' , \Illuminate\Support\Facades\Auth::user()->id)}}">Following</a></small>
                                 </div>
                             </div>
                             <!-- User stat END -->

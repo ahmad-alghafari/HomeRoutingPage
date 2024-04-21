@@ -25,9 +25,11 @@ class LikeCommentLive extends Component
             Auth::user()->commentlike()->create([ 'comment_id' => $this->comment->id]);
             $this->comment->increment("likes_number");
             $this->isliked = true ;
+            //notifications
             $like = commentlike::latest()->first();
             $commentOwner = $this->comment->user;
             $postOfComment = $this->comment->post;
+            if (Auth::user()->id != $commentOwner->id)
             $commentOwner->notify(new CommentLikeNotify($like,$this->comment,$postOfComment));
         }
         $this->comment = $this->comment->fresh();

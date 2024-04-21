@@ -96,7 +96,8 @@ class PostController extends Controller{
 
         foreach ($userIds as $user) {
             $user->notify(new PostNotify($post));
-        }
+
+    }
 
         return redirect()->back();//route('home.posts.index');
 

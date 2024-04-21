@@ -270,6 +270,16 @@ Header END -->
                   </div>
               </li>
               <!-- Notif item end-->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var clearButton = document.getElementById("clearingNotificaions");
+                        var notificationsDiv = document.getElementById("notificaionsAreia");
+
+                        clearButton.addEventListener("click", function() {
+                            notificationsDiv.innerHTML = ""; // Clearing the content of the div
+                        });
+                    });
+                </script>
 
             </ul>
           </div>
