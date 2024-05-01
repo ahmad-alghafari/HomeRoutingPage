@@ -81,6 +81,13 @@ class PostController extends Controller{
                 }
             }
         }
+        Log::create([
+            'user_id' => $id,
+            'TypeOfAct' => 'Post Created',
+            'Description' =>  ' created a post ' . $post->id,
+            'OnTable' => 'posts' ,
+            'Properties' => 'nu' ,
+        ]);
 //        notifications
         $userIds =User::whereNotIn('id', function ($query) use ($id) {
             $query->select('user_blocker')

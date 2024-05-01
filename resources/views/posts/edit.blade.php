@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Edit Post</h1>
-    <form method="POST" action="/users/show/{user}/{{ $post->post->id }}">
+    <form method="POST" action="">
         @csrf
         @method('PUT')
         <textarea name="content">{{ $post->post->text }}</textarea>

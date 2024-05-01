@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         <tr>
-            <td class="lalign">1</td>
+            <td class="c1">1</td>
             <td>ghena</td>
             <td>create</td>
             <td>created an image post</td>
@@ -152,7 +152,7 @@
         text-align: center;
         padding: 15px 10px;
     }
-    #keywords tbody tr td.lalign {
+    #keywords tbody tr td.c1 {
         text-align: center;
     }
 </style>
