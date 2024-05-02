@@ -261,7 +261,16 @@ Header END -->
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="dropdown-item" type="submit">
-                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Delete post
+                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Delete Post
+                                                    </button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form action="{{route('home.posts.edit' , $post->post)}}" method="POST">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <button class="dropdown-item" type="submit">
+                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Edit Post
                                                     </button>
                                                 </form>
                                             </li>

@@ -137,20 +137,14 @@ class PostController extends Controller{
         return view('posts.edit', compact('post'));
     }
 
-    public function updatee(Request $request, $id)
-    {
-        // $post = Post::find($id);
-        // $post->text = $request->text;
-        // $post->save();
-        // return view('myprofile');
-    }
+    
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->content = $request->input('content');
-        $post->save();
-
-        return redirect('/posts/'.$id);
+        $post->text = $request->input('text');
+        $post->update();
+        // return redirect('/users/show/',$user);
+        return redirect()->back();
     }
 
 

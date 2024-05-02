@@ -42,6 +42,20 @@ class DatabaseSeeder extends Seeder
                 'created_at'=> $time,
                 'updated_at'=> $time,
             ],
+            [
+                'page_name' => 'Posting',
+                'route_name'=>'home.posts.edit',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Posting',
+                'route_name'=>'home.posts.update',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
             //notificaions
             [
                 'page_name' => 'Show all notificaions.',
