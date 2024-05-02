@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Spatie\Activitylog\Models\Activity;
 use App\Models\share;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class UserController extends Controller
         return view('users.profile' , compact('posts' , 'user'));
     }
 
-    public function showuser( $usershow){
+    public function showuser($usershow){
         $user = User::find($usershow);
         if($user != null){
             $posts = share::where('user_id',$user->id)->latest()->get();
@@ -27,6 +28,10 @@ class UserController extends Controller
 
     }
 
+    public function setting_view($user){
+        $active = 'setting-account';
+        return view('users.settings' )->with(['active' => $active]);
+    }
     public function settings(Request $request){
         $user = Auth::user();
 
@@ -71,13 +76,11 @@ class UserController extends Controller
             );
         }
 
-        activity()
-        ->by($user)
-        // ->on()
-        ->event('update')
-        ->log('test');
 
-        return redirect()->back()->with(['success' => 'Updated Successfully!']);
+        return redirect()->back()->with([
+            'active' => 'setting-account',
+            'message' => 'account_save_changed_success'
+        ]);
     }
 
     public function addphoto(Request $request){
@@ -96,34 +99,69 @@ class UserController extends Controller
         $imageName = Auth::user()->id . Auth::user()->name . $image->extension();
         $path = 'import/assets/images/avatar/' . $imageName ;
 
-        Auth::user()->photo()->updateOrCreate(['path' => $path]);
+        $checked = Auth::user()->photo()->updateOrCreate(['path' => $path]);
 
-        $request->file('image')->move(public_path('import/assets/images/avatar' ), $imageName);
-
-
-        return redirect()->route('home.users.show' , Auth::user());
-    }
-
-    public function deletephoto($id){
-        if(Auth::user()->photo != null){
-            $image =  public_path(Auth::user()->photo->path);
-            if (file_exists($image)) {
-                unlink($image);
-            }
-            Auth::user()->photo()->delete();
+        if ($checked) {
+            $request->file('image')->move(public_path('import/assets/images/avatar' ), $imageName);
+            return redirect()->back()->with(['active'=> 'setting-photo' , 'message'=>'add_photo_success']);
+        } else {
+            return redirect()->back()->with([
+                'active' => 'setting-photo',
+                'message' => 'add_photo_error'
+            ]);
         }
-        return redirect()->route('home.users.show' , Auth::user());
 
     }
 
-    public function newpass(Request $request): void {
-        if(base64_decode($request->password) == Auth::user()->password){
-            if($request->newpass == $request->newpasscheck){
-                Auth::user()->update();
+    public function deletephoto($user){
+        $user = User::find($user);
+        if($user){
+            if($user->photo != null){
+                $image =  public_path($user->photo->path);
+                if (file_exists($image)) {
+                    unlink($image);
+                }
+                $user->photo()->delete();
             }
-        }else{
-            redirect()->back()->with('error','The Curreant Password Isnot Correct!');
+            return redirect()->back()->with([
+                'active' => 'setting-photo',
+                'message' => 'delete_photo_success',
+            ]);
         }
+        return redirect()->back()->with([
+            'active'=> 'setting-photo',
+            'message'=>'delete_photo_failed',
+        ]);
+
+
+    }
+
+    public function newpass(Request $request) {
+        $request->validate([
+            'password' => 'required|min:8',
+        ]);
+
+        if (Hash::check($request->password, Auth::user()->password)) {
+            $request->validate([
+                'new_password' => 'required|different:password|min:8',
+                'new_password_confirm' => 'required|same:new_password|min:8'
+            ] , [
+                    'new_password.different' => 'New password and current password must be different.',
+                    'new_password_confirm.same' =>'Confirm password must be same to new password.',
+            ]);
+            Auth::user()->update([
+                'password' => Hash::make($request->newpass),
+            ]);
+            return redirect()->back()->with([
+                'active'=> 'setting-password',
+                'message'=> 'password_changed_success'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'active' => 'setting-password',
+            'message'=>'password_error' ,
+        ]);
     }
 
     public function followersPage($id){
@@ -136,7 +174,5 @@ class UserController extends Controller
         $page = 'following';
         return view('users.followers' , compact('user_id' , 'page'));
     }
-
-
 
 }

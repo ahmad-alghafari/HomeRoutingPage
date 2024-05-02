@@ -775,6 +775,46 @@ Header END -->
 </div> --}}
  <!-- Main Chat END -->
 
+<!-- Cookie alert box START -->
+{{--{{$message}}--}}
+@if(isset($message) && $message == "processing")
+<div class="alert alert-light fade show position-fixed start-0 bottom-0 z-index-99 shadow p-4 m-3 col-10 col-md-4 col-lg-3" role="alert">
+    <div class="text-dark">
+        <!-- Image -->
+{{--        <img src="assets/images/cookie.svg" class="h-50px mb-3" alt="cookie">--}}
+        <!-- Content -->
+        <p class="mb-0">Your request to publish the post is being processed</p>
+        <!-- Buttons -->
+        <div class="mt-3">
+            <button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">Accept</span>
+            </button>
+            <button type="button" class="btn btn-danger-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">Decline</span>
+            </button>
+        </div>
+    </div>
+</div>
+@elseif(isset($message) && $message == "invalidToken")
+    <div class="alert alert-light fade show position-fixed start-0 bottom-0 z-index-99 shadow p-4 m-3 col-10 col-md-4 col-lg-3" role="alert">
+        <div class="text-dark">
+            <!-- Image -->
+            {{--        <img src="assets/images/cookie.svg" class="h-50px mb-3" alt="cookie">--}}
+            <!-- Content -->
+            <p class="mb-0">You are tray to invalid access!</p>
+            <!-- Buttons -->
+            <div class="mt-3">
+                <button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">Accept</span>
+                </button>
+                <button type="button" class="btn btn-danger-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">Decline</span>
+                </button>
+            </div>
+        </div>
+    </div>
+@endif
+<!-- Cookie alert box END -->
 
 
 

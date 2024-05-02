@@ -31,7 +31,7 @@
             <!-- Offcanvas body -->
             <div class="offcanvas-body p-0">
             <div class="card card-chat-list rounded-end-lg-0 card-body border-end-lg-0 rounded-top-0">
-              
+
             <!-- Search chat START -->
             <form class="position-relative">
                 <input wire:model.live="search"  class="form-control py-2" type="search" placeholder="Search for chats" aria-label="Search">
@@ -49,7 +49,7 @@
                             <!-- Chat user tab item -->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 avatar avatar-story me-2 status-online">
-                                        <img class="avatar-img rounded-circle" 
+                                        <img class="avatar-img rounded-circle"
                                         @if($user->photo != null)
                                         src="{{asset($user->photo->path)}}"
                                         @else
@@ -82,9 +82,9 @@
     <!-- Chat conversation START -->
     {{-- @if(! empty($this->reciver_id ))
       @endif --}}
-      
+
   @if($this->reciver != null)
-    
+
     <div class="col-lg-8 col-xxl-9">
       <div class="card card-chat rounded-start-lg-0 border-start-lg-0">
         <div class="card-body h-100">
@@ -95,7 +95,7 @@
               <div class="d-sm-flex justify-content-between align-items-center">
                 <div class="d-flex mb-2 mb-sm-0">
                   <div class="flex-shrink-0 avatar me-2">
-                    <img class="avatar-img rounded-circle" 
+                    <img class="avatar-img rounded-circle"
                     @if($this->reciver->photo != null)
                     src="{{asset($this->reciver->photo->path)}}">
                     @else
@@ -104,7 +104,7 @@
                   </div>
                   <div class="d-block flex-grow-1">
                     <h6 class="mb-0 mt-1">{{$this->reciver->name}}</h6>
-                    <div 
+                    <div
                       class="small text-secondary">
                       @if($this->reciver->status == 1)
                       <i class="fa-solid fa-circle text-success me-1"></i>Online
@@ -120,7 +120,7 @@
                   {{-- <a href="#!" class="icon-md rounded-circle btn btn-primary-soft me-2 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Video call"><i class="bi bi-camera-video-fill"></i></a> --}}
                   <!-- Card action START -->
                   <div class="dropdown">
-                    <a class="icon-md rounded-circle btn btn-primary-soft me-2 px-2" href="#" id="chatcoversationDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></a>               
+                    <a class="icon-md rounded-circle btn btn-primary-soft me-2 px-2" href="#" id="chatcoversationDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="chatcoversationDropdown">
                       <li><a class="dropdown-item" href="#"><i class="bi bi-check-lg me-2 fw-icon"></i>Mark as read</a></li>
                       <li><a class="dropdown-item" href="#"><i class="bi bi-mic-mute me-2 fw-icon"></i>Mute conversation</a></li>
@@ -140,7 +140,9 @@
 
               <!-- Chat conversation START -->
               <div class="chat-conversation-content " id="chatControl">
-                @forelse ($this->message as $m)
+
+
+                @forelse($this->message as $m)
                     @if($m->from_id == $this->me->id)
                       <div class="d-flex justify-content-end text-end mb-1">
                         <div class="w-100">
@@ -160,7 +162,7 @@
                     @else
                       <div class="d-flex mb-1">
                         <div class="flex-shrink-0 avatar avatar-xs me-2">
-                          <img class="avatar-img rounded-circle" 
+                          <img class="avatar-img rounded-circle"
                             @if($this->reciver->photo != null)
                             src="{{asset($this->reciver->photo->path)}}">
                             @else
@@ -178,9 +180,8 @@
                         </div>
                       </div>
                     @endif
-                @empty
-                    
-                @endforelse
+                        @empty
+                        @endforelse
                 <!-- Chat message left text-->
                 {{-- <div class="d-flex mb-1">
                   <div class="flex-shrink-0 avatar avatar-xs me-2">
@@ -238,7 +239,7 @@
                 </div> --}}
 
 
-              </div> 
+              </div>
             </div>
           </div>
         </div>

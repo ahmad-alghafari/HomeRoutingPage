@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Posting;
 use App\Models\post;
 use App\Models\user;
 use App\Models\share;
+use App\Notifications\FailedpostingNotify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\file;
 use App\Notifications\PostNotify;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class PostController extends Controller{
     public function index(Request $request){
@@ -27,10 +30,13 @@ class PostController extends Controller{
             return response()->json(['view' => $view, 'nextPageUrl' => $posts->nextPageUrl()]);
         }
         return view('home' , compact('posts'));
-
     }
 
     public function store(Request $request){
+
+        if ($request->session()->token() !== $request->input('_token')) {
+            return redirect()->back()->with('message', 'invalidToken');
+        }
 
         $error_message = 'You cannot post empty content!';
         $request->validate([
@@ -48,9 +54,8 @@ class PostController extends Controller{
             ]
         );
 
-
-        $text = $request->text ?  : '';
-        $id =auth::user()->id;
+        $text = $request->text ? : '';
+        $id = Auth::user()->id;
 
         $post = post::create([
             'user_id' => $id,
@@ -60,10 +65,10 @@ class PostController extends Controller{
             'user_id' => $id,
             'post_id' => $post->id,
         ]);
-        auth::user()->info->increment('posts_number');
+
+        Auth::user()->info->increment('posts_number');
 
         $fileTypes = ['images', 'videos', 'files', 'voice'];
-
         foreach ($fileTypes as $fileType) {
             if ($request->hasFile($fileType)) {
                 foreach ($request->file($fileType) as $key => $file) {
@@ -82,23 +87,8 @@ class PostController extends Controller{
             }
         }
 //        notifications
-        $userIds =User::whereNotIn('id', function ($query) use ($id) {
-            $query->select('user_blocker')
-                ->from('blocks')
-                ->where('user_blocked', $id);
-        })->whereIn('id', function ($query) use ($id) {
-            $query->select('user_follow')
-                ->from('follows')
-                ->where('user_follower', $id);
-        })->get(['id']);
-
-
-
-        foreach ($userIds as $user) {
-            $user->notify(new PostNotify($post));
-        }
-
-        return redirect()->back();//route('home.posts.index');
+        Posting::dispatch($post , Auth::user()->id);
+        return redirect()->back()->with('message', 'processing');
 
     }
 
@@ -110,7 +100,7 @@ class PostController extends Controller{
     //         return back();
     //     }
     // }
-    
+
     public function show(post $post){
         return view('posts.show' , compact('post'));
 

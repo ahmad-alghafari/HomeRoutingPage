@@ -52,10 +52,11 @@ class Following extends Component
             })->where('name' , 'like' ,'%'.$this->search.'%')->get(['id' , 'name' ]);
 
             return view('livewire.following' , compact('users'));
+        }else{
+            $users = User::whereIn('id' , function ($q) {
+                $q->select('user_follow')->from('follows')->where('user_follower', $this->id);
+            })->where('name' , 'like' ,'%'.$this->search.'%')->get(['id' , 'name' ]);
+            return view('livewire.following' , compact('users'));
         }
-        $users = User::whereIn('id' , function ($q) {
-            $q->select('user_follow')->from('follows')->where('user_follower', $this->id);
-        })->where('name' , 'like' ,'%'.$this->search.'%')->get(['id' , 'name' ]);
-        return view('livewire.following' , compact('users'));
     }
 }

@@ -156,6 +156,23 @@
 
                                                     </div>
                                                 </div>
+                                            @elseif($notification->type == 'App\Notifications\FailedpostingNotify')
+                                                <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
+{{--                                                    <div class="avatar text-center d-none d-sm-inline-block">--}}
+{{--                                                        <a href="{{ route('home.posts.showpost' , $notification->data['post']) }}" style="color: #fff">--}}
+{{--                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">--}}
+{{--                                                        </a>--}}
+{{--                                                    </div>--}}
+                                                    <div class="ms-sm-3">
+                                                        <div class=" d-flex">
+{{--                                                            <a href="{{ route('home.posts.showpost' , $notification->data['post']) }}" style="color: #fff">--}}
+                                                                <p class="small mb-2"><b class="h6">Error Message : </b> {{ $notification->data['title'] }}</p>
+                                                            <p class="small ms-3 text-nowrap">{{ $notification->created_at->diffForHumans() }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             @endif
                                         @endforeach
                                     </div>

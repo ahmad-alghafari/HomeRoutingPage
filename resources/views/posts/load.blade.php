@@ -94,6 +94,7 @@
             @else
                 @if($post->post->file->whereIn('file_type',['images' ,'video'])->count() > 0)
                     @switch($post->post->file->whereIn('file_type',['images' ,'video'])->count())
+
                         @case(1)
                             @if($post->post->file->where('file_type','images')->count() == 1)
                                 <a class="" href="{{asset($post->post->file[0]->file_path)}}" data-glightbox="post-gallery" data-gallery="image-popup{{$post->post->id}}">
@@ -260,7 +261,7 @@
                 </li>
                 <li class="nav-item">
                     <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#Modal{{$post->post->id}}">
-                        <i class="bi bi-chat-fill pe-1"></i>Comments 
+                        <i class="bi bi-chat-fill pe-1"></i>Comments
                         {{-- ({{$post->post->comments_number}}) --}}
                     </button>
                     @if($post->post->comments_number != 0)

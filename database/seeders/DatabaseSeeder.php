@@ -116,6 +116,13 @@ class DatabaseSeeder extends Seeder
                 'created_at'=> $time,
                 'updated_at'=> $time,
             ],
+            [
+                'page_name' => 'Change Password.',
+                'route_name'=>'home.users.settings.updatepassword',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
             //settings
             [
                 'page_name' => 'Show Settings Page.',
@@ -169,7 +176,6 @@ class DatabaseSeeder extends Seeder
                 'created_at'=> $time,
                 'updated_at'=> $time,
             ]
-
         ];
 
         foreach($settings as $s){

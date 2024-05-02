@@ -51,9 +51,8 @@
                         </div>
                         <!-- Dropdown END -->
                     </div>
-                    @if(Auth::user()->id == $this->id)
-                        @livewire('follow-live' ,[$user] )
-                    @endif
+{{--                        @livewire('follow-live' ,['user' => $user] )--}}
+                    <livewire:follow-live :$user :key="$user->id"/>
 
                 </div>
             </div>

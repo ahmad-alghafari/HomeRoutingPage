@@ -55,7 +55,7 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
 
 
     Route::post('users/settings' , [UserController::class , 'settings'])->name('users.settings.post');
-    Route::view('users/settings/{user}','users.settings')->name('users.settings')->middleware('checkUserSettings');
+    Route::get('users/settings/{user}',[UserController::class , 'setting_view'])->name('users.settings')->middleware('checkUserSettings');
     Route::post('users/settings/password' ,[UserController::class , 'newpass'] )->name('users.settings.updatepassword');
 
     Route::resource('blocks', BlockController::class)->except('destroy');

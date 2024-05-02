@@ -12,7 +12,7 @@
 	<!-- Dark mode -->
 	<script>
 		const storedTheme = localStorage.getItem('theme')
- 
+
 		const getPreferredTheme = () => {
 			if (storedTheme) {
 				return storedTheme
@@ -66,7 +66,7 @@
 
 			}
 		})
-		
+
 	</script>
 
 	<!-- Favicon -->
@@ -110,7 +110,7 @@
     /* Style the scrollbar thumb on hover */
     #chatControl::-webkit-scrollbar-thumb:hover {
       background: #555;
-    }   
+    }
   </style>
 
 	<livewire:styles />
@@ -131,11 +131,11 @@ Header END -->
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-  
+
   <!-- Container START -->
   <div class="container">
     <!-- Row start -->
-		@livewire('messageing')
+		@livewire('messageing' , ['user' => Auth::user()])
     <!-- Row END -->
     <!-- =======================
     Chat END -->
@@ -145,47 +145,6 @@ Header END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
-
-<!-- Chat START -->
- {{-- <div class="position-fixed bottom-0 end-0 p-3">
-
-  <!-- Chat toast START -->
-  <div id="chatToast" class="toast bg-mode" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-    <div class="toast-header bg-mode d-flex justify-content-between">
-      <!-- Title -->
-      <h6 class="mb-0">New message</h6>
-      <button class="btn btn-secondary-soft-hover py-1 px-2" data-bs-dismiss="toast" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <!-- Top avatar and status END -->
-    <div class="toast-body collapse show" id="collapseChat">
-      <!-- Chat conversation START -->
-      <!-- Form -->
-      <form>
-        <div class="input-group mb-3">
-          <span class="input-group-text border-0">To</span>
-          <input class="form-control" type="text" placeholder="Type a name or multiple names">
-        </div>
-      </form>         
-      <!-- Chat conversation END -->
-      <!-- Extra space -->
-      <div class="h-200px"></div>
-      <!-- Button  -->
-      <div class="d-sm-flex align-items-end">
-        <textarea class="form-control mb-sm-0 mb-3" placeholder="Type a message" rows="1" spellcheck="false"></textarea>
-        <button class="btn btn-sm btn-danger-soft ms-sm-2"><i class="fa-solid fa-face-smile fs-6"></i></button>
-        <button class="btn btn-sm btn-secondary-soft ms-2"><i class="fa-solid fa-paperclip fs-6"></i></button>
-        <button class="btn btn-sm btn-primary ms-2"><i class="fa-solid fa-paper-plane fs-6"></i></button>
-      </div>
-    </div>
-  </div>
-  <!-- Chat toast END -->
-
-</div> --}}
-
-<!-- Chat END -->
-
-<!-- =======================
-JS libraries, plugins and custom scripts -->
 
 <!-- Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -202,7 +161,9 @@ JS libraries, plugins and custom scripts -->
         const currentTimeString = hours + ':' + minutes + ' ' + meridiem;
         return currentTimeString;
         }
+
 		$(document).ready(function() {
+
         function scrollChatToBottom() {
           var chatControl = $("#chatControl");
           chatControl.scrollTop(chatControl.prop("scrollHeight"));
@@ -211,7 +172,7 @@ JS libraries, plugins and custom scripts -->
     		$(document).on("click", "#send", function(e) {
         		// e.preventDefault();
         		const message = $("#message").val();
-				    const text = 
+				    const text =
                   '<div class="d-flex justify-content-end text-end mb-1">'+
                   '<div class="w-100">'+
                   '<div class="d-flex flex-column align-items-end">'+
@@ -222,7 +183,7 @@ JS libraries, plugins and custom scripts -->
                     getCurrentTime() +
                   '</div><div class="small ms-2"><i class="fa-solid fa-check"></i></div></div></div></div></div>';
 				if (message.trim() !== "") { // Check if message is not empty
-					$("#chatControl").append(text); 
+					$("#chatControl").append(text);
           scrollChatToBottom();
           // Append message to chat conversation content
 					// $("#message").val("");  Clear the textarea after sending the message
@@ -232,42 +193,27 @@ JS libraries, plugins and custom scripts -->
         $(window).resize(function() {
         scrollChatToBottom(); // Scroll to bottom on window resize
     });
-		});
-  
+        });
+
     Pusher.logToConsole = true;
       var pusher = new Pusher('2d71b511dc2458847016', {
         cluster: 'ap2'
       });
       var channel = pusher.subscribe('chat{{Auth::user()->id}}');
         channel.bind('chatMessage', function(data) {
-          // alert(JSON.stringify(data));
-          // let message = 
-          //       '<div class="d-flex mb-1"><div class="flex-shrink-0 avatar avatar-xs me-2">'+
-          //       '<img class="avatar-img rounded-circle"'+ 
-          //         if($path == 'placeholder')
-          //         'src="{asset('import/assets/images/avatar/placeholder.jpg')}">'+
-          //         else
-          //         'src="{asset($path)}">'+
-          //         endif
-                    
-          //         '</div><div class="w-100"><div class="d-flex flex-column align-items-start"><div class="bg-light text-secondary p-2 px-3 rounded-2">'+
-          //           JSON.stringify(data) +
-          //         '</div><div class="small my-2">'+
-          //           getCurrentTime() +
-          //         '</div></div></div></div></div>';
-          let message = 
+          let message =
                 '<div class="d-flex mb-1"><div class="flex-shrink-0 avatar avatar-xs me-2">'+
-                '<img class="avatar-img rounded-circle"'+ 
+                '<img class="avatar-img rounded-circle"'+
                   'src="{{asset('import/assets/images/avatar/placeholder.jpg')}}">'+
                   '</div><div class="w-100"><div class="d-flex flex-column align-items-start"><div class="bg-light text-secondary p-2 px-3 rounded-2">'+
                     data.message +
                   '<div class="small my-2">'+
                     getCurrentTime() +
                   '</div></div></div></div></div>';
-          $("#chatControl").append(message); 
-          scrollChatToBottom(); 
+          $("#chatControl").append(message);
+          scrollChatToBottom();
       });
-  
+
 </script>
 <script src="{{asset('import/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 

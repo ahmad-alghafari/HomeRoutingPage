@@ -103,6 +103,9 @@ Header END -->
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
+
+{{--    {{dd(session()->all())}}--}}
+
     <!-- Container START -->
     <div class="container">
         <div class="row">
@@ -133,17 +136,28 @@ Header END -->
                             <div class="card w-100">
                                 <!-- Card body START -->
                                 <div class="card-body">
-
                                     <!-- Side Nav START -->
                                     <ul class="nav nav-tabs nav-pills nav-pills-soft flex-column fw-bold gap-2 border-0">
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
-                                            <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-1" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Account </span></a>
+                                            @if($active == 'setting-account')
+                                                <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-1" data-bs-toggle="tab" aria-selected="true"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Account </span></a>
+                                            @else
+                                                <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-1" data-bs-toggle="tab" aria-selected="false" tabindex="-1"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Account </span></a>
+                                            @endif
                                         </li>
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
-                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-2" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/image-flat.svg')}}" alt=""><span>Personal Photo </span></a>
+                                            @if($active == 'setting-photo')
+                                                <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-2" data-bs-toggle="tab" aria-selected="true"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/image-flat.svg')}}" alt=""><span>Personal Photo </span></a>
+                                            @else
+                                                <a class="nav-link d-flex mb-0 " href="#nav-setting-tab-2" data-bs-toggle="tab" aria-selected="false" tabindex="-1"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/image-flat.svg')}}" alt=""><span>Personal Photo </span></a>
+                                            @endif
                                         </li>
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
-                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-3" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/shield-outline-filled.svg')}}" alt=""><span>Change Password </span></a>
+                                            @if($active == 'setting-password')
+                                                <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-3" data-bs-toggle="tab" aria-selected="true"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/shield-outline-filled.svg')}}" alt=""><span>Change Password </span></a>
+                                            @else
+                                                <a class="nav-link d-flex mb-0 " href="#nav-setting-tab-3" data-bs-toggle="tab" aria-selected="false" tabindex="-1"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/shield-outline-filled.svg')}}" alt=""><span>Change Password </span></a>
+                                            @endif
                                         </li>
                                         {{-- <li class="nav-item" data-bs-dismiss="offcanvas">
                                             <a class="nav-link d-flex mb-0" href="#nav-setting-tab-4" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/handshake-outline-filled.svg')}}" alt=""><span>Communications </span></a>
@@ -152,11 +166,14 @@ Header END -->
                                             <a class="nav-link d-flex mb-0" href="#nav-setting-tab-5" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/chat-alt-outline-filled.svg')}}" alt=""><span>Messaging </span></a>
                                         </li> --}}
                                         <li class="nav-item" data-bs-dismiss="offcanvas">
-                                            <a class="nav-link d-flex mb-0" href="#nav-setting-tab-6" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/trash-var-outline-filled.svg')}}" alt=""><span>Close account </span></a>
+                                            @if($active == 'setting-close-account')
+                                                <a class="nav-link d-flex mb-0 active" href="#nav-setting-tab-6" data-bs-toggle="tab" aria-selected="true"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/trash-var-outline-filled.svg')}}" alt=""><span>Close account </span></a>
+                                            @else
+                                                <a class="nav-link d-flex mb-0 " href="#nav-setting-tab-6" data-bs-toggle="tab" aria-selected="false" tabindex="-1"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/trash-var-outline-filled.svg')}}" alt=""><span>Close account </span></a>
+                                            @endif
                                         </li>
                                     </ul>
                                     <!-- Side Nav END -->
-
                                 </div>
                                 <!-- Card body END -->
                                 <!-- Card footer -->
@@ -168,28 +185,7 @@ Header END -->
                         </div>
                         <!-- Offcanvas body -->
 
-                        <!-- Helper link START -->
-                        <ul class="nav small mt-4 justify-content-center lh-1">
-                            <li class="nav-item">
-                                <a class="nav-link" href="my-profile-about.html">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="settings.html">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" target="_blank" href="https://support.webestica.com/login">Support </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" target="_blank" href="docs/index.html">Docs </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="help.html">Help</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="privacy-and-terms.html">Privacy & terms</a>
-                            </li>
-                        </ul>
-                        <!-- Helper link END -->
+
                         <!-- Copyright -->
                         <p class="small text-center mt-1">©2023 <a class="text-reset" target="_blank" href="https://www.webestica.com/"> Webestica </a></p>
 
@@ -202,8 +198,9 @@ Header END -->
             <div class="col-lg-6 vstack gap-4">
                 <!-- Setting Tab content START -->
                 <div class="tab-content py-0 mb-0">
+
                     <!-- Account setting tab START -->
-                    <div class="tab-pane show active fade" id="nav-setting-tab-1">
+                    <div class="tab-pane  fade {{$active == 'setting-account' ? 'show active' : ''}}" id="nav-setting-tab-1">
                         <div class="card mb-4">
 
                             <!-- Title START -->
@@ -317,13 +314,7 @@ Header END -->
                                         <small>Character limit: 200</small>
                                     </div>
 
-                                    @if(session('success'))
-                                        <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-                                            <strong>{{session('success')}}</strong>
 
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    @endif
 
                                     <!-- Button  -->
                                     <div class="col-12 text-end">
@@ -338,7 +329,7 @@ Header END -->
                     <!-- Account setting tab END -->
 
                     <!-- Channge avatar tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-2">
+                    <div class="tab-pane  fade {{$active == 'setting-photo' ? 'show active' : ''}}" id="nav-setting-tab-2">
                         <!-- Notification START -->
                         <div class="card  mb-4">
 
@@ -370,6 +361,13 @@ Header END -->
                                     </button>
                                     <form  class="d-inline" method="POST" action="{{route('home.users.photo.destroy' , Auth::user()->id)}}">@csrf @method('DELETE') <input type="submit" value="Delete my photo" class="btn btn-danger btn-sm mb-0"></form>
                                 </div>
+
+                                @if(session('delete_photo'))
+                                    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                        <strong>{{session('delete_photo')}}</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                @endif
                                   <!-- Modal -->
                                 <div class="modal fade" id="chanephotoModal" tabindex="-1" aria-labelledby="chanephotoModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -397,7 +395,7 @@ Header END -->
                     <!-- Channge avatar tab END -->
 
                     <!-- Change Password tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-3">
+                    <div class="tab-pane fade {{$active == 'setting-password' ? 'show active' : ''}}" id="nav-setting-tab-3">
                         <div class="card">
                             <!-- Title START -->
                             <div class="card-header border-0 pb-0">
@@ -409,31 +407,46 @@ Header END -->
                                 <!-- Settings START -->
                                 <form class="row g-3" method="POST" action="{{ route('home.users.settings.updatepassword') }}">
                                     @csrf
-                                    
                                     <!-- Current password -->
                                     <div class="col-12">
                                         <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control" placeholder="" >
+                                        <input type="password" class="form-control" placeholder="" name="password">
+                                        @error('password')
+                                        <span class="feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <!-- New password -->
                                     <div class="col-12">
-                                        <label class="form-label">New password</label>
+                                        <label class="form-label" for="new_password">New Password</label>
                                         <!-- Input group -->
                                         <div class="input-group">
-                                            <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password" name="newpass">
+                                            <input class="form-control fake password" type="password" id="psw-input" placeholder="Enter new password" name="new_password">
                                             <span class="input-group-text p-0">
-                                                <i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
+                                                <i class="fakepassword icon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
                                             </span>
                                         </div>
-                                        <!-- Pswmeter -->
+                                        <!-- Psw meter -->
                                         <div id="pswmeter" class="mt-2"></div>
                                         <div id="pswmeter-message" class="rounded mt-1"></div>
+                                        @error('new_password')
+                                        <span class="feedback " role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <!-- Confirm password -->
                                     <div class="col-12">
-                                        <label class="form-label">Confirm password</label>
-                                        <input type="password" class="form-control" placeholder="" name="newpasscheck">
+                                        <label class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" placeholder="" name="new_password_confirm">
+                                        @error('new_password_confirm')
+                                        <span class="feedback " role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
+
                                     <!-- Button  -->
                                     <div class="col-12 text-end">
                                         <button type="submit" class="btn btn-primary mb-0" >Update password</button>
@@ -444,6 +457,38 @@ Header END -->
                         </div>
                     </div>
                     <!-- Change Password tab END -->
+
+                    <!-- Close account tab START -->
+                    <div class="tab-pane fade {{$active == 'setting-close-account' ? 'show active' : ''}}" id="nav-setting-tab-6">
+                        <!-- Card START -->
+                        <div class="card">
+                            <!-- Card header START -->
+                            <div class="card-header border-0 pb-0">
+                                <h5 class="card-title">Delete account</h5>
+                                <p class="mb-0">He moonlights difficult engrossed it, sportsmen. Interested has all Devonshire difficulty gay assistance joy. Unaffected at ye of compliment alteration to.</p>
+                            </div>
+                            <!-- Card header START -->
+                            <!-- Card body START -->
+                            <div class="card-body">
+                                <!-- Delete START -->
+                                <h6>Before you go...</h6>
+                                <ul>
+                                    <li>If you delete your account, you will lose your all data.</li>
+                                </ul>
+                                <div class="form-check form-check-md my-4">
+                                    <input class="form-check-input" type="checkbox" value="" id="deleteaccountCheck">
+                                    <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my account</label>
+                                </div>
+                                <a href="#" class="btn btn-success-soft btn-sm mb-2 mb-sm-0">Keep my account</a>
+                                <a href="#" class="btn btn-danger btn-sm mb-0">Delete my account</a>
+                                <!-- Delete END -->
+                            </div>
+                            <!-- Card body END -->
+                        </div>
+                        <!-- Card END -->
+                    </div>
+                    <!-- Close account tab END -->
+
 
                     <!-- Communications tab START -->
                     {{-- <div class="tab-pane fade" id="nav-setting-tab-4">
@@ -714,37 +759,6 @@ Header END -->
                     </div> --}}
                     <!-- Messaging tab END -->
 
-                    <!-- Close account tab START -->
-                    <div class="tab-pane fade" id="nav-setting-tab-6">
-                        <!-- Card START -->
-                        <div class="card">
-                            <!-- Card header START -->
-                            <div class="card-header border-0 pb-0">
-                                <h5 class="card-title">Delete account</h5>
-                                <p class="mb-0">He moonlights difficult engrossed it, sportsmen. Interested has all Devonshire difficulty gay assistance joy. Unaffected at ye of compliment alteration to.</p>
-                            </div>
-                            <!-- Card header START -->
-                            <!-- Card body START -->
-                            <div class="card-body">
-                                <!-- Delete START -->
-                                <h6>Before you go...</h6>
-                                <ul>
-                                    <li>If you delete your account, you will lose your all data.</li>
-                                </ul>
-                                <div class="form-check form-check-md my-4">
-                                    <input class="form-check-input" type="checkbox" value="" id="deleteaccountCheck">
-                                    <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my account</label>
-                                </div>
-                                <a href="#" class="btn btn-success-soft btn-sm mb-2 mb-sm-0">Keep my account</a>
-                                <a href="#" class="btn btn-danger btn-sm mb-0">Delete my account</a>
-                                <!-- Delete END -->
-                            </div>
-                            <!-- Card body END -->
-                        </div>
-                        <!-- Card END -->
-                    </div>
-                    <!-- Close account tab END -->
-
                 </div>
                 <!-- Setting Tab content END -->
             </div>
@@ -755,74 +769,62 @@ Header END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
+@if(session()->has('message'))
+    <div class="alert alert-light fade show position-fixed start-0 bottom-0 z-index-99 shadow p-4 m-3 col-10 col-md-4 col-lg-3" role="alert" id="message-container">
+        <div class="text-dark">
+            <!-- Content -->
+            @switch(session('message'))
+                @case("delete_photo_success")
+                    <p class="mb-0">Deleted Successfully!</p>
+                    @break
 
-<!-- Modal login activity START -->
-{{-- <div class="modal fade" id="modalLoginActivity" tabindex="-1" aria-labelledby="modalLabelLoginActivity" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal header -->
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabelLoginActivity">Where You're Logged in </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group list-group-flush">
-                    <!-- location list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 pb-3">
-                        <div class="me-2">
-                            <h6 class="mb-0">London, UK</h6>
-                            <ul class="nav nav-divider small">
-                                <li class="nav-item">Active now </li>
-                                <li class="nav-item">This Apple iMac </li>
-                            </ul>
-                        </div>
-                        <button class="btn btn-sm btn-primary-soft"> Logout </button>
-                    </li>
-                    <!-- location list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                        <div class="me-2">
-                            <h6 class="mb-0">California, USA</h6>
-                            <ul class="nav nav-divider small">
-                                <li class="nav-item">Active now </li>
-                                <li class="nav-item">This Apple iMac </li>
-                            </ul>
-                        </div>
-                        <button class="btn btn-sm btn-primary-soft"> Logout </button>
-                    </li>
-                    <!-- location list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                        <div class="me-2">
-                            <h6 class="mb-0">New york, USA</h6>
-                            <ul class="nav nav-divider small">
-                                <li class="nav-item">Active now </li>
-                                <li class="nav-item">This Windows </li>
-                            </ul>
-                        </div>
-                        <button class="btn btn-sm btn-primary-soft"> Logout </button>
-                    </li>
-                    <!-- location list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 pt-3">
-                        <div class="me-2">
-                            <h6 class="mb-0">Mumbai, India</h6>
-                            <ul class="nav nav-divider small">
-                                <li class="nav-item">Active now </li>
-                                <li class="nav-item">This Windows </li>
-                            </ul>
-                        </div>
-                        <button class="btn btn-sm btn-primary-soft"> Logout </button>
-                    </li>
-                </ul>
+                @case('delete_photo_failed')
+                    <p class="mb-0">Deleted Failed , No User Have This ID!</p>
+                    @break
+
+                @case('password_changed_success')
+                    <p class="mb-0">Password Changed Successfully!</p>
+                    @break
+
+                @case('password_error')
+                    <p class="mb-0">The Current Password Is Not Correct!</p>
+                    @break
+
+                @case('add_photo_error')
+                    <p class="mb-0">Something Was Wrong When Added Your Photo!</p>
+                    @break
+
+                @case('add_photo_success')
+                    <p class="mb-0">Photo Added Successfully!</p>
+                    @break
+
+                @case('account_save_changed_success')
+                    <p class="mb-0">Your Information Updated Successfully!</p>
+                    @break
+
+            @endswitch
+            <!-- Buttons -->
+            <div class="mt-3">
+                <button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">Ok</span>
+                </button>
             </div>
         </div>
     </div>
-</div> --}}
-<!-- Modal login activity END -->
+    <script>
+        // Get the message container
+        var messageContainer = document.getElementById('message-container');
+            setTimeout(function() {
+                messageContainer.style.display = 'none';
+            }, 5000);
 
-<!-- =======================
-JS libraries, plugins and custom scripts -->
+    </script>
+@endif
 
+<!-- JS libraries, plugins and custom scripts -->
 <!-- Bootstrap JS -->
 <script src="{{asset('import/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
 
 <!-- Vendors -->
 <script src="{{asset('import/assets/vendor/choices.js/public/assets/scripts/choices.min.js')}}"></script>
@@ -835,3 +837,4 @@ JS libraries, plugins and custom scripts -->
 
 </body>
 </html>
+
