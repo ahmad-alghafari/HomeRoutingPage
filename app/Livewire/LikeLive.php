@@ -26,7 +26,9 @@ class LikeLive extends Component
 //            notification
             $li = like::latest()->first();
             $postOwner = $li->post->user;
-            $postOwner->notify(new LikeNotify($li,$li->post));
+            if (Auth::user()->id != $postOwner->id) {
+                $postOwner->notify(new LikeNotify($li,$li->post));
+            }
         }
         $this->post = $this->post->fresh();
     }

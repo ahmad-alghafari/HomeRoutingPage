@@ -16,6 +16,11 @@ Route::get('/' , function(){
     return view("welcome");
 })->name("welcome");
 
+
+Route::get('/logs', function () {
+    return view("logs");
+});
+
 Route::get('/test' , function(){
     return view("welcome");
 })->name("welcome")->middleware('servicing');
@@ -23,6 +28,7 @@ Route::get('/test' , function(){
 Route::get('servicing' , function(){
     return view('servicing');
 })->name('servicing');
+
 
 Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
 Route::get('/domains/show/{domain}' , [DomainController::class , "show"])->name("domains.show");
@@ -48,11 +54,14 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
     Route::get('posts/show/{post}' ,[PostController::class , 'show'])->name('posts.show')->middleware('blockPost');
     Route::get('posts/showpost/{postshow}' ,[PostController::class , 'showpost'])->name('posts.showpost')->middleware('blockPostShow');
 
+    //post edit-UPDATE
+    Route::get('posts/edit/{id}', [PostController::class , 'edit'])->name('posts.edit');
+    Route::put('posts/update/{id}', [PostController::class , 'update']);
+
     Route::view('search' ,'search')->name('search');
 
     Route::get('users/show/{user}' ,[UserController::class , 'show'])->name('users.show')->middleware('block');
     Route::get('users/show/{usershow}' ,[UserController::class , 'showuser'])->name('users.usershow')->middleware('blockUser');
-
 
     Route::post('users/settings' , [UserController::class , 'settings'])->name('users.settings.post');
     Route::get('users/settings/{user}',[UserController::class , 'setting_view'])->name('users.settings')->middleware('checkUserSettings');

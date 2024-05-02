@@ -255,10 +255,29 @@ Header END -->
                                     </a>
                                     <!-- Card feed action dropdown menu -->
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction">
-                                        @if(Auth::user()->id == $user->id)<li><form action="{{route('home.posts.destroy' , $post->post)}}" method="POST">@csrf @method('DELETE')<button class="dropdown-item" type="submit"><i class="bi bi-x-circle fa-fw pe-2"></i>Delete post</button></form></li>@endif
-                                        <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save post</a></li>
+                                        @if(Auth::user()->id == $user->id)
+                                            <li>
+                                                <form action="{{route('home.posts.destroy' , $post->post)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="dropdown-item" type="submit">
+                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Delete Post
+                                                    </button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form action="{{route('home.posts.edit' , $post->post)}}" method="POST">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <button class="dropdown-item" type="submit">
+                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Edit Post
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        @endif
+                                        <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save Post</a></li>
                                         {{-- <li><hr class="dropdown-divider"></li> --}}
-                                        @if(Auth::user()->id != $user->id)<li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report post</a></li>@endif
+                                        @if(Auth::user()->id != $user->id)<li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report Post</a></li>@endif
                                     </ul>
                                 </div>
                                 <!-- Card feed action dropdown END -->

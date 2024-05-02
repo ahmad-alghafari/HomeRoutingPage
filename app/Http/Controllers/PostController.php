@@ -86,9 +86,37 @@ class PostController extends Controller{
                 }
             }
         }
+        Log::create([
+            'user_id' => $id,
+            'TypeOfAct' => 'Post Created',
+            'Description' =>  ' created a post ' . $post->id,
+            'OnTable' => 'posts' ,
+            'Properties' => 'nu' ,
+        ]);
 //        notifications
+<<<<<<< HEAD
         Posting::dispatch($post , Auth::user()->id);
         return redirect()->back()->with('message', 'processing');
+=======
+        $userIds =User::whereNotIn('id', function ($query) use ($id) {
+            $query->select('user_blocker')
+                ->from('blocks')
+                ->where('user_blocked', $id);
+        })->whereIn('id', function ($query) use ($id) {
+            $query->select('user_follow')
+                ->from('follows')
+                ->where('user_follower', $id);
+        })->get(['id']);
+
+
+
+        foreach ($userIds as $user) {
+            $user->notify(new PostNotify($post));
+
+    }
+
+        return redirect()->back();//route('home.posts.index');
+>>>>>>> 6dac95da0e3410f18942c38e2acce51ec9eaa68a
 
     }
 
@@ -113,17 +141,20 @@ class PostController extends Controller{
 
     }
 
-    public function edit(post $post)
+    public function edit($id)
     {
-
+        $post = Post::find($id);
+        return view('posts.edit', compact('post'));
     }
 
+    
     public function update(Request $request, $id)
     {
-        // $post = Post::find($id);
-        // $post->text = $request->text;
-        // $post->save();
-        // return view('myprofile');
+        $post = Post::find($id);
+        $post->text = $request->input('text');
+        $post->update();
+        // return redirect('/users/show/',$user);
+        return redirect()->back();
     }
 
 

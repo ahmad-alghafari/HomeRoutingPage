@@ -10,6 +10,7 @@ use DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
 {
     public function show(User $user){
@@ -113,6 +114,7 @@ class UserController extends Controller
 
     }
 
+<<<<<<< HEAD
     public function deletephoto($user){
         $user = User::find($user);
         if($user){
@@ -122,6 +124,14 @@ class UserController extends Controller
                     unlink($image);
                 }
                 $user->photo()->delete();
+=======
+
+
+    public function newpass(Request $request): void {
+        if(base64_decode($request->password) == Auth::user()->password){
+            if($request->newpass == $request->newpasscheck){
+                Auth::user()->update();
+>>>>>>> 6dac95da0e3410f18942c38e2acce51ec9eaa68a
             }
             return redirect()->back()->with([
                 'active' => 'setting-photo',
@@ -175,4 +185,10 @@ class UserController extends Controller
         return view('users.followers' , compact('user_id' , 'page'));
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 6dac95da0e3410f18942c38e2acce51ec9eaa68a
 }

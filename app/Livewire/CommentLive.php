@@ -86,11 +86,13 @@ class CommentLive extends Component
             ]);
         }
         $cmt = comment::latest()->first();
-
         $postOwner = $cmt->post->user;
-        $postOwner->notify(new CommentNotify($cmt,$cmt->post));
-        $this->reset('file', 'text');
-        $this->reset('file', 'text');
+        if (Auth::user()->id != $postOwner->id) {
+            $postOwner->notify(new CommentNotify($cmt,$cmt->post));
+            $this->reset('file', 'text');
+            $this->reset('file', 'text');
+        }
+
     }
 
     /**

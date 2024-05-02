@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'page_name' => 'Show The Post In All Page.',
-                'route_name'=>'posts.showpost',
+                'route_name'=>'home.posts.showpost',
                 'servicing'=> "0" ,
                 'created_at'=> $time,
                 'updated_at'=> $time,
@@ -38,6 +38,20 @@ class DatabaseSeeder extends Seeder
             [
                 'page_name' => 'Posting',
                 'route_name'=>'home.posts.store',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Posting',
+                'route_name'=>'home.posts.edit',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Posting',
+                'route_name'=>'home.posts.update',
                 'servicing'=> "0" ,
                 'created_at'=> $time,
                 'updated_at'=> $time,
@@ -111,7 +125,14 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'page_name' => 'Show All Followers Of User.',
-                'route_name'=>'users.followers',
+                'route_name'=>'home.users.followers',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Change Password',
+                'route_name'=>'home.users.settings.updatepassword',
                 'servicing'=> "0" ,
                 'created_at'=> $time,
                 'updated_at'=> $time,
