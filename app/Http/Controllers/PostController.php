@@ -112,17 +112,19 @@ class PostController extends Controller{
         // return view('posts.show' , compact('post'));
     }
 
-    public function edit(post $post)
+    public function edit($id)
     {
-
+        $post = post::find($id);
+        return view('posts.edit' , compact('post'));
     }
 
     public function update(Request $request, $id)
     {
-        // $post = Post::find($id);
-        // $post->text = $request->text;
-        // $post->save();
-        // return view('myprofile');
+        $post = Post::find($id);
+        //$user =  $post->user->id;
+        $post->text = $request->input('text');
+        $post->update();
+        return view('posts.show' , compact('post'));
     }
 
 

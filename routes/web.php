@@ -55,8 +55,8 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
     Route::get('posts/showpost/{postshow}' ,[PostController::class , 'showpost'])->name('posts.showpost')->middleware('blockPostShow');
 
     //post edit-UPDATE
-    Route::get('posts/edit/{id}', [PostController::class , 'edit'])->name('posts.edit');
-    Route::put('posts/update/{id}', [PostController::class , 'update']);
+    // Route::resource('posts/edit/{id}', [PostController::class , 'edit']);
+    // Route::resource('posts/update/{id}', [PostController::class , 'update']);
 
     Route::view('search' ,'search')->name('search');
 
