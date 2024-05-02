@@ -52,8 +52,9 @@
                         <!-- Dropdown END -->
                     </div>
 {{--                        @livewire('follow-live' ,['user' => $user] )--}}
+                    @if($user->id != Auth::user()->id)
                     <livewire:follow-live :$user :key="$user->id"/>
-
+                    @endif
                 </div>
             </div>
             @if(!$loop->last)

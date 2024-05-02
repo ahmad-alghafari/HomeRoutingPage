@@ -38,7 +38,7 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="{{route('home.users.show' , Auth::user()->id )}}">{{Auth::user()->name}}</a> </h5>
-                            <small>Web Developer at Webestica</small>
+                            <small>{{Auth::user()->info->overview}}</small>
                             {{--										<p class="mt-3">I'd love to change the world, but they won’t give me the source code.</p>--}}
                                 <hr>
                             <!-- User stat START -->
@@ -72,10 +72,10 @@
                         <!-- Side Nav START -->
                         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('welcome')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/home-outline-filled.svg')}}" alt=""><span>Feed </span></a>
+                                <a class="nav-link" href="{{route('welcome')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/home-outline-filled.svg')}}" alt=""><span>Home Page</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('home.chats')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Connections </span></a>
+                                <a class="nav-link" href="{{route('home.chats')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Chats </span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/earth-outline-filled.svg')}}" alt=""><span>Latest News </span></a>
@@ -87,7 +87,7 @@
                                 <a class="nav-link" href="groups.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/chat-outline-filled.svg')}}" alt=""><span>Groups </span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="notifications.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/notification-outlined-filled.svg')}}" alt=""><span>Notifications </span></a>
+                                <a class="nav-link" href="{{route('home.notificaions')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/notification-outlined-filled.svg')}}" alt=""><span>Notifications</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('home.users.settings' , Auth::user())}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/cog-outline-filled.svg')}}" alt=""><span>Settings </span></a>

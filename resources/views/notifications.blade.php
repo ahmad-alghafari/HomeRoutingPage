@@ -117,9 +117,7 @@ Header END -->
               </a>
               <!-- Card share action dropdown menu -->
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardNotiAction">
-                <li><a class="dropdown-item" href="#"> <i class="bi bi-check-lg fa-fw pe-2"></i>Clear All</a></li>
-                <li><a class="dropdown-item" href="#"> <i class="bi bi-bell-slash fa-fw pe-2"></i>Push notifications </a></li>
-                <li><a class="dropdown-item" href="#"> <i class="bi bi-bell fa-fw pe-2"></i>Email notifications </a></li>
+                <li><a class="dropdown-item" href=""> <i class="bi bi-check-lg fa-fw pe-2"></i>Clear All</a></li>
               </ul>
             </div>
             <!-- Notification action END -->
@@ -282,18 +280,6 @@ Header END -->
                 </script>
 
             </ul>
-          </div>
-          <div class="card-footer border-0 py-3 text-center position-relative d-grid pt-0">
-            <!-- Load more button START -->
-            <a href="#!" role="button" class="btn btn-loader btn-primary-soft" data-bs-toggle="button" aria-pressed="true">
-              <span class="load-text"> Load more notifications </span>
-              <div class="load-icon">
-                <div class="spinner-grow spinner-grow-sm" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              </div>
-            </a>
-            <!-- Load more button END -->
           </div>
         </div>
         <!-- Card END -->
