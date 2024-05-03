@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Loging;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Activitylog\Models\Activity;
 use App\Models\share;
@@ -14,7 +15,18 @@ class UserController extends Controller
 {
     public function show(User $user){
         $posts = share::where('user_id',$user->id)->latest()->get();
-        return view('users.profile' , compact('posts' , 'user'));
+        if($user != null){
+            Loging::dispatch(
+                Auth::user()->id,
+                'show',
+                Auth::user()->name . ' visit ' . $user->name  . ' page.' ,
+                'share' ,
+                'home/users/show/' . $user->id ,
+                ''
+            );
+            return view('users.profile' , compact('posts' , 'user'));
+        }
+        return back();
     }
 
     public function showuser($usershow){

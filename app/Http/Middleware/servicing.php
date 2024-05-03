@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class servicing
 {
-    
+
     /**
      * Handle an incoming request.
      *
@@ -20,11 +20,11 @@ class servicing
 
     public function handle(Request $request, Closure $next): Response
     {
-        
+
         $servicing = Setting::where('route_name' , Route::currentRouteName())->get('servicing')->last()->servicing;
         // dd($servicing);
         if($servicing == 1){
-            return redirect()->route('servicing');
+            return redirect()->route('errors.servicing');
         }
         return $next($request);
     }

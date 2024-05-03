@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->enum('TypeOfAct' ,['Create','update','delete']);
-            $table->text('Description');
-            $table->string('OnTable');
-            $table->text('Properties')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->enum('action' ,['create','update','delete','show', 'auth' , 'hackAttempt']);
+            $table->string('description');
+            $table->string('on_table');
+            $table->string('url')->nullable();
+            $table->text('properties')->nullable();
             $table->timestamps();
         });
     }

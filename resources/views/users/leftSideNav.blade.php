@@ -78,14 +78,12 @@
                                 <a class="nav-link" href="{{route('home.chats')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Chats </span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/earth-outline-filled.svg')}}" alt=""><span>Latest News </span></a>
+                                <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/news2-big.svg')}}" alt=""><span>Latest News </span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('domains.index')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/calendar-outline-filled.svg')}}" alt=""><span>Domains </span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="groups.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/chat-outline-filled.svg')}}" alt=""><span>Groups </span></a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('home.notificaions')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/notification-outlined-filled.svg')}}" alt=""><span>Notifications</span></a>
                             </li>
