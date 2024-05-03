@@ -270,7 +270,7 @@ Header END -->
                                                     @csrf
                                                     @method('GET')
                                                     <button class="dropdown-item" type="submit">
-                                                        <i class="bi bi-x-circle fa-fw pe-2"></i>Edit Post
+                                                        <i class="bi bi-pencil-fill pe-1"></i>Edit Post
                                                     </button>
                                                 </form>
                                             </li>
