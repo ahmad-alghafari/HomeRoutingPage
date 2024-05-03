@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Log;
 use Spatie\Activitylog\Models\Activity;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use Illuminate\Support\Facades\Auth;
@@ -7,27 +8,48 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
-use App\Models\User;
+use App\Models\Setting;
 use App\Http\Controllers\DomainController;
 
-use Illuminate\Contracts\Auth\Guard;
+//Route::get('/test' , function(){
+//    return view("");
+//})->name("")->middleware('');
 
 Route::get('/' , function(){
     return view("welcome");
 })->name("welcome");
 
+Route::name('admin.')->prefix('administration/')->middleware(['admin' , 'auth' , 'verified' ])->group(function (){
+    Route::get('logs', function () {
+        $logs = Log::latest()->paginate(100);
+        return view("admin.logs" , compact('logs'));
+    })->name('logs');
 
-Route::get('/logs', function () {
-    return view("logs");
+    Route::get('servicing' , function (){
+        $routes = Setting::all();
+        return view("admin.servicing" , compact('routes'));
+    })->name('servicing');
+
+    Route::get('dashboard' , function (){
+        return view("admin.dashboard");
+    })->name('dashboard');
+
 });
 
-Route::get('/test' , function(){
-    return view("welcome");
-})->name("welcome")->middleware('servicing');
+Route::name('errors.')->prefix('errors/')->group(function (){
+   Route::get('404' , function (){
+       return view("errors.404");
+   })->name('404');
 
-Route::get('servicing' , function(){
-    return view('servicing');
-})->name('servicing');
+    Route::get('401' , function (){
+        return view("errors.401");
+    })->name('401');
+
+    Route::get('servicing' , function(){
+        return view('servicing');
+    })->name('servicing');
+
+});
 
 
 Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
@@ -54,10 +76,6 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
     Route::get('posts/show/{post}' ,[PostController::class , 'show'])->name('posts.show')->middleware('blockPost');
     Route::get('posts/showpost/{postshow}' ,[PostController::class , 'showpost'])->name('posts.showpost')->middleware('blockPostShow');
 
-    //post edit-UPDATE
-    // Route::resource('posts/edit/{id}', [PostController::class , 'edit']);
-    // Route::resource('posts/update/{id}', [PostController::class , 'update']);
-
     Route::view('search' ,'search')->name('search');
 
     Route::get('users/show/{user}' ,[UserController::class , 'show'])->name('users.show')->middleware('block');
@@ -77,14 +95,5 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
     Route::get('users/followers/{user}' , [UserController::class , 'followersPage'])->name('users.followers');
     Route::get('users/following/{user}' , [UserController::class , 'followingPage'])->name('users.following');
 
-
 });
-
 Auth::routes(['verify' => true]);
-
-
-
-
-
-
-
