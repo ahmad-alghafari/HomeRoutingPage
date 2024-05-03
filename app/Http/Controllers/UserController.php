@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function addphoto(Request $request){
         $request->validate([
-            'image' => "required|image|mimes:jpeg,png,jpg,svg|max:3000"
+            'image' => "required|image|mimes:jpeg,png,jpg,svg|max:10000"
         ]);
 
         if(Auth::user()->photo != null){

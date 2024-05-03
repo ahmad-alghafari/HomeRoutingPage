@@ -360,13 +360,18 @@ Header END -->
                                         Change photo
                                     </button>
                                     <form  class="d-inline" method="POST" action="{{route('home.users.photo.destroy' , Auth::user()->id)}}">@csrf @method('DELETE') <input type="submit" value="Delete my photo" class="btn btn-danger btn-sm mb-0"></form>
+
+
+                                    @foreach($errors->all() as $error)
+                                        <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                            <strong>{{$error}}</strong>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endforeach
                                 </div>
 
                                 @if(session('delete_photo'))
-                                    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
-                                        <strong>{{session('delete_photo')}}</strong>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
+
                                 @endif
                                   <!-- Modal -->
                                 <div class="modal fade" id="chanephotoModal" tabindex="-1" aria-labelledby="chanephotoModalLabel" aria-hidden="true">

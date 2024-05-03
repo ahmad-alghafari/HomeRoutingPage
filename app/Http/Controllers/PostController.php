@@ -115,13 +115,18 @@ class PostController extends Controller{
     public function edit($id)
     {
         $post = post::find($id);
+        if(($post->user->id != Auth::user()->id) || ($post == null)){
+            return back();
+        }
         return view('posts.edit' , compact('post'));
     }
 
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        //$user =  $post->user->id;
+        if(($post->user->id != Auth::user()->id) || ($post == null)){
+            return back();
+        }
         $post->text = $request->input('text');
         $post->update();
         return view('posts.show' , compact('post'));
