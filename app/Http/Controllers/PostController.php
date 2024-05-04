@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\Posting;
 use App\Models\post;
+use App\Models\Log;
 use App\Models\user;
 use App\Models\share;
 use App\Notifications\FailedpostingNotify;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\file;
 use App\Notifications\PostNotify;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Jobs\Loging;
 
 class PostController extends Controller{
     public function index(Request $request){
@@ -61,6 +63,23 @@ class PostController extends Controller{
             'user_id' => $id,
             'text' => $text ,
         ]);
+        Loging::dispatch(
+            $id ,
+            'Create',
+            'Add a New Post' ,
+            'Posts',
+            'home/posts/show/' . $post->id ,
+            '',
+        );
+        // Log::create([
+        //     'user_id' => $id ,
+        //     'action' => 'Create',
+        //     'description' => 'Posts' ,
+        //     'url' => $post->id ,
+        //     'properties' => 'nh',
+        //     'on_table' => 'Posts',
+      
+        // ]);
         share::create([
             'user_id' => $id,
             'post_id' => $post->id,
@@ -81,11 +100,23 @@ class PostController extends Controller{
                         'file_type' => $fileType,
                         'prefix' => $file->extension(),
                     ]);
+                
 
                     $file->move(public_path('posts_' . $fileType), $fileName);
+                    
                 }
+                Loging::dispatch(
+                    $id ,
+                    'Create',
+                    'Add a New Post' ,
+                    'Files',
+                    'home/posts/show/' . $post->id ,
+                    '',
+                );
             }
         }
+        //log
+        
 //        notifications
         Posting::dispatch($post , Auth::user()->id);
         return redirect()->back()->with('message', 'processing');
@@ -124,11 +155,20 @@ class PostController extends Controller{
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        if(($post->user->id != Auth::user()->id) || ($post == null)){
+        $user = $post->user->id;
+        if(($user != Auth::user()->id) || ($post == null)){
             return back();
         }
         $post->text = $request->input('text');
         $post->update();
+        Loging::dispatch(
+            $user,
+            'Update',
+            'Edit His Post' ,
+            'Posts',
+            'home/posts/show/' . $post->id ,
+            '',
+        );
         return view('posts.show' , compact('post'));
     }
 
@@ -136,6 +176,7 @@ class PostController extends Controller{
     public function destroy($id){
         // Check if the post exists
         $post = Post::find($id);
+        $user = $post->user->id ;
         if (!$post) {
             return redirect()->back()->with('error', 'Post not found');
         }
@@ -159,6 +200,14 @@ class PostController extends Controller{
         }
 
         $post->delete();
+        Loging::dispatch(
+            $user,
+            'Delete',
+            'Delete His Post' ,
+            '',
+            '',
+            '',
+        );
         auth::user()->info->decrement('posts_number');
         return redirect()->back()->with('success', 'Post deleted successfully');
     }

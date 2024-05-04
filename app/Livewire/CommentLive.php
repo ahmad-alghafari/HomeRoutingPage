@@ -10,6 +10,7 @@ use Livewire\Attributes\Validate;
 use App\Models\Comment;
 use App\Models\CommentFile;
 use App\Notifications\CommentNotify;
+use App\Jobs\Loging;
 
 /**
  * Class CommentLive
@@ -85,6 +86,7 @@ class CommentLive extends Component
                 'text' => $this->text
             ]);
         }
+        //notif
         $cmt = comment::latest()->first();
         $postOwner = $cmt->post->user;
         if (Auth::user()->id != $postOwner->id) {
@@ -92,7 +94,15 @@ class CommentLive extends Component
             $this->reset('file', 'text');
             $this->reset('file', 'text');
         }
-
+        //log
+        Loging::dispatch(
+            Auth::user()->id ,
+            'Create',
+            Auth::user()->name . ' Commented On ' . $cmt->post->user->name . ' Post',
+            'Comments',
+            'home/posts/show/' .$cmt->post->id,
+            '',
+        );
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Models\info;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Jobs\Loging;
 
 class RegisterController extends Controller
 {
@@ -73,6 +74,14 @@ class RegisterController extends Controller
         info::create([
             'user_id'=>$user->id ,
         ]);
+        Loging::dispatch(
+            $user->id  ,
+            'Auth',
+            $user->name . ' Created a New Account',
+            'Users',
+            'home/users/show/' .$user->id ,
+            '',
+        );
         return $user ;
     }
 }
