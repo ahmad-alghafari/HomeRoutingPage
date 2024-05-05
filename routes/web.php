@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\domain;
+use App\Models\info;
 use App\Models\Log;
+use App\Models\notification;
+use Carbon\Carbon;
 use Spatie\Activitylog\Models\Activity;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +15,11 @@ use App\Http\Controllers\BlockController;
 use App\Models\Setting;
 use App\Http\Controllers\DomainController;
 
-//Route::get('/test' , function(){
-//    return view("");
-//})->name("")->middleware('');
+Route::get('/test' , function(){
+
+    return "test";
+});//;->name("")->middleware('');
+
 
 Route::get('/' , function(){
     return view("welcome");
@@ -33,6 +39,17 @@ Route::name('admin.')->prefix('administration/')->middleware(['admin' , 'auth' ,
     Route::get('dashboard' , function (){
         return view("admin.dashboard");
     })->name('dashboard');
+
+    Route::get('domains/online' , function (){
+        $domains = Domain::where('online' , 'yes')->latest()->paginate(100);
+        return view("admin.allDomains" ,compact('domains'));
+    })->name('domains.online');
+
+    Route::get('domains/requests' , function (){
+        $domains = Domain::where('online' , 'no')->paginate(100);
+        return view("admin.domainsRequests" ,compact('domains'));
+    })->name('domains.requests');
+
 
 });
 
@@ -84,6 +101,8 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
     Route::post('users/settings' , [UserController::class , 'settings'])->name('users.settings.post');
     Route::get('users/settings/{user}',[UserController::class , 'setting_view'])->name('users.settings')->middleware('checkUserSettings');
     Route::post('users/settings/password' ,[UserController::class , 'newpass'] )->name('users.settings.updatepassword');
+
+    Route::delete('users/account/{user}' , [UserController::class , 'destroy'])->name('users.account.delete');
 
     Route::resource('blocks', BlockController::class)->except('destroy');
     Route::delete('blocks/{user}' , [BlockController::class , 'destroy'])->name('blocks.destroy');

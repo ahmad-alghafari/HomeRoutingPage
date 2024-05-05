@@ -226,7 +226,7 @@ Header END -->
                                         <span class="me-1">Reposted by</span>
                                         <div>
                                             <div class="nav nav-divider">
-                                                <h6 class="nav-item card-title mb-0"> <a href="{{route('home.users.show' , $post->user_id)}}">{{$post->user->name}}</a></h6>
+                                                <h6 class="nav-item card-title mb-0"> <a href="{{route('home.users.show' , $post->user_id)}}">{{$post->user->name == Auth::user()->name ? "You" : $post->user->name }}</a></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -244,7 +244,7 @@ Header END -->
                                     <!-- Info -->
                                     <div>
                                         <div class="nav nav-divider">
-                                            <h6 class="nav-item card-title mb-0"> <a href="#!">{{$post->post->user->name}}</a></h6>
+                                            <h6 class="nav-item card-title mb-0"> <a href="{{route("home.users.show" , $post->post->user )}}">{{$post->post->user->name}}</a></h6>
                                             <span class="nav-item small"> {{ $post->post->created_at->diffForHumans() }}</span>
                                         </div>
                                         <p class="mb-0 small">@if($post->post->user->info != null){{$post->post->user->info->job}}@endif</p>
@@ -500,9 +500,9 @@ Header END -->
                                 </li>
                                 <li class="nav-item">
                                     <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#Modal{{$post->id}}">
-                                        <i class="bi bi-chat-fill pe-1"></i>Comments ({{$post->post->comment()->count()}})
+                                        <i class="bi bi-chat-fill pe-1"></i>Comments ({{$post->post->comments_number}})
                                     </button>
-                                    @if($post->post->comment()->count() != 0)
+                                    @if($post->post->comments_number != 0)
                                     <!-- Modal -->
                                     <div class="modal fade" id="Modal{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -596,7 +596,7 @@ Header END -->
                                 </li>
                                 <!-- Card share action START -->
                                 <li class="nav-item dropdown ms-sm-auto">
-                                    @if($user->id != Auth::user()->id)
+                                    @if(Auth::user()->id != $post->post->user_id )
                                     @livewire('sharelive', ['post' => $post->post])
                                     @endif
                                     {{-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardShareAction">

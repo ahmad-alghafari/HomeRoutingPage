@@ -26,7 +26,8 @@ class domain extends Model
         'photo_path',
         'created_at',
         'updated_at',
-        'language',    
-        'user_id',    
+        'language',
+        'user_id',
+        'online'
     ];
 }

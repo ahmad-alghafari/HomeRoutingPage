@@ -97,7 +97,7 @@
                                                 <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                                                     <div class="avatar text-center d-none d-sm-inline-block">
                                                         <a href="{{ route('home.posts.showpost' , $notification->data['post_id'] )}}" style="color: #fff">
-                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo ? asset($curr_user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg')}}" alt=" ">
+                                                            <img class="avatar-img rounded-circle" src="{{$curr_user->photo == null ?   asset('import/assets/images/avatar/placeholder.jpg') : asset($curr_user->photo->path)}}" alt=" ">
 
 
                                                         </a>

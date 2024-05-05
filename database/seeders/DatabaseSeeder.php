@@ -151,6 +151,13 @@ class DatabaseSeeder extends Seeder
                 'created_at'=> $time,
                 'updated_at'=> $time,
             ],
+            [
+                'page_name' => 'Delete account or data.',
+                'route_name'=>'home.users.account.delete',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
             //settings
             [
                 'page_name' => 'Show Settings Page.',

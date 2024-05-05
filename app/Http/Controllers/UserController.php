@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\DeleteAccount;
+use App\Jobs\DeleteData;
 use App\Jobs\Loging;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Activitylog\Models\Activity;
 use App\Models\share;
@@ -185,6 +188,40 @@ class UserController extends Controller
         $user_id = $id ;
         $page = 'following';
         return view('users.followers' , compact('user_id' , 'page'));
+    }
+
+    public function destroy(Request $request ,User $user){
+        if($user->id != Auth::user()->id){
+            return "ss";
+            //spam
+        }
+        $request->validate([
+            'check' => 'required' ,
+        ]);
+        if($request->has('deleteAccount')){
+
+            Auth::guard()->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+//            If there is pressure on the server
+            $user->update([
+                "role" => 4, //user cant enter to system
+            ]);
+
+            DeleteAccount::dispatch($user);
+            return redirect()->route('login');
+
+        }elseif($request->has('deleteData')){
+
+            DeleteData::dispatch($user);
+            return back()->with([
+                'message' => 'delete_data_processing',
+            ]);
+        }
+        return back()->with([
+            'message' => 'delete_data_error_went_wrong',
+        ]);
     }
 
 }

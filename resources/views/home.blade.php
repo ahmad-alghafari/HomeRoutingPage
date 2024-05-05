@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	<title>Social - Network, Community and Event Theme</title>
+	<title>TAGH - Home Page</title>
 
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="Webestica.com">
+	<meta name="author" content="TAGH.com">
 	<meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
 
 

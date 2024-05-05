@@ -470,7 +470,7 @@ Header END -->
                             <!-- Card header START -->
                             <div class="card-header border-0 pb-0">
                                 <h5 class="card-title">Delete account</h5>
-                                <p class="mb-0">He moonlights difficult engrossed it, sportsmen. Interested has all Devonshire difficulty gay assistance joy. Unaffected at ye of compliment alteration to.</p>
+                                <p class="mb-0">You can choose between deleting the entire account or deleting only your personal information.</p>
                             </div>
                             <!-- Card header START -->
                             <!-- Card body START -->
@@ -478,14 +478,22 @@ Header END -->
                                 <!-- Delete START -->
                                 <h6>Before you go...</h6>
                                 <ul>
-                                    <li>If you delete your account, you will lose your all data.</li>
+                                    <li>If you want to delete all of your conversations or your interactions, follows, or posts, you can choose to delete my account data..</li>
                                 </ul>
+                                <form action="{{route('home.users.account.delete' ,Auth::user() )}}" method="post">
+
                                 <div class="form-check form-check-md my-4">
-                                    <input class="form-check-input" type="checkbox" value="" id="deleteaccountCheck">
-                                    <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my account</label>
+                                    <input class="form-check-input" type="checkbox" name="check" id="deleteaccountCheck">
+                                    <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete</label>
+                                    @error('check')
+                                    <label class="btn btn-danger form-check-label" >{{$error}}</label>
+                                    @enderror
                                 </div>
-                                <a href="#" class="btn btn-success-soft btn-sm mb-2 mb-sm-0">Keep my account</a>
-                                <a href="#" class="btn btn-danger btn-sm mb-0">Delete my account</a>
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class="btn btn-danger btn-sm mb-2 mb-sm-0" name="deleteData" type="submit" value="true">Delete My Data</button>
+                                    <button class="btn btn-danger btn-sm mb-0" name="deleteAccount" type="submit" value="true">Delete My Account</button>
+                                </form>
                                 <!-- Delete END -->
                             </div>
                             <!-- Card body END -->
@@ -493,276 +501,6 @@ Header END -->
                         <!-- Card END -->
                     </div>
                     <!-- Close account tab END -->
-
-
-                    <!-- Communications tab START -->
-                    {{-- <div class="tab-pane fade" id="nav-setting-tab-4">
-                        <!-- Communications START -->
-                        <div class="card">
-                            <!-- Title START -->
-                            <div class="card-header border-0 pb-0">
-                                <h5 class="card-title">Who can connect with you?</h5>
-                                <p class="mb-0">He moonlights difficult engrossed it, sportsmen. Interested has all Devonshire difficulty gay assistance joy. Unaffected at ye of compliment alteration to.</p>
-                            </div>
-                            <!-- Title START -->
-                            <!-- Card body START -->
-                            <div class="card-body">
-                                <!-- Accordion START -->
-                                <div class="accordion" id="communications">
-                                    <!-- Accordion item -->
-                                    <div class="accordion-item bg-transparent">
-                                        <h2 class="accordion-header" id="communicationOne">
-                                            <button class="accordion-button mb-0 h6" type="button" data-bs-toggle="collapse" data-bs-target="#communicationcollapseOne" aria-expanded="true" aria-controls="communicationcollapseOne">
-                                                Connection request
-                                            </button>
-                                        </h2>
-                                        <!-- Accordion info -->
-                                        <div id="communicationcollapseOne" class="accordion-collapse collapse show" aria-labelledby="communicationOne" data-bs-parent="#communications">
-                                            <div class="accordion-body">
-                                                <!-- Notification list item -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="ComRadio" id="ComRadio5">
-                                                    <label class="form-check-label" for="ComRadio5">
-                                                        Everyone on social (recommended)
-                                                    </label>
-                                                </div>
-                                                <!-- Notification list item -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="ComRadio" id="ComRadio2" checked>
-                                                    <label class="form-check-label" for="ComRadio2">
-                                                        Only people who know your email address
-                                                    </label>
-                                                </div>
-                                                <!-- Notification list item -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="ComRadio" id="ComRadio3">
-                                                    <label class="form-check-label" for="ComRadio3">
-                                                        Only people who appear in your mutual connection list
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Accordion item -->
-                                    <div class="accordion-item bg-transparent">
-                                        <h2 class="accordion-header" id="communicationTwo">
-                                            <button class="accordion-button mb-0 h6 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communicationcollapseTwo" aria-expanded="false" aria-controls="communicationcollapseTwo">
-                                                Who can message you
-                                            </button>
-                                        </h2>
-                                        <!-- Accordion info -->
-                                        <div id="communicationcollapseTwo" class="accordion-collapse collapse" aria-labelledby="communicationTwo" data-bs-parent="#communications">
-                                            <div class="accordion-body">
-                                                <ul class="list-group list-group-flush">
-                                                    <!-- Notification list item -->
-                                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0 py-1 border-0">
-                                                        <div class="me-2">
-                                                            <p class="mb-0">Enable message request notifications</p>
-                                                        </div>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked">
-                                                        </div>
-                                                    </li>
-                                                    <!-- Notification list item -->
-                                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0 py-1 border-0">
-                                                        <div class="me-2">
-                                                            <p class="mb-0">Allow connections to add you on group </p>
-                                                        </div>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked2" checked>
-                                                        </div>
-                                                    </li>
-                                                    <!-- Notification list item -->
-                                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0 py-1 border-0">
-                                                        <div class="me-2">
-                                                            <p class="mb-0">Allow Sponsored Messages </p>
-                                                            <p class="small">Your personal information is safe with our marketing partners unless you respond to their Sponsored Messages </p>
-                                                        </div>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked3" checked>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Accordion item -->
-                                    <div class="accordion-item bg-transparent">
-                                        <h2 class="accordion-header" id="communicationThree">
-                                            <button class="accordion-button mb-0 h6 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communicationcollapseThree" aria-expanded="false" aria-controls="communicationcollapseThree">
-                                                How people can find you
-                                            </button>
-                                        </h2>
-                                        <!-- Accordion info -->
-                                        <div id="communicationcollapseThree" class="accordion-collapse collapse" aria-labelledby="communicationThree" data-bs-parent="#communications">
-                                            <div class="accordion-body">
-                                                <ul class="list-group list-group-flush">
-                                                    <!-- Notification list item -->
-                                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0 py-1 border-0">
-                                                        <div class="me-2">
-                                                            <p class="mb-0">Allow search engines to show your profile?</p>
-                                                        </div>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked4" checked>
-                                                        </div>
-                                                    </li>
-                                                    <!-- Notification list item -->
-                                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0 py-1 border-0">
-                                                        <div class="me-2">
-                                                            <p class="mb-0">Allow people to search by your email address? </p>
-                                                        </div>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked5">
-                                                        </div>
-                                                    </li>
-                                                    <!-- Notification list item -->
-                                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0 py-1 border-0">
-                                                        <div class="me-2">
-                                                            <p class="mb-0">Allow Sponsored Messages </p>
-                                                            <p class="small">Your personal information is safe with our marketing partners unless you respond to their Sponsored Messages </p>
-                                                        </div>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked6" checked>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Accordion END -->
-                            </div>
-                            <!-- Card body END -->
-                            <!-- Button save -->
-                            <div class="card-footer pt-0 text-end border-0">
-                                <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
-                            </div>
-                        </div>
-                        <!-- Communications  END -->
-                    </div> --}}
-                    <!-- Communications tab END -->
-
-                    <!-- Messaging tab START -->
-                    {{-- <div class="tab-pane fade" id="nav-setting-tab-5">
-                        <!-- Messaging privacy START -->
-                        <div class="card mb-4">
-                            <!-- Title START -->
-                            <div class="card-header border-0 pb-0">
-                                <h5 class="card-title">Messaging privacy settings</h5>
-                                <p class="mb-0">As young ye hopes no he place means. Partiality diminution gay yet entreaties admiration. In mention perhaps attempt pointed suppose. Unknown ye chamber of warrant of Norland arrived. </p>
-                            </div>
-                            <!-- Title START -->
-                            <div class="card-body">
-                                <!-- Settings style START -->
-                                <ul class="list-group list-group-flush">
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Enable message request notifications</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Invitations from your network</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked2" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Allow connections to add you on group</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked3">
-                                        </div>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Reply to comments</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked4">
-                                        </div>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Messages from activity on my page or channel</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked5" checked>
-                                        </div>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Personalise tips for my page</h6>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked6" checked>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- Message END -->
-                            </div>
-                            <!-- Button save -->
-                            <div class="card-footer pt-0 text-end border-0">
-                                <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
-                            </div>
-                        </div>
-                        <!-- Messaging privacy END -->
-                        <!-- Messaging experience START -->
-                        <div class="card">
-                            <!-- Card header START -->
-                            <div class="card-header border-0 pb-0">
-                                <h5 class="card-title">Messaging experience</h5>
-                                <p class="mb-0">Arrived off she elderly beloved him affixed noisier yet. </p>
-                            </div>
-                            <!-- Card header START -->
-                            <!-- Card body START -->
-                            <div class="card-body">
-                                <!-- Message START -->
-                                <ul class="list-group list-group-flush">
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Read receipts and typing indicators</h6>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Message suggestions</h6>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-                                    <!-- Message list item -->
-                                    <li class="list-group-item d-sm-flex justify-content-between align-items-center px-0">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Message nudges</h6>
-                                        </div>
-                                        <button class="btn btn-primary-soft btn-sm mt-1 mt-md-0"> <i class="bi bi-pencil-square"></i> Change</button>
-                                    </li>
-                                </ul>
-                                <!-- Message END -->
-                            </div>
-                            <!-- Card body END -->
-                            <!-- Button save -->
-                            <div class="card-footer pt-0 text-end border-0">
-                                <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
-                            </div>
-                        </div>
-                        <!-- Messaging experience END -->
-                    </div> --}}
-                    <!-- Messaging tab END -->
 
                 </div>
                 <!-- Setting Tab content END -->
@@ -805,6 +543,16 @@ Header END -->
 
                 @case('account_save_changed_success')
                     <p class="mb-0">Your Information Updated Successfully!</p>
+                    @break
+
+                @case('make_sure_to_delete')
+                    <p class="mb-0">You should mark the failed!</p>
+                    @break
+                @case('delete_data_processing')
+                    <p class="mb-0">Delete Your Data Processing Now!</p>
+                    @break
+                @case('delete_data_error_went_wrong')
+                    <p class="mb-0">Something went wrong</p>
                     @break
 
             @endswitch

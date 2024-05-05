@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum("language",['arabic' ,"english" , "french" ,"spanish" ,"hindi" , "latin" ,"chinese" , "armenian" , "russian"]);
             $table->enum("type" ,["sport" , "food" , "education" , "policy" , "medicine" , "general"]);
             $table->enum("domain" ,["com" , "net" , "org" , "edu" , "gov" , "mil" , "int"]);
+            $table->enum("online" ,["yes" , "no"])->default("no");
             $table->timestamps();
         });
     }

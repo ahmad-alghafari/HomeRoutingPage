@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class DomainController extends Controller
 {
     public function index(){
-        $domains = domain::latest()->Paginate(2);
+        $domains = domain::where('online' , 'yes')->latest()->Paginate(2);
         return view("domains.index" , compact('domains'));
     }
 
@@ -64,7 +64,7 @@ class DomainController extends Controller
             'pornography' => $request->pornography == 'true' ? true : null ,
             'religions' => $request->religions == 'true' ? true : null ,
         ];
-    
+
         $domains = domain::create([
             'name' => $request->name ,
             'user_id' => Auth::user()->id ,

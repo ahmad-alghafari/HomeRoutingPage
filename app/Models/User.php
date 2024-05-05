@@ -55,14 +55,6 @@ class User extends Authenticatable implements MustVerifyEmail,CanResetPassword
         'password' => 'hashed',
     ];
 
-    // public function getActivitylogOptions(): \Spatie\Activitylog\LogOptions{
-    //     return LogOptions::defaults()
-    //     ->logOnly(['name', 'email' , 'status' , 'role' ,'email_verified_at'])
-    //     ->useLogName('system')
-    //     ->logOnlyDirty();
-    //     // ->by();
-    //     // ->logFillable();
-    // }
 
     public function post():HasMany {
         return $this->hasMany(post::class , 'user_id','id');
@@ -96,7 +88,7 @@ class User extends Authenticatable implements MustVerifyEmail,CanResetPassword
     }
 
     public function info() :HasOne {
-        return $this->hasOne(info::class);
+        return $this->hasOne(info::class , 'user_id' , 'id');
     }
 
     public function commentlike() : HasMany {
@@ -104,6 +96,6 @@ class User extends Authenticatable implements MustVerifyEmail,CanResetPassword
     }
 
     public function share() : HasMany {
-        return $this->hasMany(share::class);
+        return $this->hasMany(share::class , 'user_id' , 'id');
     }
 }

@@ -12,6 +12,12 @@
                         <li><a href="{{route("admin.servicing")}}"><span>Pages Activation Manege</span></a></li>
                     </ul>
                 </li>
+                <li class="has-sub-menu"><a href="#"><i class="ti-layers"></i> <span>Domain</span></a>
+                    <ul class="side-header-sub-menu">
+                        <li><a href="{{ route("admin.domains.online")}} "><span>Show All</span></a></li>
+                        <li><a href="{{route("admin.domains.requests")}}"><span>Requests</span></a></li>
+                    </ul>
+                </li>
 {{--                <li><a href="widgets.html"><i class="ti-palette"></i> <span>Widgets</span></a></li>--}}
 {{--                <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic Elements</span></a>--}}
 {{--                    <ul class="side-header-sub-menu">--}}
@@ -116,15 +122,7 @@
 {{--                        <li><a href="author-profile.html"><span>Profile</span></a></li>--}}
 {{--                    </ul>--}}
 {{--                </li>--}}
-{{--                <li class="has-sub-menu"><a href="#"><i class="ti-layers"></i> <span>Pages</span></a>--}}
-{{--                    <ul class="side-header-sub-menu">--}}
-{{--                        <li><a href="blank.html"><span>Blank</span></a></li>--}}
-{{--                        <li><a href="timeline.html"><span>Timeline</span></a></li>--}}
-{{--                        <li><a href="pricing.html"><span>Pricing</span></a></li>--}}
-{{--                        <li><a href="error-1.html"><span>error-1</span></a></li>--}}
-{{--                        <li><a href="error-2.html"><span>error-2</span></a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+
             </ul>
         </nav>
 
