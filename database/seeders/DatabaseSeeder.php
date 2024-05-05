@@ -8,8 +8,7 @@ use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use App\Models\Setting;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     public function run(): void {
         $time = Carbon::now();
         $settings = [
@@ -139,13 +138,6 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'page_name' => 'Change Password',
-                'route_name'=>'home.users.settings.updatepassword',
-                'servicing'=> "0" ,
-                'created_at'=> $time,
-                'updated_at'=> $time,
-            ],
-            [
-                'page_name' => 'Change Password.',
                 'route_name'=>'home.users.settings.updatepassword',
                 'servicing'=> "0" ,
                 'created_at'=> $time,

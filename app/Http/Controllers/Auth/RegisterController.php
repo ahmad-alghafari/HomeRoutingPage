@@ -52,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255' , 'unique:users'],
+            'name' => ['required', 'string', 'max:255' , 'unique:users' , 'alpha:ascii'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -76,9 +76,9 @@ class RegisterController extends Controller
         ]);
         Loging::dispatch(
             $user->id  ,
-            'Auth',
-            $user->name . ' Created a New Account',
-            'Users',
+            'auth',
+            $user->name . ' Created a New Account :' . $user->id,
+            'users',
             'home/users/show/' .$user->id ,
             '',
         );
