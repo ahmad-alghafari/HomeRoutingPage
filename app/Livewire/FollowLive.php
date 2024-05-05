@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\follow;
 use App\Notifications\FollowNotify;
+use App\Jobs\Loging;
 
 class FollowLive extends Component{
     public $user;
@@ -29,6 +30,15 @@ class FollowLive extends Component{
                 $this->user->info->increment('follower');
                 $this->isFollow = true ;
                 $this->user->notify(new FollowNotify($follow));
+                $id = Auth::user()->follow();
+                Loging::dispatch(
+                    Auth::user()->id ,
+                    'Create',
+                    Auth::user()->name . ' Started Following ' . $this->user->name,
+                    'Follows',
+                    'home/users/show/' .$this->user->id,
+                    '',
+                );
             }
         }
     }

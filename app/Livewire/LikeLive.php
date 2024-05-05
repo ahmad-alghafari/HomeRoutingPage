@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\like;
 use App\Notifications\LikeNotify;
+use App\Jobs\Loging;
 class LikeLive extends Component
 {
     public $post ;
@@ -29,6 +30,15 @@ class LikeLive extends Component
             if (Auth::user()->id != $postOwner->id) {
                 $postOwner->notify(new LikeNotify($li,$li->post));
             }
+            //log
+            Loging::dispatch(
+                Auth::user()->id ,
+                'Create',
+                Auth::user()->name . ' Liked ' . $li->post->user->name . ' Post',
+                'Likes',
+                'home/posts/show/' .$li->post->id,
+                '',
+            );
         }
         $this->post = $this->post->fresh();
     }

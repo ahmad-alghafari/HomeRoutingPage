@@ -7,6 +7,7 @@ use App\Models\follow;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\Loging;
 
 class BlockController extends Controller
 {
@@ -36,6 +37,14 @@ class BlockController extends Controller
             'user_blocker' => auth::user()->id,
             'user_blocked' => $userid2->id ,
         ]);
+        Loging::dispatch(
+            Auth::user()->id ,
+            'Create',
+            Auth::user()->name . ' Blocked ' . $userid2->name,
+            'Blocks',
+            'home/users/show/' .$userid2->id,
+            '',
+        );
         return redirect()->route('home.posts.index');
     }
     

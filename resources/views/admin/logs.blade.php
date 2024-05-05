@@ -102,7 +102,7 @@
                                                 <td class="text-center">{{$log->user->name}}:{{$log->user->id}}</td>
                                                 <td class="text-center">{{$log->action}}</td>
                                                 <td class="text-center">{{$log->on_table}}</td>
-                                                <td class="text-center"><a href="{{url($log->url)}}">{{$log->url}}</a></td>
+                                                <td class="text-center"><a href="{{url($log->url)}}">View Action</a></td>
                                                 <td class="text-center">{{$log->description}}</td>
                                                 <td class="text-center">{{$log->created_at}}</td>
                                                 <td class="text-center">{{$log->created_at->diffForHumans()}} </td>

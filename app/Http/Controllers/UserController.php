@@ -18,7 +18,7 @@ class UserController extends Controller
 {
     public function show(User $user){
         $posts = share::where('user_id',$user->id)->latest()->get();
-        if($user != null){
+        if($user != null ){
             Loging::dispatch(
                 Auth::user()->id,
                 'show',
