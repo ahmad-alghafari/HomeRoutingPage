@@ -63,23 +63,16 @@ class PostController extends Controller{
             'user_id' => $id,
             'text' => $text ,
         ]);
+
         Loging::dispatch(
             $id ,
-            'Create',
-            'Add a New Post' ,
-            'Posts',
+            'create',
+            Auth::user()->name . 'Add a New Post : ' . $text ,
+            'posts',
             'home/posts/show/' . $post->id ,
             '',
         );
-        // Log::create([
-        //     'user_id' => $id ,
-        //     'action' => 'Create',
-        //     'description' => 'Posts' ,
-        //     'url' => $post->id ,
-        //     'properties' => 'nh',
-        //     'on_table' => 'Posts',
-      
-        // ]);
+
         share::create([
             'user_id' => $id,
             'post_id' => $post->id,
@@ -100,37 +93,25 @@ class PostController extends Controller{
                         'file_type' => $fileType,
                         'prefix' => $file->extension(),
                     ]);
-                
+
 
                     $file->move(public_path('posts_' . $fileType), $fileName);
-                    
+
                 }
                 Loging::dispatch(
                     $id ,
-                    'Create',
-                    'Add a New Post' ,
+                    'create',
+                    'adding new file to post : '. $post->id ,
                     'Files',
                     'home/posts/show/' . $post->id ,
                     '',
                 );
             }
         }
-        //log
-        
-//        notifications
+
         Posting::dispatch($post , Auth::user()->id);
         return redirect()->back()->with('message', 'processing');
-
     }
-
-    // public function read_all(Request $request)
-    // {
-    //     $UnreadNotification = Auth()->user()->unreadNotifications;
-    //     if($UnreadNotification) {
-    //         $UnreadNotification->markAsRead();
-    //         return back();
-    //     }
-    // }
 
     public function show(post $post){
         return view('posts.show' , compact('post'));
