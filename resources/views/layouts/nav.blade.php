@@ -45,7 +45,7 @@
             @endif
 
             <li class="nav-item ms-2">
-                <a class="nav-link bg-light icon-md btn btn-light p-0" href="{{route('home.chats')}}">
+                <a class="nav-link bg-light icon-md btn btn-light p-0" href="{{route('home.chats.search')}}">
                     <i class="bi bi-chat-left-text-fill fs-6"> </i>
                 </a>
             </li>
@@ -57,7 +57,11 @@
 
             <li class="nav-item dropdown ms-2">
                 <a class="nav-link bg-light icon-md btn btn-light p-0" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                    <span class="badge-notif animation-blink"></span>
+                    <span id="notifyCircle">
+                        @if(auth()->user()->unreadNotifications->first() != null)
+                            <span class="badge-notif animation-blink"></span>
+                        @endif
+                    </span>
                     <i class="bi bi-bell-fill fs-6"> </i>
                 </a>
                 <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
@@ -68,7 +72,7 @@
                                 <!-- Notif item -->
                                 <li>
                                     <div class="unreadNotifications" id="notificaionsAreia">
-                                        @foreach(auth()->user()->unreadNotifications as $notification)
+                                        @foreach(auth()->user()->unreadNotifications()->latest()->take(5)->get() as $notification)
 
                                             @php
                                                 $curr_user =\App\Models\User::find($notification->data['user_id']);
@@ -192,9 +196,13 @@
                             document.addEventListener("DOMContentLoaded", function() {
                                 var clearButton = document.getElementById("clearingNotificaions");
                                 var notificationsDiv = document.getElementById("notificaionsAreia");
+                                var notificationsNumbers = document.getElementById("notificationsNumbers");
+                                var notifyCircle = document.getElementById("notifyCircle");
 
                                 clearButton.addEventListener("click", function() {
-                                    notificationsDiv.innerHTML = ""; // Clearing the content of the div
+                                    notificationsDiv.innerHTML = "";
+                                    notificationsNumbers.innerHTML = "0";
+                                    notifyCircle.innerHTML = "";
                                 });
                             });
                         </script>

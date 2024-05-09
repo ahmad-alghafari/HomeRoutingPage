@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\like;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -9,26 +10,22 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
 
-class Messaging implements ShouldBroadcast
+class LikeNotifyEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     */
-    public $reciverId ;
-    public $message ;
-    public $senderId;
+    public $id ;
+    public $user;
+    public $time;
     public $user_photo;
-    public $senderName;
-    public function __construct(User $reciver , $message , User $sender){
-        $this->reciverId = $reciver->id ;
-        $this->message = $message ;
-        $this->senderId = $sender->id ;
-        $this->user_photo = $sender->photo != null ? $sender->photo->path : "null-null";
-        $this->senderName = $sender->name;
+    public $user_id_broadcast;
+    public function __construct(like $like , $id){
+        $this->id = $like->post->id;
+        $this->user = $like->user->name;
+        $this->time = $like->created_at;
+        $this->user_photo = $like->user->photo != null ? $like->user->photo->path : "null-null" ;
+        $this->user_id_broadcast = $id ;
     }
 
     /**
@@ -39,11 +36,11 @@ class Messaging implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'.$this->reciverId ),
+            new Channel('likeNotify'.$this->user_id_broadcast),//Notifications
         ];
     }
 
     public function broadcastAs()  {
-        return 'chatMessage' ;
+        return 'Notifications' ;
     }
 }

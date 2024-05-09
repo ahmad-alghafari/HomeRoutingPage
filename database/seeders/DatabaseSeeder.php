@@ -197,12 +197,33 @@ class DatabaseSeeder extends Seeder {
             ],
             //chating
             [
-                'page_name' => 'Chating.',
-                'route_name'=>'home.chats',
+                'page_name' => 'Chating Search.',
+                'route_name'=>'home.chats.search',
                 'servicing'=> "0" ,
                 'created_at'=> $time,
                 'updated_at'=> $time,
-            ]
+            ],
+            [
+                'page_name' => 'Show Chating Page.',
+                'route_name'=>'home.chats.user',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Sending message.',
+                'route_name'=>'home.chats.user.send',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
+            [
+                'page_name' => 'Delete conversation.',
+                'route_name'=>'home.chats.delete',
+                'servicing'=> "0" ,
+                'created_at'=> $time,
+                'updated_at'=> $time,
+            ],
         ];
 
         foreach($settings as $s){

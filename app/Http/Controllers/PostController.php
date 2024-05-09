@@ -67,7 +67,7 @@ class PostController extends Controller{
         Loging::dispatch(
             $id ,
             'create',
-            Auth::user()->name . 'Add a New Post : ' . $text ,
+            Auth::user()->name . ' add a new post : ' . $text .'.',
             'posts',
             'home/posts/show/' . $post->id ,
             '',
@@ -101,16 +101,17 @@ class PostController extends Controller{
                 Loging::dispatch(
                     $id ,
                     'create',
-                    'adding new file to post : '. $post->id ,
-                    'Files',
+                    'adding new file to post : '. $post->id .'.',
+                    'files',
                     'home/posts/show/' . $post->id ,
                     '',
                 );
             }
         }
 
-        Posting::dispatch($post , Auth::user()->id);
-        return redirect()->back()->with('message', 'processing');
+
+        Posting::dispatch($post ,  Auth::user());
+        return redirect()->back()->with('message', 'success');
     }
 
     public function show(post $post){

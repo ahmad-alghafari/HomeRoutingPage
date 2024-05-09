@@ -13,7 +13,7 @@ class LikeNotify extends Notification
 {
     use Queueable;
     private $like ;
-    
+
 
     /**
      * Create a new notification instance.
@@ -36,12 +36,12 @@ class LikeNotify extends Notification
 
     public function toDatabase(object $notifiable): array
     {
-        
+
         return [
             'id' => $this->like->id ,
             'user' =>$this->like->user->name,
             'user_id' => $this->like->user->id,
-            'title' => ' Liked Your Post ',
+            'title' => ' Liked Your Post. ',
             'post_id'=> $this->like->post->id ,
         ];
     }

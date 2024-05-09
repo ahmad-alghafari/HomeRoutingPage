@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -13,12 +14,12 @@ use App\Models\Post;
 class PostNotify extends Notification
 {
     use Queueable;
-    private $post;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(post $post)
+    public post $post;
+    public function __construct( post $post )
     {
         $this->post = $post;
     }
@@ -38,7 +39,7 @@ class PostNotify extends Notification
     {
         return [
             'id' => $this->post->id ,
-            'user' => Auth::user()->name,
+            'user' => $this->post->user->name,
             'user_id' => $this->post->user->id,
             'title' => ' has published a post ',
         ];

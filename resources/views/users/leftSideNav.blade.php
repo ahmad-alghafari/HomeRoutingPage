@@ -75,7 +75,7 @@
                                 <a class="nav-link" href="{{route('welcome')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/home-outline-filled.svg')}}" alt=""><span>Home Page</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('home.chats')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Chats </span></a>
+                                <a class="nav-link" href="{{route('home.chats.search')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/person-outline-filled.svg')}}" alt=""><span>Chats </span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw" src="{{asset('import/assets/images/icon/news2-big.svg')}}" alt=""><span>Latest News </span></a>

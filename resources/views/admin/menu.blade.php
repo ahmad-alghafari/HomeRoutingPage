@@ -18,27 +18,12 @@
                         <li><a href="{{route("admin.domains.requests")}}"><span>Requests</span></a></li>
                     </ul>
                 </li>
-{{--                <li><a href="widgets.html"><i class="ti-palette"></i> <span>Widgets</span></a></li>--}}
-{{--                <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic Elements</span></a>--}}
-{{--                    <ul class="side-header-sub-menu">--}}
-{{--                        <li><a href="elements-alerts.html"><span>Alerts</span></a></li>--}}
-{{--                        <li><a href="elements-accordions.html"><span>Accordions</span></a></li>--}}
-{{--                        <li><a href="elements-avatar.html"><span>Avatar</span></a></li>--}}
-{{--                        <li><a href="elements-badge.html"><span>Badge</span></a></li>--}}
-{{--                        <li><a href="elements-buttons.html"><span>Buttons</span></a></li>--}}
-{{--                        <li><a href="elements-carousel.html"><span>Carousel</span></a></li>--}}
-{{--                        <li><a href="elements-dropdown.html"><span>Dropdown</span></a></li>--}}
-{{--                        <li><a href="elements-list-group.html"><span>List Group</span></a></li>--}}
-{{--                        <li><a href="elements-media.html"><span>Media</span></a></li>--}}
-{{--                        <li><a href="elements-modal.html"><span>Modal</span></a></li>--}}
-{{--                        <li><a href="elements-pagination.html"><span>Pagination</span></a></li>--}}
-{{--                        <li><a href="elements-progress.html"><span>Progress Bar</span></a></li>--}}
-{{--                        <li><a href="elements-spinners.html"><span>Spinners</span></a></li>--}}
-{{--                        <li><a href="elements-tabs.html"><span>Tabs</span></a></li>--}}
-{{--                        <li><a href="elements-tooltip.html"><span>Tooltip</span></a></li>--}}
-{{--                        <li><a href="elements-typography.html"><span>Typography</span></a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+                <li class="has-sub-menu"><a href="#"><i class="fa fa-user-circle" ></i> <span>Users</span></a>
+                    <ul class="side-header-sub-menu">
+                        <li><a href="{{route('admin.users.all')}}"><span>Show All</span></a></li>
+                        <li><a href="{{route('admin.users.banded')}}"><span>Banded Users</span></a></li>
+                    </ul>
+                </li>
 {{--                <li class="has-sub-menu"><a href="#"><i class="ti-crown"></i> <span>Advance Elements</span></a>--}}
 {{--                    <ul class="side-header-sub-menu">--}}
 {{--                        <li><a href="elements-clipboard.html"><span>Clipboard</span></a></li>--}}

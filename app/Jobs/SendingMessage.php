@@ -4,12 +4,14 @@ namespace App\Jobs;
 
 use App\Events\Messaging;
 use App\Models\ChMessage;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
 class SendingMessage implements ShouldQueue
 {
@@ -18,20 +20,12 @@ class SendingMessage implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    private  $messageToSend;
-    private  $reciver;
 
-    private  $message;
     public function __construct(
-        $messageToSend,
-        $reciver,
-        $message ,
-    )
-    {
-        $this->messageToSend = $messageToSend;
-        $this->reciver = $reciver;
-        $this->message = $message;
-    }
+       public $message,
+       public $reciver,
+       public $sender,
+    ){}
 
     /**
      * Execute the job.
@@ -39,7 +33,16 @@ class SendingMessage implements ShouldQueue
     public function handle(): void
     {
         if($this->message){
-            \broadcast(new Messaging($this->reciver ,$this->messageToSend));
+            $receiver = User::find($this->reciver);
+            if($receiver){
+                \broadcast(new Messaging($receiver ,$this->message , $this->sender));
+                ChMessage::create([
+                    'body' => $this->message,
+                    'to_id' => $receiver->id,
+                    'from_id' => $this->sender->id,
+                ]);
+            }
+
         }
     }
 }

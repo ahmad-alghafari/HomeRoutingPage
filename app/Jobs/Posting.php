@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\PostNotifyEvent;
 use App\Models\file;
 use App\Models\post;
 use App\Models\share;
@@ -24,25 +25,18 @@ class Posting implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    protected  $post;
-    public $id;
+
     public function __construct(
-         Post $post,
-        $id
-
-    )
-    {
-
-        $this->post = $post;
-        $this->id = $id;
-    }
+        public Post $post,
+        public User $user,
+    ){}
 
     /**
      * Execute the job.
      */
     public function handle(): void
     {
-        $id = $this->id;
+        $id = $this->user->id;
 
         $userIds = User::whereNotIn('id', function ($query) use ($id) {
             $query->select('user_blocker')->from('blocks')->where('user_blocked', $id);
@@ -52,6 +46,7 @@ class Posting implements ShouldQueue
 
         foreach ($userIds as $user) {
             $user->notify(new PostNotify($this->post));
+            \broadcast(new PostNotifyEvent($user->id ,$this->post ));
         }
 
     }

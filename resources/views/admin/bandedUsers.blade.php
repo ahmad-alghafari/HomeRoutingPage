@@ -57,7 +57,7 @@
             <!-- Page Heading Start -->
             <div class="col-12 col-lg-auto mb-20">
                 <div class="page-heading">
-                    <h3 class="title">Administration <span>/ Table Of Pages That Under Servicing</span></h3>
+                    <h3 class="title">Administration <span>/ Table Of All Banded Users</span></h3>
 
                 </div>
             </div><!-- Page Heading End -->
@@ -65,58 +65,42 @@
         </div><!-- Page Headings End -->
 
         <div class="row">
-
-
-
-            <livewire:logs  />
             <!--Static Start-->
             <div class="col-12 mb-30">
 
                 <div class="box">
                     <div class="box-head">
-                        <h2 class="title">Routes</h2>
+                        <h2 class="title">Users</h2>
                     </div>
                     <div class="box-body">
                         <!--Bordered Table Light Start-->
                         <div class="col-lg-12 col-12 mb-30">
                             <div class="box">
                                 <div class="box-head">
-                                    <h4 class="title">Monitor all your system movements here</h4>
+                                    <h4 class="title">Monitor all your system users banded here</h4>
                                 </div>
                                 <div class="box-body">
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
                                             <th class="text-center">#id</th>
-                                            <th>Actor name:id</th>
-                                            <th class="text-center">Action Type</th>
-                                            <th class="text-center">On Table</th>
-                                            <th class="text-center">URL</th>
-                                            <th class="text-center">description</th>
-                                            <th class="text-center">At Time :</th>
-                                            <th class="text-center">From : </th>
-                                            <th class="text-center">Properties</th>
+                                            <th class="text-center">Avatar</th>
+                                            <th class="text-center">User Name</th>
+                                            <th class="text-center">Email</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Role</th>
+                                            <th class="text-center">Last LogIn</th>
+                                            <th class="text-center">Band</th>
+
                                         </tr>
                                         </thead>
-                                        @foreach($logs as $log)
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-center">{{$log->id}}</td>
-                                                <td class="text-center">{{$log->user->name}}:{{$log->user->id}}</td>
-                                                <td class="text-center">{{$log->action}}</td>
-                                                <td class="text-center">{{$log->on_table}}</td>
-                                                <td class="text-center"><a href="{{url($log->url)}}">View Action</a></td>
-                                                <td class="text-center">{{$log->description}}</td>
-                                                <td class="text-center">{{$log->created_at}}</td>
-                                                <td class="text-center">{{$log->created_at->diffForHumans()}} </td>
-                                                <td class="text-center">{{$log->properties}}</td>
-                                            </tr>
-                                            </tbody>
+                                        @foreach($users as $user)
+                                            <livewire:band-user :$user :key="$user->id">
                                         @endforeach
                                     </table>
                                 </div>
                                 <div class="mt-4">
-                                    {{$logs->links('vendor.pagination.custom')}}
+                                    {{$users->links('vendor.pagination.custom')}}
                                 </div>
                             </div>
                         </div>

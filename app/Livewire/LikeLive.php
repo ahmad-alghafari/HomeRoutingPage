@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Livewire;
+use App\Events\LikeNotifyEvent;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\like;
 use App\Notifications\LikeNotify;
 use App\Jobs\Loging;
+use function broadcast;
+
 class LikeLive extends Component
 {
     public $post ;
@@ -21,22 +24,22 @@ class LikeLive extends Component
             $this->post->decrement('likes_number');
             $this->isLiked = false ;
         }else{
-            Auth::user()->like()->create(['post_id' => $this->post->id]);
+            $like = Auth::user()->like()->create(['post_id' => $this->post->id]);
             $this->post->increment('likes_number');
             $this->isLiked = true ;
-//            notification
-            $li = like::latest()->first();
-            $postOwner = $li->post->user;
-            if (Auth::user()->id != $postOwner->id) {
-                $postOwner->notify(new LikeNotify($li,$li->post));
+
+            if(Auth::user()->id != $this->post->user_id){
+                $this->post->user->notify(new LikeNotify($like));
+                broadcast(new LikeNotifyEvent($like ,$this->post->user->id));
             }
+
             //log
             Loging::dispatch(
                 Auth::user()->id ,
-                'Create',
-                Auth::user()->name . ' Liked ' . $li->post->user->name . ' Post',
-                'Likes',
-                'home/posts/show/' .$li->post->id,
+                'create',
+                Auth::user()->name . ' liked ' . $this->post->user->name . ' post , id : ' . $this->post->id .'.',
+                'likes',
+                'home/posts/show/' .$this->post->id,
                 '',
             );
         }

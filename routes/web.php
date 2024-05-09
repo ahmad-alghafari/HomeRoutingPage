@@ -1,12 +1,9 @@
 <?php
 
+use App\Http\Controllers\Messageing;
 use App\Models\domain;
-use App\Models\info;
 use App\Models\Log;
-use App\Models\notification;
-use Carbon\Carbon;
-use Spatie\Activitylog\Models\Activity;
-use App\Http\Controllers\Auth\ConfirmPasswordController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -16,7 +13,16 @@ use App\Models\Setting;
 use App\Http\Controllers\DomainController;
 
 Route::get('/test' , function(){
+    $this->me = Auth::user();
+    $userid = $this->me->id ;
 
+    $users = User::whereNotIn('id', function ($query) use ($userid) {
+        $query->select('user_blocker')
+            ->from('blocks')
+            ->where('user_blocked', $userid);
+    })->where('id','!=',$userid)->take(10)->get(['id' , 'name' , 'email']);
+
+    dd($users);
     return "test";
 });//;->name("")->middleware('');
 
@@ -49,6 +55,20 @@ Route::name('admin.')->prefix('administration/')->middleware(['admin' , 'auth' ,
         $domains = Domain::where('online' , 'no')->paginate(100);
         return view("admin.domainsRequests" ,compact('domains'));
     })->name('domains.requests');
+
+    Route::get('users/all' ,function (){
+        $users = User::latest()->paginate(100);
+        return view("admin.allUsers" , compact('users'));
+    })->name('users.all');
+
+    Route::get('users/banded' ,function (){
+        $users = User::where('role',3)->latest()->paginate(100);
+        return view("admin.bandedUsers" , compact('users'));
+    })->name('users.banded');
+
+    Route::get('tables' ,function (){
+        return view("admin.tables" );
+    })->name('tables');
 
 
 });
@@ -84,9 +104,12 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
         return view('notifications');
     })->name('notificaions');
 
-    Route::get('chats' , function (){
-        return view('message');
-    })->name("chats");
+
+    Route::get('chats/search' , [Messageing::class, 'search'])->name("chats.search");
+    Route::get('chats/{user}' ,[Messageing::class , 'show'])->name("chats.user");
+    Route::post('chats/{id}' ,[Messageing::class , 'send'])->name("chats.user.send");
+    Route::post('chats/delete/{id}' ,[Messageing::class , 'delete'])->name("chats.delete");
+
 
     Route::resource('posts',PostController::class)->except('show');
 

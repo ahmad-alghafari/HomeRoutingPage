@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\post;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -9,26 +10,31 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class Messaging implements ShouldBroadcast
+class PostNotifyEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public $reciverId ;
-    public $message ;
-    public $senderId;
-    public $user_photo;
-    public $senderName;
-    public function __construct(User $reciver , $message , User $sender){
-        $this->reciverId = $reciver->id ;
-        $this->message = $message ;
-        $this->senderId = $sender->id ;
-        $this->user_photo = $sender->photo != null ? $sender->photo->path : "null-null";
-        $this->senderName = $sender->name;
+    public $user ;
+    public  $id;
+    public $user_id;
+    public $user_id_broadcast;
+
+    public $user_photo ;
+    public $time;
+    public function __construct(
+        $user_id_broadcast , Post $post
+    ){
+        $this->id = $post->id;
+        $this->user_id = $post->user->id;
+        $this->user = $post->user->name;
+        $this->user_photo = $post->user->photo != null ? $post->user->photo->path : "null-null";
+        $this->time = $post->created_at;
+        $this->user_id_broadcast = $user_id_broadcast;
     }
 
     /**
@@ -39,11 +45,11 @@ class Messaging implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'.$this->reciverId ),
+            new Channel('postNotify'.$this->user_id_broadcast),
         ];
     }
 
     public function broadcastAs()  {
-        return 'chatMessage' ;
+        return 'Notifications' ;
     }
 }

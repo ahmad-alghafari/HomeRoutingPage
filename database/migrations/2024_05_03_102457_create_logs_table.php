@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->enum('action' ,['create','update','delete','show', 'auth' , 'hackAttempt']);
+            $table->enum('action' ,['create','update','delete','show', 'auth','auth.login', 'auth.logout', 'auth.signup' , 'hackAttempt' ]);
             $table->string('description');
             $table->string('on_table');
             $table->string('url')->nullable();
