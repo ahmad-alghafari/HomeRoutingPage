@@ -11,10 +11,12 @@ use App\Jobs\Loging;
 
 class BlockController extends Controller
 {
-    
-    public function store(Request $request){
-        $userid2 = User::find($request->id);
 
+    public function store(Request $request , $id){
+        $userid2 = User::find($id);
+        if(!$userid2){
+            return back();
+        }
         if(auth::user()->id == $userid2->id){
             //spam code!!
             return back()->with(['error_block'=>'you can not block your self!']);
@@ -47,7 +49,7 @@ class BlockController extends Controller
         );
         return redirect()->route('home.posts.index');
     }
-    
+
     public function destroy(User $user){
         $user->blockMe()->where('user_blocker' , Auth::user()->id)->delete();
         return redirect()->route('home.users.show' , $user);

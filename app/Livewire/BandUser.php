@@ -11,7 +11,7 @@ class BandUser extends Component
     public $isBanded ;
     public function mount(User $user){
         $this->user = $user;
-        $this->isBanded = true;
+        $this->isBanded = $user->role == 3;
     }
 
     public function unband()

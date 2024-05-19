@@ -136,8 +136,6 @@ Header START -->
             <main></main>
             <!-- Nav right START -->
             <div class="ms-3 ms-lg-auto">
-
-
                 <a class="btn btn-dark" href="{{ route('domains.create') }}"> Create Your Own Application </a>
             </div>
             <!-- Nav right END -->
@@ -159,29 +157,31 @@ Header END -->
                         <!-- Blog single START -->
                         <div class="card card-body">
                             <img class="rounded"
-                                @if ($domain->photo_path != null) 
+                                @if ($domain->photo_path != null)
                                 src="{{ asset($domain->photo_path) }}" >
                                 @else
-                                src="{{ asset('import/assets/images/post/16by9/big/03.jpg') }}" alt=""> 
+                                src="{{ asset('import/assets/images/post/16by9/big/03.jpg') }}" alt="">
                                 @endif
                   <div class="mt-4">
                             <!-- Tag -->
                           <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">#{{$domain->id}}</a>
-                            {{-- <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->country}}</a> --}}
-                            {{-- <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->language}}</a> --}}
-                            {{-- <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">{{$domain->Type}}</a> --}}
+                             <a href="#" class="badge bg-primary bg-opacity-10 text-primary mb-2 fw-bold">{{$domain->country}}</a>
+                             <a href="#" class="badge bg-warning bg-opacity-10 text-warning mb-2 fw-bold">{{$domain->language}}</a>
+                             <a href="#" class="badge bg-success bg-opacity-10 text-success mb-2 fw-bold">{{$domain->type}}</a>
+                      <a href="#" class="badge bg-secondary bg-opacity-10 text-secondary mb-2 fw-bold">{{$domain->domain}}</a>
+
                             <!-- Title info -->
-                            <h1 class="mb-2 h2">{{ $domain->name }}</h1>
+                            <h1 class="mb-2 h2"><a href="{{url($domain->url)}}" class="nav-link">{{ $domain->name }}</a></h1>
                             <ul class="nav nav-stack gap-3 align-items-center">
                                 <li class="nav-item">
                                     <div class="nav-link">
-                                        by <a href="#" class="text-reset btn-link">{{ $domain->user->name }}</a>
+                                        by <a href="" class="text-reset btn-link">{{ $domain->user->name }}</a>
                                     </div>
                                 </li>
                                 <li class="nav-item"> <i
-                                        class="bi bi-calendar-date pe-1"></i>{{ $domain->created_at->diffForHumans() }}
+                                        class="bi bi-calendar-date pe-1"></i>{{ $domain->created_at }}
                                 </li>
-                                <li class="nav-item"> <i class="bi bi-clock pe-1"></i>5 min read</li>
+                                <li class="nav-item"> <i class="bi bi-clock pe-1"></i>Created from {{$domain->created_at->diffForHumans()}}</li>
                             </ul>
                             <!-- description -->
                             <p class="mt-4"><span class="dropcap">A</span>{{ $domain->description }}</p>
@@ -197,10 +197,13 @@ Header END -->
                                 </div>
                                 <div class="col-md-6">
                                     <ul>
-                                        <li>Our Firmament living replenish Them Created after divide said Have give</li>
-                                        <li>Dominion light without days face saw wherein land</li>
-                                        <li>Fifth have Seas made lights Very Day saw Seed herb sixth light whales</li>
-                                        <li>Saying unto Place it seed you're Isn't heaven </li>
+                                        @foreach(json_decode($domain->constraind , true) as $key => $constrain)
+                                            @if($constrain == "1")
+                                                <li>{{$key}} :{{$constrain}} </li>
+
+                                            @endif
+                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>
@@ -308,8 +311,6 @@ Header END -->
         </div>
         </div>
         <!-- Main content END -->
-        </div> <!-- Row END -->
-        </div>
         <!-- Container END -->
 
     </main>
@@ -317,36 +318,7 @@ Header END -->
     <!-- **************** MAIN CONTENT END **************** -->
 
     <!-- footer START -->
-    <footer class="bg-mode py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Footer nav START -->
-                    <ul class="nav justify-content-center justify-content-md-start lh-1">
-                        <li class="nav-item">
-                            <a class="nav-link" href="my-profile-about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="https://support.webestica.com/login">Support </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="docs/index.html">Docs </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="privacy-and-terms.html">Privacy & terms</a>
-                        </li>
-                    </ul>
-                    <!-- Footer nav START -->
-                </div>
-                <div class="col-md-6">
-                    <!-- Copyright START -->
-                    <p class="text-center text-md-end mb-0">©2023 <a class="text-body" target="_blank"
-                            href="https://www.webestica.com"> Webestica </a>All rights reserved.</p>
-                    <!-- Copyright END -->
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
     <!-- footer END -->
 
     <!-- =======================

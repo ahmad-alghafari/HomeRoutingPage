@@ -5,7 +5,7 @@
     <th class="text-center">{{$this->user->email}}</th>
     <th class="text-center">{{$this->user->status == '1' ? 'Online' : 'Ofline'}}</th>
     <th class="text-center">{{$this->isBanded ? 'Banded' : 'Active'}}</th>
-    <th class="text-center">{{$this->user->last_login_at}}</th>
+    <th class="text-center">{{$this->user->last_login_at}}|{{$user->last_login_at?->diffForHumans()}}</th>
     @if($this->isBanded)
         <th class="text-center"><button wire:click="unband" class="d-inline btn btn-primary me-2"  type="submit"><i class="fa fa-angle-double-up"></i>Un Band</button></th>
     @else

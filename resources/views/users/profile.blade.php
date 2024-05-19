@@ -165,7 +165,7 @@ Header END -->
                                         <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Share profile in a message</a></li>
                                         @if($user->id != auth::user()->id)
                                             <li>
-                                                <form action="{{route('home.blocks.store')}}" method="POST">
+                                                <form action="{{route('home.blocks.store' , $user->id)}}" method="POST">
                                                     @csrf
                                                     <input name="id" value="{{$user->id}}" style="display: none" type="text">
                                                     <button type="submit" class="dropdown-item"><i class="bi bi-slash-circle fa-fw pe-2"></i>Block</button>
@@ -279,7 +279,7 @@ Header END -->
                                                     </button>
                                                 </form>
                                             </li>
-                                            
+
                                         @endif
                                         {{-- <li><hr class="dropdown-divider"></li> --}}
                                         @if(Auth::user()->id != $user->id)<li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report Post</a></li>@endif

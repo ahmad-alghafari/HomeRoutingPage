@@ -78,6 +78,12 @@
                             <div class="box">
                                 <div class="box-head">
                                     <h4 class="title">Monitor all your system users banded here</h4>
+                                    <h5>Number Of Row :
+                                        {{$users->total()}}
+                                    </h5>
+                                </div>
+                                <div class="mt-4">
+                                    {{$users->links('vendor.pagination.custom')}}
                                 </div>
                                 <div class="box-body">
                                     <table class="table table-bordered">
@@ -91,7 +97,6 @@
                                             <th class="text-center">Role</th>
                                             <th class="text-center">Last LogIn</th>
                                             <th class="text-center">Band</th>
-
                                         </tr>
                                         </thead>
                                         @foreach($users as $user)
@@ -99,9 +104,7 @@
                                         @endforeach
                                     </table>
                                 </div>
-                                <div class="mt-4">
-                                    {{$users->links('vendor.pagination.custom')}}
-                                </div>
+
                             </div>
                         </div>
                         <!--Bordered Table Light End-->

@@ -44,9 +44,9 @@
                         <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark fa-fw pe-2"></i>Save post</a></li>
                         <li><a class="dropdown-item" href="#"> <i class="bi bi-person-x fa-fw pe-2"></i>Unfollow lori ferguson </a></li>
                         <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Hide post</a></li>
-                        <li><a class="dropdown-item" href="#"> <i class="bi bi-slash-circle fa-fw pe-2"></i>Block</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report post</a></li>
+                        <li><form action="{{route("home.blocks.store" , $post->post->user->id)}}" method="POST">@csrf @method("POST")<button class="dropdown-item"  type="submit"> <i class="bi bi-slash-circle fa-fw pe-2"></i>Block</button></form></li>
+{{--                        <li><hr class="dropdown-divider"></li>--}}
+{{--                        <li><a class="dropdown-item" href="#"> <i class="bi bi-flag fa-fw pe-2"></i>Report post</a></li>--}}
                     </ul>
                 </div>
                 <!-- Card feed action dropdown END -->

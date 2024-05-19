@@ -14,10 +14,10 @@
         </div>
 
         <!-- Form Start -->
-        <form class="w-100" action="{{route('home.posts.store')}}" method="POST" enctype="multipart/form-data">
+        <form class="w-100" action="{{route('home.posts.store')}}" method="POST" enctype="multipart/form-data" id="post_form">
             @csrf
 
-            <textarea class="form-control pe-4 border-0"  name="text" id="post_text" rows="2" data-autoresize placeholder="Share your thoughts..."></textarea><br>
+            <textarea class="form-control pe-4 border-0"  name="text" id="text" rows="2" data-autoresize placeholder="Share your thoughts..."></textarea><br>
 
             <!-- Share feed toolbar START -->
             <ul class="nav nav-pills nav-stack small fw-normal">
@@ -34,7 +34,7 @@
                     <a  class="nav-link bg-light py-1 px-2 mb-0" href="#" data-bs-toggle="modal" data-bs-target="#modalCreateVoice"> <i class="bi bi-card-list text-warning pe-2 "></i>Voice </a>
                 </li>
                 <li class="nav-item">
-                    <button type="submit" name="submit" value="Post" class="nav-link bg-light py-1 px-2 mb-0">
+                    <button type="submit" name="submit" value="Post" class="nav-link bg-light py-1 px-2 mb-0" id="submit">
                         Post
                     </button>
                 </li>

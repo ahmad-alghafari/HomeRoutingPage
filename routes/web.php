@@ -12,20 +12,6 @@ use App\Http\Controllers\BlockController;
 use App\Models\Setting;
 use App\Http\Controllers\DomainController;
 
-Route::get('/test' , function(){
-    $this->me = Auth::user();
-    $userid = $this->me->id ;
-
-    $users = User::whereNotIn('id', function ($query) use ($userid) {
-        $query->select('user_blocker')
-            ->from('blocks')
-            ->where('user_blocked', $userid);
-    })->where('id','!=',$userid)->take(10)->get(['id' , 'name' , 'email']);
-
-    dd($users);
-    return "test";
-});//;->name("")->middleware('');
-
 
 Route::get('/' , function(){
     return view("welcome");
@@ -127,7 +113,8 @@ Route::name('home.')->middleware(['auth','verified','servicing'])->prefix('home/
 
     Route::delete('users/account/{user}' , [UserController::class , 'destroy'])->name('users.account.delete');
 
-    Route::resource('blocks', BlockController::class)->except('destroy');
+    Route::resource('blocks', BlockController::class)->except('destroy' , 'store');
+    Route::post('blocks/{id}' , [BlockController::class , 'store'])->name('blocks.store');
     Route::delete('blocks/{user}' , [BlockController::class , 'destroy'])->name('blocks.destroy');
 
 

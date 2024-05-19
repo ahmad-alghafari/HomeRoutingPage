@@ -104,29 +104,9 @@
                 <!-- Card END -->
 
                 <!-- Helper link START -->
-                <ul class="nav small mt-4 justify-content-center lh-1">
-                    <li class="nav-item">
-                        <a class="nav-link" href="my-profile-about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="settings.html">Settings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://support.webestica.com/login">Support </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="docs/index.html">Docs </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="help.html">Help</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="privacy-and-terms.html">Privacy & terms</a>
-                    </li>
-                </ul>
                 <!-- Helper link END -->
                 <!-- Copyright -->
-                <p class="small text-center mt-1">©{{date('Y')}} <a class="text-reset" target="_blank" href=""> Webestica </a></p>
+                <p class="small text-center mt-1">©{{date('Y')}} <a class="text-reset" target="_blank" href=""> TAGH </a></p>
             </div>
         </div>
     </nav>

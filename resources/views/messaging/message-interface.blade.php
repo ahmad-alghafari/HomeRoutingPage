@@ -187,6 +187,7 @@ Header END -->
                                         <div class="d-flex mb-2 mb-sm-0">
                                             <div class="flex-shrink-0 avatar me-2">
                                                 <img class="avatar-img rounded-circle" src="{{$user->photo != null ? asset($user->photo->path) : asset('import/assets/images/avatar/placeholder.jpg') }}" />
+
                                             </div>
                                             <div class="d-block flex-grow-1">
                                                 <h6 class="mb-0 mt-1">{{$user->name}}</h6>

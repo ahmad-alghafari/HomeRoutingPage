@@ -81,6 +81,12 @@
                             <div class="box">
                                 <div class="box-head">
                                     <h4 class="title">Monitor all your system users here</h4>
+                                    <h5>Number Of Row :
+                                        {{$users->total()}}
+                                    </h5>
+                                </div>
+                                <div class="mt-4">
+                                    {{$users->links('vendor.pagination.custom')}}
                                 </div>
                                 <div class="box-body">
                                     <table class="table table-bordered">
@@ -93,24 +99,15 @@
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Role</th>
                                             <th class="text-center">Last LogIn</th>
+                                            <th class="text-center">Band</th>
                                         </tr>
                                         </thead>
                                         @foreach($users as $user)
-                                            <tr>
-                                                <th class="text-center">{{$user->id}}</th>
-                                                <th class="text-center"><div class="avatar mr-10 mb-10"><img src="{{$user->photo == null ? asset('import/assets/images/avatar/placeholder.jpg') : asset($user->photo->path)}}"></div></th>
-                                                <th class="text-center"><a href="{{route('home.users.show' , $user)}}">{{$user->name}}</a></th>
-                                                <th class="text-center">{{$user->email}}</th>
-                                                <th class="text-center">{{$user->status == '1' ? 'Online' : 'Ofline'}}</th>
-                                                <th class="text-center">{{$user->role == 0 ? 'notVerifyed' : ''}}{{$user->role == 1 ? 'Active' : ''}}{{$user->role == 2 ? 'Admin' : ''}}{{$user->role == 3 ? 'Banded' : ''}}</th>
-                                                <th class="text-center">{{$user->last_login_at}}</th>
-                                            </tr>
+                                            <livewire:band-user :$user :key="$user->id">
                                         @endforeach
                                     </table>
                                 </div>
-                                <div class="mt-4">
-                                    {{$users->links('vendor.pagination.custom')}}
-                                </div>
+
                             </div>
                         </div>
                         <!--Bordered Table Light End-->

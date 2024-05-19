@@ -111,7 +111,7 @@ class UserController extends Controller
         }
 
         $image = $request->file('image');
-        $imageName = Auth::user()->id . Auth::user()->name .'.'. $image->extension();
+        $imageName =  Auth::user()->name .'.'. $image->extension();
         $path = 'import/assets/images/avatar/' . $imageName ;
 
         $checked = Auth::user()->photo()->updateOrCreate(['path' => $path]);

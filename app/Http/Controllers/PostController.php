@@ -35,11 +35,9 @@ class PostController extends Controller{
     }
 
     public function store(Request $request){
-
         if ($request->session()->token() !== $request->input('_token')) {
             return redirect()->back()->with('message', 'invalidToken');
         }
-
         $error_message = 'You cannot post empty content!';
         $request->validate([
             'images.*' => 'required_without_all:files,videos,voice,text|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
@@ -55,15 +53,12 @@ class PostController extends Controller{
                 'voice.required_without_all' => $error_message
             ]
         );
-
         $text = $request->text ? : '';
         $id = Auth::user()->id;
-
         $post = post::create([
             'user_id' => $id,
             'text' => $text ,
         ]);
-
         Loging::dispatch(
             $id ,
             'create',
@@ -72,31 +67,24 @@ class PostController extends Controller{
             'home/posts/show/' . $post->id ,
             '',
         );
-
         share::create([
             'user_id' => $id,
             'post_id' => $post->id,
         ]);
-
         Auth::user()->info->increment('posts_number');
-
         $fileTypes = ['images', 'videos', 'files', 'voice'];
         foreach ($fileTypes as $fileType) {
             if ($request->hasFile($fileType)) {
                 foreach ($request->file($fileType) as $key => $file) {
                     $fileName = $id . '.' . time() . '.' . $key . '.' . $file->extension();
                     $filePath = 'posts_' . $fileType . '/' . $fileName;
-
                     file::create([
                         'post_id' => $post->id,
                         'file_path' => $filePath,
                         'file_type' => $fileType,
                         'prefix' => $file->extension(),
                     ]);
-
-
                     $file->move(public_path('posts_' . $fileType), $fileName);
-
                 }
                 Loging::dispatch(
                     $id ,
@@ -108,8 +96,6 @@ class PostController extends Controller{
                 );
             }
         }
-
-
         Posting::dispatch($post ,  Auth::user());
         return redirect()->back()->with('message', 'success');
     }
@@ -162,34 +148,19 @@ class PostController extends Controller{
         if (!$post) {
             return redirect()->back()->with('error', 'Post not found');
         }
-
         // Check if the current user is the owner of the post
-
         if ($post->user->id != Auth::user()->id) {
             return redirect()->back()->with('error', 'You do not have permission to delete this post');
         }
-
         // Delete associated files
         $files = File::where('post_id', $post->id)->get();
-
         foreach ($files as $file) {
             $filePath = public_path($file->file_path);
-            if (file_exists($filePath)) {
-                unlink($filePath);
-            }
-
+            if (file_exists($filePath)) {unlink($filePath);}
             $file->delete();
         }
-
         $post->delete();
-        Loging::dispatch(
-            $user,
-            'Delete',
-            'Delete His Post' ,
-            '',
-            '',
-            '',
-        );
+        Loging::dispatch($user, 'Delete', 'Delete His Post' , '', '', '',);
         auth::user()->info->decrement('posts_number');
         return redirect()->back()->with('success', 'Post deleted successfully');
     }

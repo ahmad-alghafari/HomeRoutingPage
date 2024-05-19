@@ -23,6 +23,7 @@ class Messaging implements ShouldBroadcast
     public $senderId;
     public $user_photo;
     public $senderName;
+
     public function __construct(User $reciver , $message , User $sender){
         $this->reciverId = $reciver->id ;
         $this->message = $message ;

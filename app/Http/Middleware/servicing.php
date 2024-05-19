@@ -8,19 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
-class servicing
-{
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-
-
+class servicing{
     public function handle(Request $request, Closure $next): Response
     {
-
         $servicing = Setting::where('route_name' , Route::currentRouteName())->get('servicing')->last()->servicing;
         // dd($servicing);
         if($servicing == 1){
