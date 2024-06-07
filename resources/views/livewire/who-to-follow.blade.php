@@ -21,7 +21,7 @@
             </div>
             <!-- Button -->
             <button wire:click="toggleFollow({{$user}})" class="btn btn-primary-soft rounded-circle icon-md ms-auto"><i class="fa-solid fa-plus"> </i></button>
-            
+
         </div>
     @endforeach
     <!-- Users who to follow item END -->
@@ -48,7 +48,7 @@
             </div>
             <!-- Button -->
             <button wire:click="toggleFollow({{$user}})" class="btn btn-primary-soft rounded-circle icon-md ms-auto"><i class="fa-solid fa-plus"> </i></button>
-            
+
         </div>
     @empty
     @endforelse
@@ -56,7 +56,7 @@
 
 
     <!-- View more button -->
-    <div class="d-grid mt-3">
-        <a class="btn btn-sm btn-primary-soft" href="#!">View more</a>
-    </div>
+{{--    <div class="d-grid mt-3">--}}
+{{--        <a class="btn btn-sm btn-primary-soft" href="#!">View more</a>--}}
+{{--    </div>--}}
 </div>

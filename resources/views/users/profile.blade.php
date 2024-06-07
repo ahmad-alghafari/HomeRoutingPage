@@ -198,12 +198,12 @@ Header END -->
                         <!-- Nav profile pages -->
                         <ul class="nav nav-bottom-line align-items-center justify-content-center justify-content-md-start mb-0 border-0">
                             <li class="nav-item"> <a class="nav-link active" href={{route('home.posts.index')}}> Posts </a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="my-profile-about.html"> About </a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="my-profile-connections.html"> Connections <span class="badge bg-success bg-opacity-10 text-success small"> 230</span> </a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="my-profile-media.html"> Media</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="my-profile-videos.html"> Videos</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="my-profile-events.html"> Events</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="my-profile-activity.html"> Activity</a> </li>
+{{--                            <li class="nav-item"> <a class="nav-link" href="my-profile-about.html"> About </a> </li>--}}
+{{--                            <li class="nav-item"> <a class="nav-link" href="my-profile-connections.html"> Connections <span class="badge bg-success bg-opacity-10 text-success small"> 230</span> </a> </li>--}}
+{{--                            <li class="nav-item"> <a class="nav-link" href="my-profile-media.html"> Media</a> </li>--}}
+{{--                            <li class="nav-item"> <a class="nav-link" href="my-profile-videos.html"> Videos</a> </li>--}}
+{{--                            <li class="nav-item"> <a class="nav-link" href="my-profile-events.html"> Events</a> </li>--}}
+{{--                            <li class="nav-item"> <a class="nav-link" href="my-profile-activity.html"> Activity</a> </li>--}}
                         </ul>
                     </div>
                 </div>
@@ -718,41 +718,44 @@ Header END -->
                             </div>
                             <!-- Card header END -->
                             <!-- Card body START -->
-                            <div class="card-body position-relative pt-0">
-                                <div class="row g-2">
-                                    <!-- Photos item -->
-                                    <div class="col-6">
-                                        <a href="{{asset('import/assets/images/albums/01.jpg')}}" data-gallery="image-popup" data-glightbox="">
-                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/01.jpg')}}" alt="">
-                                        </a>
-                                    </div>
-                                    <!-- Photos item -->
-                                    <div class="col-6">
-                                        <a href="{{asset('import/assets/images/albums/02.jpg')}}" data-gallery="image-popup" data-glightbox="">
-                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/02.jpg')}}" alt="">
-                                        </a>
-                                    </div>
-                                    <!-- Photos item -->
-                                    <div class="col-4">
-                                        <a href="{{asset('import/assets/images/albums/03.jpg')}}" data-gallery="image-popup" data-glightbox="">
-                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/03.jpg')}}" alt="">
-                                        </a>
-                                    </div>
-                                    <!-- Photos item -->
-                                    <div class="col-4">
-                                        <a href="{{asset('import/assets/images/albums/04.jpg')}}" data-gallery="image-popup" data-glightbox="">
-                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/04.jpg')}}" alt="">
-                                        </a>
-                                    </div>
-                                    <!-- Photos item -->
-                                    <div class="col-4">
-                                        <a href="{{asset('import/assets/images/albums/05.jpg')}}" data-gallery="image-popup" data-glightbox="">
-                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/05.jpg')}}" alt="">
-                                        </a>
-                                        <!-- glightbox Albums left bar END  -->
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="card-body position-relative pt-0">--}}
+{{--                                <div class="row g-2">--}}
+{{--                                    <!-- Photos item -->--}}
+{{--                                    @foreach($user->file()->whereIn('file_type',['png','jpg'])->latest()->take(5) as $file)--}}
+{{--                                                            {{dd($file)}}--}}
+{{--                                    @endforeach--}}
+{{--                                    <div class="col-6">--}}
+{{--                                        <a href="{{asset('import/assets/images/albums/01.jpg')}}" data-gallery="image-popup" data-glightbox="">--}}
+{{--                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/01.jpg')}}" alt="">--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- Photos item -->--}}
+{{--                                    <div class="col-6">--}}
+{{--                                        <a href="{{asset('import/assets/images/albums/02.jpg')}}" data-gallery="image-popup" data-glightbox="">--}}
+{{--                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/02.jpg')}}" alt="">--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- Photos item -->--}}
+{{--                                    <div class="col-4">--}}
+{{--                                        <a href="{{asset('import/assets/images/albums/03.jpg')}}" data-gallery="image-popup" data-glightbox="">--}}
+{{--                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/03.jpg')}}" alt="">--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- Photos item -->--}}
+{{--                                    <div class="col-4">--}}
+{{--                                        <a href="{{asset('import/assets/images/albums/04.jpg')}}" data-gallery="image-popup" data-glightbox="">--}}
+{{--                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/04.jpg')}}" alt="">--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- Photos item -->--}}
+{{--                                    <div class="col-4">--}}
+{{--                                        <a href="{{asset('import/assets/images/albums/05.jpg')}}" data-gallery="image-popup" data-glightbox="">--}}
+{{--                                            <img class="rounded img-fluid" src="{{asset('import/assets/images/albums/05.jpg')}}" alt="">--}}
+{{--                                        </a>--}}
+{{--                                        <!-- glightbox Albums left bar END  -->--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <!-- Card body END -->
                         </div>
                     </div>

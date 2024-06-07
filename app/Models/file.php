@@ -10,6 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class file extends Model
 {
     use HasFactory;
-    protected $fillable = ['id' , 'post_id' ,'file_path','file_type','prefix' ];
+    protected $fillable = ['id' , 'post_id' ,'file_path','file_type','prefix' , 'user_id' ];
 
 }

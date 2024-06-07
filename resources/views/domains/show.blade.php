@@ -186,44 +186,51 @@ Header END -->
                             <!-- description -->
                             <p class="mt-4"><span class="dropcap">A</span>{{ $domain->description }}</p>
 
-                            <h4 class="mt-4">The Rules Of This Domain </h4>
                             <!-- Row START -->
                             <div class="row mb-4">
                                 <div class="col-md-6">
-                                    <p>Fulfilled direction use continual set him propriety continued. Saw met applauded
-                                        favorite deficient engrossed concealed and her. </p>
-                                    <p>Concluded boy perpetual old supposing. Farther related bed and passage comfort
-                                        civilly. Dashwoods see frankness objection abilities.</p>
+                                    <h4 class="mt-4">Social Media</h4>
+                                    @foreach($arraySocial as $key => $value)
+                                        @if($value != null)
+                                                <p> <img src="{{asset('import/assets/images/icon/'.$key.'.svg')}}" class="me-2 h-20px fa-fw">
+                                                <a href="{{url($value)}}">{{$key}}</a></p>
+                                        @endif
+                                    @endforeach
+                                    <p>Personal social media sites are useful for you to know more people who are adopting this application.</p>
                                 </div>
                                 <div class="col-md-6">
+                                    <h4 class="mt-4">The Rules Of This Domain </h4>
+
                                     <ul>
                                         @foreach(json_decode($domain->constraind , true) as $key => $constrain)
                                             @if($constrain == "1")
-                                                <li>{{$key}} :{{$constrain}} </li>
-
+                                                @foreach($constrainds as $c)
+                                                    @if(array_key_first($c) == $key)
+                                                        <li>{{$key}} : {{ $c[$key] }}</li>
+                                                    @endif
+                                                @endforeach
                                             @endif
                                         @endforeach
-
                                     </ul>
                                 </div>
                             </div>
                             <!-- Row END -->
                             <!-- Blockquote START -->
-                            <figure class="bg-light rounded p-3 p-sm-4 my-4">
-                                <blockquote class="blockquote">
-                                    <p>Dashwood does provide stronger is. But discretion frequently sir she instruments
-                                        unaffected.</p>
-                                </blockquote>
-                                <figcaption class="blockquote-footer mb-0">
-                                    Albert Schweitzer
-                                </figcaption>
-                            </figure>
+{{--                            <figure class="bg-light rounded p-3 p-sm-4 my-4">--}}
+{{--                                <blockquote class="blockquote">--}}
+{{--                                    <p>Dashwood does provide stronger is. But discretion frequently sir she instruments--}}
+{{--                                        unaffected.</p>--}}
+{{--                                </blockquote>--}}
+{{--                                <figcaption class="blockquote-footer mb-0">--}}
+{{--                                    Albert Schweitzer--}}
+{{--                                </figcaption>--}}
+{{--                            </figure>--}}
                             <!-- Blockquote END -->
-                            <p class="mb-0"> All led out world this music while asked. Paid mind even sons does he
-                                door no. Attended overcame repeated it is perceived Marianne in. I think on style child
-                                of. Servants moreover in sensible it ye possible. Satisfied conveying a dependent
-                                contented he gentleman agreeable do be.
-                            </p>
+{{--                            <p class="mb-0"> All led out world this music while asked. Paid mind even sons does he--}}
+{{--                                door no. Attended overcame repeated it is perceived Marianne in. I think on style child--}}
+{{--                                of. Servants moreover in sensible it ye possible. Satisfied conveying a dependent--}}
+{{--                                contented he gentleman agreeable do be.--}}
+{{--                            </p>--}}
                         </div>
                     </div>
                     <!-- Card END -->

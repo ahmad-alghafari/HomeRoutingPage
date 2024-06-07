@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\enviroment;
 use Illuminate\Http\Request;
 use App\Models\domain;
 use Illuminate\Support\Arr;
@@ -21,7 +22,6 @@ class DomainController extends Controller
         // dd($request);
 
         $request->validate([
-
             'name' => 'require | min:8 | max:24 | unique:App\Models\domain,name',
             'country' => 'required | min:2 | max:4 | uppercase ',
             'language' => 'required | in:arabic,english,french,spanish,hindi,latin,chinese,armenian,russian',
@@ -57,6 +57,7 @@ class DomainController extends Controller
             'x' => $request->social_x ,
         ];
 
+//        $constraind = constrain();
         $constraind =  [
             'racism' => $request->racism == 'true' ? true : null ,
             'truculence' => $request->truculence == 'true' ? true : null ,
@@ -82,9 +83,30 @@ class DomainController extends Controller
 
         return redirect()->route('home.posts.index');
     }
+    public function constrain($var = "local"){
+        $jsonConstrainds = enviroment::first()->constrainds;
+        $arrayContrainds = json_decode($jsonConstrainds, true);
+        if($var == "local"){
+            foreach ($arrayContrainds as $key => &$constraind) {
+                foreach ($constraind as &$value) {
+                    $value = "";
+                }
+            }
+        }
+        return $arrayContrainds;
+    }
 
     public function show(domain $domain){
-        return view('domains.show' , compact ('domain'));
+        $constrainds = $this->constrain("global");
+        $social = json_decode($domain->social , true);
+        $arraySocial = [];
 
+        foreach ($social as $key => $value) {
+            if($value != null){
+                $arraySocial[$key] = $value;
+            }
+        }
+//        dd($arraySocial);
+        return view('domains.show' , compact ('domain' ,'constrainds' , 'arraySocial' ));
     }
 }

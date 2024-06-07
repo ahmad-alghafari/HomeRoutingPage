@@ -187,7 +187,7 @@ Header END -->
 
 
                         <!-- Copyright -->
-                        <p class="small text-center mt-1">©2023 <a class="text-reset" target="_blank" href="https://www.webestica.com/"> Webestica </a></p>
+                        <p class="small text-center mt-1">©{{date('Y')}} <a class="text-reset" target="_blank" href="https://www.webestica.com/"> {{env('APP_NAME')}} </a></p>
 
                     </div>
                 </nav>

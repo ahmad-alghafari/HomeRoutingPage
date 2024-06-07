@@ -106,7 +106,7 @@
                 <!-- Helper link START -->
                 <!-- Helper link END -->
                 <!-- Copyright -->
-                <p class="small text-center mt-1">©{{date('Y')}} <a class="text-reset" target="_blank" href=""> TAGH </a></p>
+                <p class="small text-center mt-1">©{{date('Y')}} <a class="text-reset" target="_blank" href=""> {{env('APP_NAME')}} </a></p>
             </div>
         </div>
     </nav>

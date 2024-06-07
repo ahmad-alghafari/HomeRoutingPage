@@ -30,4 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail,CanResetPassword{
     public function info() :HasOne {return $this->hasOne(info::class , 'user_id' , 'id');}
     public function commentlike() : HasMany {return $this->hasMany(commentlike::class , 'user_id' , 'id');}
     public function share() : HasMany {return $this->hasMany(share::class , 'user_id' , 'id');}
+
+    public function file() : HasMany {return $this->hasMany(file::class , 'user_id' , 'id');}
+
 }

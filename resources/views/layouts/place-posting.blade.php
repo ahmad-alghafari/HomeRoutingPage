@@ -38,18 +38,18 @@
                         Post
                     </button>
                 </li>
-                <li class="nav-item dropdown ms-lg-auto">
-                    <a class="nav-link bg-light py-1 px-2 mb-0" href="#" id="feedActionShare" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
-                    </a>
-                    <!-- Dropdown menu -->
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="feedActionShare">
-                        <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-2"></i>Create a poll</a></li>
-                        <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-2"></i>Ask a question </a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil-square fa-fw pe-2"></i>Help</a></li>
-                    </ul>
-                </li>
+{{--                <li class="nav-item dropdown ms-lg-auto">--}}
+{{--                    <a class="nav-link bg-light py-1 px-2 mb-0" href="#" id="feedActionShare" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                        <i class="bi bi-three-dots"></i>--}}
+{{--                    </a>--}}
+{{--                    <!-- Dropdown menu -->--}}
+{{--                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="feedActionShare">--}}
+{{--                        <li><a class="dropdown-item" href="#"> <i class="bi bi-envelope fa-fw pe-2"></i>Create a poll</a></li>--}}
+{{--                        <li><a class="dropdown-item" href="#"> <i class="bi bi-bookmark-check fa-fw pe-2"></i>Ask a question </a></li>--}}
+{{--                        <li><hr class="dropdown-divider"></li>--}}
+{{--                        <li><a class="dropdown-item" href="#"> <i class="bi bi-pencil-square fa-fw pe-2"></i>Help</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
             </ul>
             @foreach($errors->all() as $error)
                 <div >{{ $error }}</div>

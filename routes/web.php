@@ -74,7 +74,6 @@ Route::name('errors.')->prefix('errors/')->group(function (){
 
 });
 
-
 Route::get('/domains' , [DomainController::class , "index"])->name("domains.index");
 Route::get('/domains/show/{domain}' , [DomainController::class , "show"])->name("domains.show");
 Route::get("/domains/create" , function(){

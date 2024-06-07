@@ -82,6 +82,7 @@ class PostController extends Controller{
                         'post_id' => $post->id,
                         'file_path' => $filePath,
                         'file_type' => $fileType,
+                        'user_id' => $id ,
                         'prefix' => $file->extension(),
                     ]);
                     $file->move(public_path('posts_' . $fileType), $fileName);
