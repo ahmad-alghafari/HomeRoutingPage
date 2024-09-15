@@ -129,7 +129,7 @@ Header START -->
                     <li class="nav-item">
                         @guest
                             @if (Route::has('register'))
-                                <a class="nav-link" href="{{ route('register') }}">Sign In</a>
+                                <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
                             @endif
                         @endguest
                     </li>

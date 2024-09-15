@@ -146,7 +146,7 @@
             <!-- Button -->
             <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary">Login</button></div>
             <!-- Copyright -->
-            <p class="mb-0 mt-3">©2023 <a target="_blank" href="https://www.webestica.com/">Webestica.</a> All rights reserved</p>
+            <p class="mb-0 mt-3">©2024 <a target="_blank" href="">Webestica.</a> All rights reserved</p>
           </form>
           <!-- Form END -->
         </div>
